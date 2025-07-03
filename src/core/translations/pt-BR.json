@@ -1,0 +1,153 @@
+{
+  "auth": {
+    "logout": "Sair"
+  },
+  "settings": {
+    "change_language": "Alterar idioma",
+    "toggle_theme": "Alternar tema"
+  },
+  "languages": {
+    "portuguese_brazil": "Português (Brasil)",
+    "english_us": "Inglês (EUA)"
+  },
+  "user": {
+    "label": "Usuário"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "tenant": {
+    "label": "Tenant"
+  },
+  "role": {
+    "label": "Papel"
+  },
+  "welcome_back": "Bem-vindo de volta!",
+  "access_denied": "Acesso negado",
+  "oops_this_page_not_found": "Ops, página não encontrada!",
+  "sidebar": {
+    "admin": {
+      "title": "Administração",
+      "dashboard": "Dashboard",
+      "tenant": "Tenant",
+      "role": "Papel",
+      "user": "Usuário"
+    }
+  },
+  "forbidden": {
+    "title": "403",
+    "subtitle": "Acesso negado",
+    "description": "Você não tem permissão para acessar esta página.",
+    "contact": "Entre em contato com o administrador se precisar de acesso.",
+    "go_home": "Voltar para a página inicial"
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "Ops, página não encontrada!",
+    "description1": "O link pode estar corrompido,",
+    "description2": "ou a página pode ter sido removida",
+    "go_home": "Voltar para a página inicial"
+  },
+  "internal_server_error": {
+    "title": "Erro interno do servidor",
+    "subtitle": "Ocorreu um erro inesperado",
+    "description": "Tente recarregar a página ou volte mais tarde. Se o problema persistir, entre em contato com o suporte.",
+    "go_home": "Voltar para a página inicial"
+  },
+  "verified_email": {
+    "title": "Verifique seu e-mail",
+    "subtitle": "Confirmação necessária",
+    "description": "Para acessar o sistema, confirme seu endereço de e-mail através do link enviado para sua caixa de entrada.",
+    "go_home": "Voltar para a página inicial"
+  },
+  "roles": {
+    "list": {
+      "title": "Funções",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar funções",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_description": "Descrição",
+        "column_active": "Ativo",
+        "column_active_true": "Ativo",
+        "column_active_false": "Inativo",
+        "column_actions": "Ações"
+      }
+    },
+    "add": {
+      "title": "Criar Nova Função",
+      "description": "Preencha os campos abaixo para criar uma nova função",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "namePlaceholder": "Digite o nome da função",
+        "descriptionPlaceholder": "Digite a descrição da função",
+        "nameRequired": "O nome é obrigatório",
+        "descriptionRequired": "A descrição é obrigatória"
+      }
+    },
+    "view": {
+      "title": "Detalhes da Função",
+      "description": "Visualize os detalhes desta função",
+      "errorLoading": "Erro ao carregar função",
+      "notFound": "Função não encontrada",
+      "notFoundDescription": "A função solicitada não foi encontrada",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "status": "Status",
+        "id": "ID",
+        "noDescription": "Nenhuma descrição fornecida"
+      },
+      "disable": "Desabilitar",
+      "enable": "Habilitar"
+    },
+    "delete": {
+      "title": "Desabilitar Função",
+      "description": "Tem certeza que deseja desabilitar esta função? Esta ação pode ser revertida posteriormente."
+    },
+    "edit": {
+      "title": "Editar Função",
+      "description": "Altere os campos abaixo para editar a função",
+      "errorLoading": "Erro ao carregar função para edição",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "namePlaceholder": "Digite o nome da função",
+        "descriptionPlaceholder": "Digite a descrição da função",
+        "nameRequired": "O nome é obrigatório",
+        "descriptionRequired": "A descrição é obrigatória"
+      }
+    }
+  },
+  "disable": {
+    "title": "Desabilitar Função",
+    "description": "Tem certeza que deseja desabilitar esta função? Esta ação pode ser revertida posteriormente."
+  },
+  "enable": {
+    "title": "Habilitar Função",
+    "description": "Tem certeza que deseja habilitar esta função? Esta ação pode ser revertida posteriormente."
+  },
+  "table": {
+    "table_column_actions": "Ações",
+    "table_tooltip_view": "Ver",
+    "table_tooltip_edit": "Editar",
+    "table_no_data": "Nenhum registro encontrado."
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "error": "Erro",
+    "back": "Voltar",
+    "edit": "Editar",
+    "delete": "Desabilitar"
+  }
+} 
