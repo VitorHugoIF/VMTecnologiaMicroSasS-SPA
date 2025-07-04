@@ -41,6 +41,6 @@ export function useCreateRolePage() {
     form,
     onSubmit,
     handleCancel,
-    isPending,
+    isLoading: isPending,
   };
 } 

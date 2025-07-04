@@ -52,7 +52,7 @@ export function useEditRolePage() {
     form,
     onSubmit,
     handleCancel,
-    isPending,
-    isLoading,
+    isLoading: isPending,
+    isDataLoading: isLoading,
   };
 } 

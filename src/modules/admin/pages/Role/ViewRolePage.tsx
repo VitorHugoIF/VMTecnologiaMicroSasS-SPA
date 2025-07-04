@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Card } from '@/components/Card';
 import { Button, ConfirmDialog } from '@/components';
 import { useViewRolePage } from './hooks/useViewRolePage';
 import { ErrorAlert } from '../../../components';
@@ -23,7 +24,7 @@ export function ViewRolePage() {
 
   if (!role) {
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col gap-3">
         <ErrorAlert
           title={t('roles.view.notFound')}
           description={t('roles.view.notFoundDescription')}
@@ -34,96 +35,84 @@ export function ViewRolePage() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-card rounded-md shadow-lg overflow-hidden">
-        <div className="p-6 border-b">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground">
-                {t('roles.view.title')}
-              </h1>
-              <p className="text-muted-foreground mt-1">
-                {t('roles.view.description')}
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={handleBack}
-                icon={<ArrowLeft className="w-4 h-4" />}
-              >
-                {t('common.back')}
-              </Button>
-              <Button
-                onClick={handleEdit}
-                icon={<Edit className="w-4 h-4" />}
-              >
-                {t('common.edit')}
-              </Button>
-              {role.active ? (
-                <ConfirmDialog
-                  trigger={
-                    <Button
-                      variant="destructive"
-                      loading={isDeleting}
-                      icon={<Trash2 className="w-4 h-4" />}
-                    >
-                      {t('roles.view.disable')}
-                    </Button>
-                  }
-                  title={t('roles.disable.title')}
-                  description={t('roles.disable.description')}
-                  confirmText={t('roles.view.disable')}
-                  cancelText={t('common.cancel')}
-                  onConfirm={() => handleToggleActive(false)}
-                  variant="destructive"
-                />
-              ) : (
-                <ConfirmDialog
-                  trigger={
-                    <Button
-                      variant="default"
-                      loading={isDeleting}
-                      icon={<Edit className="w-4 h-4" />}
-                    >
-                      {t('roles.view.enable')}
-                    </Button>
-                  }
-                  title={t('roles.enable.title')}
-                  description={t('roles.enable.description')}
-                  confirmText={t('roles.view.enable')}
-                  cancelText={t('common.cancel')}
-                  onConfirm={() => handleToggleActive(true)}
-                  variant="default"
-                />
-              )}
-            </div>
+      <Card 
+        title={t('roles.view.title')} 
+        description={t('roles.view.description')}
+        footer={
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={handleBack}
+              icon={<ArrowLeft className="w-4 h-4" />}
+            >
+              {t('common.back')}
+            </Button>
+            <Button
+              onClick={handleEdit}
+              icon={<Edit className="w-4 h-4" />}
+            >
+              {t('common.edit')}
+            </Button>
+            {role.active ? (
+              <ConfirmDialog
+                trigger={
+                  <Button
+                    variant="destructive"
+                    loading={isDeleting}
+                    icon={<Trash2 className="w-4 h-4" />}
+                  >
+                    {t('roles.view.disable')}
+                  </Button>
+                }
+                title={t('roles.disable.title')}
+                description={t('roles.disable.description')}
+                confirmText={t('roles.view.disable')}
+                cancelText={t('common.cancel')}
+                onConfirm={() => handleToggleActive(false)}
+                variant="destructive"
+              />
+            ) : (
+              <ConfirmDialog
+                trigger={
+                  <Button
+                    variant="default"
+                    loading={isDeleting}
+                    icon={<Edit className="w-4 h-4" />}
+                  >
+                    {t('roles.view.enable')}
+                  </Button>
+                }
+                title={t('roles.enable.title')}
+                description={t('roles.enable.description')}
+                confirmText={t('roles.view.enable')}
+                cancelText={t('common.cancel')}
+                onConfirm={() => handleToggleActive(true)}
+                variant="default"
+              />
+            )}
           </div>
-        </div>
-
-        <div className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        }
+      >
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">
+              <h3 className="text-sm font-medium text-gray-500">
                 {t('roles.view.form.code')}
-              </label>
-              <div className="p-3 bg-muted/50 rounded-md border">
-                <span className="text-foreground">{role.code || '-'}</span>
-              </div>
+              </h3>
+              <p className="text-lg">{role.code || '-'}</p>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">
+              <h3 className="text-sm font-medium text-gray-500">
                 {t('roles.view.form.name')}
-              </label>
-              <div className="p-3 bg-muted/50 rounded-md border">
-                <span className="text-foreground">{role.name || '-'}</span>
-              </div>
+              </h3>
+              <p className="text-lg">{role.name || '-'}</p>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">
+              <h3 className="text-sm font-medium text-gray-500">
                 {t('roles.view.form.status')}
-              </label>
-              <div className="p-3 bg-muted/50 rounded-md border">
+              </h3>
+              <div className="mt-1">
                 {role.active ? (
                   <Badge variant="default">{t('roles.list.table.column_active_true')}</Badge>
                 ) : (
@@ -134,17 +123,13 @@ export function ViewRolePage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">
+            <h3 className="text-sm font-medium text-gray-500">
               {t('roles.view.form.description')}
-            </label>
-            <div className="p-3 bg-muted/50 rounded-md border min-h-[80px]">
-              <span className="text-foreground whitespace-pre-wrap">
-                {role.description || t('roles.view.form.noDescription')}
-              </span>
-            </div>
+            </h3>
+            <p className="text-lg">{role.description || t('roles.view.form.noDescription')}</p>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 } 

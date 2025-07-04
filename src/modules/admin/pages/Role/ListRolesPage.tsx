@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { Card } from "@/components/Card"
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
 import { TableHeaderActions } from '../../../components'
@@ -26,7 +27,7 @@ export function ListRolesPage() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-card rounded-md shadow-lg overflow-hidden">
+      <Card>
         <TableHeaderActions
           title={t('roles.list.title')}
           search={search || ''}
@@ -63,7 +64,7 @@ export function ListRolesPage() {
           totalPages={totalPages}
           onPageChange={setPage}
         />
-      </div>
+      </Card>
     </div>
   );
 } 

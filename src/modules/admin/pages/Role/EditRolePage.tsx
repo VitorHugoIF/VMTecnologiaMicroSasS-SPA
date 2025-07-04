@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Card } from '@/components/Card';
 import { Input, Label, Button } from '@/components';
 import { ErrorAlert } from '../../../components';
 import { useEditRolePage } from './hooks/useEditRolePage';
@@ -10,29 +11,20 @@ export function EditRolePage() {
     form,
     onSubmit,
     handleCancel,
-    isPending,
     isLoading,
+    isDataLoading,
   } = useEditRolePage();
 
   const { register, handleSubmit, formState: { errors } } = form;
 
-  if (isLoading) {
+  if (isDataLoading) {
     return <EditRoleSkeleton />;
   }
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-card rounded-md shadow-lg overflow-hidden">
-        <div className="p-6 border-b">
-          <h1 className="text-2xl font-semibold text-foreground">
-            {t('roles.edit.title')}
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            {t('roles.edit.description')}
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
+      <Card title={t('roles.edit.title')} description={t('roles.edit.description')}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {errors.name && (
             <ErrorAlert
               title={t('common.error')}
@@ -49,7 +41,7 @@ export function EditRolePage() {
                 id="name"
                 type="text"
                 placeholder={t('roles.edit.form.namePlaceholder')}
-                disabled={isPending}
+                disabled={isLoading}
                 {...register('name')}
               />
             </div>
@@ -62,7 +54,7 @@ export function EditRolePage() {
                 id="description"
                 type="text"
                 placeholder={t('roles.edit.form.descriptionPlaceholder')}
-                disabled={isPending}
+                disabled={isLoading}
                 {...register('description')}
               />
             </div>
@@ -71,7 +63,7 @@ export function EditRolePage() {
           <div className="flex gap-3 pt-4">
             <Button
               type="submit"
-              loading={isPending}
+              loading={isLoading}
             >
               {t('common.save')}
             </Button>
@@ -79,13 +71,13 @@ export function EditRolePage() {
               type="button"
               variant="outline"
               onClick={handleCancel}
-              disabled={isPending}
+              disabled={isLoading}
             >
               {t('common.cancel')}
             </Button>
           </div>
         </form>
-      </div>
+      </Card>
     </div>
   );
 } 

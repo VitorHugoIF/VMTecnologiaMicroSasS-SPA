@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Card } from '@/components/Card';
 import { Input, Label, Button } from '@/components';
 import { useCreateRolePage } from './hooks/useCreateRolePage';
 import { ErrorAlert } from '../../../components';
@@ -9,24 +10,15 @@ export function CreateRolePage() {
     form,
     onSubmit,
     handleCancel,
-    isPending
+    isLoading
   } = useCreateRolePage();
 
   const { register, handleSubmit, formState: { errors } } = form;
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-card rounded-md shadow-lg overflow-hidden">
-        <div className="p-6 border-b">
-          <h1 className="text-2xl font-semibold text-foreground">
-            {t('roles.add.title')}
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            {t('roles.add.description')}
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
+      <Card title={t('roles.add.title')} description={t('roles.add.description')}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {errors.name && (
             <ErrorAlert
               title={t('common.error')}
@@ -43,7 +35,7 @@ export function CreateRolePage() {
                 id="name"
                 type="text"
                 placeholder={t('roles.add.form.namePlaceholder')}
-                disabled={isPending}
+                disabled={isLoading}
                 {...register('name')}
               />
             </div>
@@ -56,7 +48,7 @@ export function CreateRolePage() {
                 id="description"
                 type="text"
                 placeholder={t('roles.add.form.descriptionPlaceholder')}
-                disabled={isPending}
+                disabled={isLoading}
                 {...register('description')}
               />
             </div>
@@ -65,7 +57,7 @@ export function CreateRolePage() {
           <div className="flex gap-3 pt-4">
             <Button
               type="submit"
-              loading={isPending}
+              loading={isLoading}
             >
               {t('common.save')}
             </Button>
@@ -73,13 +65,13 @@ export function CreateRolePage() {
               type="button"
               variant="outline"
               onClick={handleCancel}
-              disabled={isPending}
+              disabled={isLoading}
             >
               {t('common.cancel')}
             </Button>
           </div>
         </form>
-      </div>
+      </Card>
     </div>
   );
 } 

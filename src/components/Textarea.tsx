@@ -27,7 +27,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
     return (
       <ShadTextarea
         ref={ref}
-        className={className}
+        className={`bg-transparent dark:bg-input/30 transition-[color,box-shadow] ${className}`}
         style={textareaStyle}
         {...props}
       />
