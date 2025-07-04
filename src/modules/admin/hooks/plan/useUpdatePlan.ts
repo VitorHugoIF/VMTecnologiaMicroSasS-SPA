@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updatePlan } from "../../services/planHttpService";
-import type { UpdatePlanDto } from "../../models";
+import type { UpdatePlanRequest } from "../../models";
 import { ApiError } from "@/core/models/errorResponse";
 import { Toast } from "@/components";
 
@@ -8,7 +8,7 @@ export function useUpdatePlan() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdatePlanDto }) => updatePlan(id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdatePlanRequest }) => updatePlan(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] });
     },

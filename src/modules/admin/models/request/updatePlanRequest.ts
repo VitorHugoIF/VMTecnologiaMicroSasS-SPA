@@ -1,4 +1,4 @@
-export type UpdatePlanDto = {
+export type UpdatePlanRequest = {
     id: string;
     name?: string;
     description?: string;

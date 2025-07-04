@@ -1,4 +1,4 @@
-export type CreatePlanDto = {
+export type CreatePlanRequest = {
     name?: string;
     description?: string;
     price?: number;

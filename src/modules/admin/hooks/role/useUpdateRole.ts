@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { roleHttpService } from '../../services';
-import type { UpdateRoleDto } from '../../models/request/updateRoleDto';
+import type { UpdateRoleRequest } from '../../models/request/updateRoleRequest';
 import { ApiError } from "@/core/models/errorResponse";
 import { Toast } from "@/components";
 
 export function useUpdateRole() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: UpdateRoleDto) =>
+    mutationFn: (data: UpdateRoleRequest) =>
       roleHttpService.updateRole(data.id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["useGetRole"] });

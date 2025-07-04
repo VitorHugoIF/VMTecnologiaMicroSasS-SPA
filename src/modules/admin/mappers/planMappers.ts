@@ -1,6 +1,6 @@
 import type { Plan } from '../types'
 import type { PlanResponse } from '../models'
-import type { CreatePlanDto, UpdatePlanDto } from '../models'
+import type { CreatePlanRequest, UpdatePlanRequest } from '../models'
 import type { PagedResponse } from '@/core/models/pagedResponse'
 
 export function mapPlanResponseToPlan(response?: PlanResponse): Plan | undefined {
@@ -23,7 +23,7 @@ export function mapPagedPlanResponseToPlans(paged?: PagedResponse<PlanResponse>)
     };
 }
 
-export function mapPlanToCreatePlanDto(plan: Plan): CreatePlanDto {
+export function mapPlanToCreatePlanRequest(plan: Plan): CreatePlanRequest {
     return {
         name: plan.name,
         description: plan.description,
@@ -31,7 +31,7 @@ export function mapPlanToCreatePlanDto(plan: Plan): CreatePlanDto {
     }
 }
 
-export function mapPlanToUpdatePlanDto(plan: Plan): UpdatePlanDto {
+export function mapPlanToUpdatePlanRequest(plan: Plan): UpdatePlanRequest {
     return {
         id: plan.id!,
         name: plan.name,

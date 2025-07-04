@@ -2,8 +2,8 @@ import { http } from "@/services/http";
 import type { PlanResponse } from "../models";
 import type { ApiResponse } from "@/core/models/apiResponse";
 import type { PagedResponse } from "@/core/models/pagedResponse";
-import type { CreatePlanDto } from '../models/request/createPlanDto';
-import type { UpdatePlanDto } from '../models/request/updatePlanDto';
+import type { CreatePlanRequest } from '../models/request/createPlanRequest';
+import type { UpdatePlanRequest } from '../models/request/updatePlanRequest';
 
 const prefix ='api/admin/plan'
 
@@ -34,7 +34,7 @@ export async function getPlan(id: string) {
     return data;
 }
 
-export async function createPlan(dto: CreatePlanDto) {
+export async function createPlan(dto: CreatePlanRequest) {
     const { data } =  await http.post<ApiResponse<PlanResponse>>(`${prefix}`, dto);
     return data;
 }
@@ -49,7 +49,7 @@ export async function disablePlan(id: string) {
     return data;
 }
 
-export async function updatePlan(id: string, dto: UpdatePlanDto) {
+export async function updatePlan(id: string, dto: UpdatePlanRequest) {
     const { data } =  await http.put<ApiResponse<PlanResponse>>(`${prefix}/${id}`, dto);
     return data;
 } 
