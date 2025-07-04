@@ -10,7 +10,6 @@ export function ViewRolePage() {
   const { t } = useTranslation();
   const {
     isLoading,
-    error,
     role,
     isDeleting,
     handleEdit,
@@ -20,17 +19,6 @@ export function ViewRolePage() {
 
   if (isLoading) {
     return <RoleViewSkeleton />;
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center">
-        <ErrorAlert
-          title={t('roles.view.errorLoading')}
-          description={error}
-        />
-      </div>
-    );
   }
 
   if (!role) {
@@ -114,6 +102,14 @@ export function ViewRolePage() {
 
         <div className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-muted-foreground">
+                {t('roles.view.form.code')}
+              </label>
+              <div className="p-3 bg-muted/50 rounded-md border">
+                <span className="text-foreground">{role.code || '-'}</span>
+              </div>
+            </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-muted-foreground">
                 {t('roles.view.form.name')}

@@ -22,27 +22,34 @@ export async function getRoles(
     if (sort) params.append('sort', sort);
     if (search) params.append('search', search);
 
-    return await http.get<PagedResponse<RoleResponse>>(
+    const { data } = await http.get<PagedResponse<RoleResponse>>(
         `${prefix}/role?${params.toString()}`
     );
+
+    return data;
 }
 
 export async function getRole(id: string) {
-    return await http.get<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`)
+    const { data } = await http.get<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`);
+    return data;
 }
 
-export async function createRole(data: CreateRoleDto) {
-    return await http.post<ApiResponse<RoleResponse>>(`${prefix}/role`, data);
+export async function createRole(dto: CreateRoleDto) {
+    const { data } =  await http.post<ApiResponse<RoleResponse>>(`${prefix}/role`, dto);
+    return data;
 }
 
 export async function enableRole(id: string) {
-    return await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/enable`);
+    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/enable`);
+    return data;
 }
 
 export async function disableRole(id: string) {
-    return await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/disable`);
+    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/disable`);
+    return data;
 }
 
-export async function updateRole(id: string, data: UpdateRoleDto) {
-    return await http.put<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`, data);
+export async function updateRole(id: string, dto: UpdateRoleDto) {
+    const { data } =  await http.put<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`, dto);
+    return data;
 }

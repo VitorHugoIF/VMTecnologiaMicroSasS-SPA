@@ -11,27 +11,13 @@ export function EditRolePage() {
     onSubmit,
     handleCancel,
     isPending,
-    apiError,
     isLoading,
-    error
   } = useEditRolePage();
 
   const { register, handleSubmit, formState: { errors } } = form;
 
   if (isLoading) {
     return <EditRoleSkeleton />;
-  }
-
-  if (error) {
-    const apiResponse = (error as any)?.response?.data;
-    return (
-      <div className="flex justify-center items-center">
-        <ErrorAlert
-          title={apiResponse?.message || t('roles.edit.errorLoading')}
-          description={apiResponse?.errors?.join('\n') || (error as any)?.message}
-        />
-      </div>
-    );
   }
 
   return (
@@ -47,10 +33,10 @@ export function EditRolePage() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
-          {(apiError || errors.name) && (
+          {errors.name && (
             <ErrorAlert
               title={t('common.error')}
-              description={apiError || errors.name?.message}
+              description={errors.name?.message}
             />
           )}
 

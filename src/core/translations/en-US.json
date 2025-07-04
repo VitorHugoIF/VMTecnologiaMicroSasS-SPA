@@ -105,6 +105,7 @@
         "description": "Description",
         "status": "Status",
         "id": "ID",
+        "code": "Code",
         "noDescription": "No description provided"
       },
       "disable": "Disable",
@@ -149,5 +150,12 @@
     "back": "Back",
     "edit": "Edit",
     "delete": "Disable"
+  },
+  "login": {
+    "auth0": "Sign in as administrator",
+    "welcome": "Welcome back!",
+    "username": "Username",
+    "password": "Password",
+    "signIn": "Sign In"
   }
 } 

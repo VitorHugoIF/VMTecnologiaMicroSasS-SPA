@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,8 +12,7 @@ export function useEditRolePage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { mutateAsync, isPending } = useUpdateRole();
-  const [apiError, setApiError] = useState<string | null>(null);
-  const { data, isLoading, error } = useGetRole({ id: id || '' });
+  const { data, isLoading } = useGetRole({ id: id || '' });
 
   const schema = z.object({
     name: z.string().min(1, t('roles.edit.form.nameRequired')),
@@ -30,20 +29,18 @@ export function useEditRolePage() {
   useEffect(() => {
     if (data?.data) {
       form.reset({
-        name: data.data.data?.name || '',
-        description: data.data.data?.description || ''
+        name: data.data?.name || '',
+        description: data.data?.description || ''
       });
     }
   }, [data, form]);
 
   const onSubmit = async (formData: FormSchema) => {
-    setApiError(null);
     try {
       await mutateAsync({ id: id!, ...formData });
       navigate(ADMIN_ROUTES.roles.list);
     } catch (err: any) {
-      const apiResponse = err?.response?.data;
-      setApiError(apiResponse?.message || err?.message || 'Erro ao editar role');
+      console.error(err);   
     }
   };
 
@@ -56,8 +53,6 @@ export function useEditRolePage() {
     onSubmit,
     handleCancel,
     isPending,
-    apiError,
     isLoading,
-    error
   };
 } 

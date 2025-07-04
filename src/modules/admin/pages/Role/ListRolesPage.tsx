@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
-import { ErrorAlert, TableHeaderActions } from '../../components'
+import { TableHeaderActions } from '../../components'
 import type { Role } from '../../types'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -11,7 +11,6 @@ export function ListRolesPage() {
   const { t } = useTranslation();
   const {
     isLoading,
-    error,
     columns,
     paginatedRoles,
     page,
@@ -24,18 +23,6 @@ export function ListRolesPage() {
     search,
     setSearch,
   } = useListRolesPage();
-
-  if (error) {
-    const apiResponse = (error as any)?.response?.data;
-    return (
-      <div className="flex justify-center items-center">
-        <ErrorAlert
-          title={apiResponse?.message || t('roles.list.errorLoading')}
-          description={apiResponse?.errors?.join('\n') || (error as any)?.message}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col gap-3">

@@ -105,6 +105,7 @@
         "description": "Descrição",
         "status": "Status",
         "id": "ID",
+        "code": "Código",
         "noDescription": "Nenhuma descrição fornecida"
       },
       "disable": "Desabilitar",
@@ -149,5 +150,12 @@
     "back": "Voltar",
     "edit": "Editar",
     "delete": "Desabilitar"
+  },
+  "login": {
+    "auth0": "Logar como administrador",
+    "welcome": "Bem-vindo de volta!",
+    "username": "Usuário",
+    "password": "Senha",
+    "signIn": "Entrar"
   }
 } 

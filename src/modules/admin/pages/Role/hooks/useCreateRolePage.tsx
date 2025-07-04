@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,7 +10,6 @@ export function useCreateRolePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { mutateAsync, isPending } = useCreateRole();
-  const [apiError, setApiError] = useState<string | null>(null);
 
   const schema = z.object({
     name: z.string().min(1, t('roles.add.form.nameRequired')),
@@ -26,14 +24,12 @@ export function useCreateRolePage() {
   });
 
   const onSubmit = async (data: FormSchema) => {
-    setApiError(null);
     try {
       await mutateAsync(data);
       form.reset();
       navigate(ADMIN_ROUTES.roles.list);
     } catch (err: any) {
-      const apiResponse = err?.response?.data;
-      setApiError(apiResponse?.message || err?.message || 'Erro ao criar role');
+      console.error(err);
     }
   };
 
@@ -46,6 +42,5 @@ export function useCreateRolePage() {
     onSubmit,
     handleCancel,
     isPending,
-    apiError
   };
 } 

@@ -1,8 +1,9 @@
-import axios from 'axios';
-import type { ApiResponse } from './apiResponse';
+import axios, { AxiosError } from 'axios';
 import { Toast } from '@/components';
 import { KeyStorageConfig } from '@/config/KeyStorageConfig';
 import i18n from '@/core/i18n';
+import { ApiError } from '@/core/models/errorResponse';
+import type { ApiResponse } from '@/core/models/apiResponse';
 
 export const http = axios.create({
     baseURL : import.meta.env.VITE_API_URL
@@ -29,34 +30,39 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   response => response,
-  error => {
-    let message = error?.message || 'An unexpected error occurred. Please try again later.';
-    let status = error?.response?.status;
+  (error: AxiosError) => {
+    const status = error.response?.status || 0;
+    let message = error.message || 'An unexpected error occurred. Please try again later.';
+    let errors = [message];
+
 
     if (!error.response) {
-      message = 'Network error: Unable to connect to the server. Please try again later.';
-      error.response = {
-        data: {
-          success: false,
-          data: null,
-          errors: [message],
-          message
-        }
-      };
-      Toast.error({ title: "Oops!", description: message }, { id: 'global-error' });
-    } else {
-      const apiResponse: ApiResponse<null> = {
-        success: false,
-        data: null,
-        errors: error.response?.data?.errors || [message],
-        message
-      };
-      error.response.data = apiResponse;
+      message = 'An unexpected error occurred. Please try again later.';
+      errors = [message];
 
-      if (status === 500) {
-        Toast.error({ title: "Oops!", description: apiResponse.errors[0] }, { id: 'global-error' });
-      }  
+      Toast.error({ title: "Oops!", description: message }, { id: 'global-error' });
+
+      throw new ApiError({
+        success: false,
+        message,
+        errors,
+        status: 0,
+      });
+    } 
+    
+    const apiData = error.response.data as Partial<ApiResponse<any>>;
+    message = apiData.message || message;
+    errors = apiData.errors || [message];
+    if (status === 500) {
+      Toast.error({ title: 'Erro interno', description: errors[0] }, { id: 'global-error' });
     }
-    return Promise.reject(error);
+
+    throw new ApiError({
+      success: false,
+      message,
+      errors,
+      status,
+    });
   }
 );
+

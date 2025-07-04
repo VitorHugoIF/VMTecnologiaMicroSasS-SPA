@@ -3,4 +3,5 @@ export type RoleResponse = {
     name?: string;
     description?: string;
     active?: string;
+    code?: string;
 } 

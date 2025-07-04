@@ -3,9 +3,7 @@ import { useGetRoles } from '../../../hooks'
 import type { RoleTableColumn } from '../../../types'
 import { Badge } from '@/components/ui/badge'
 import { useTranslation } from 'react-i18next'
-import { mapApiPagedResponse } from '@/modules/helpers/apiMappers'
-import type { RoleResponse } from '../../../models'
-import type { Role } from '../../../types'
+import { mapPagedRoleResponseToRoles } from '@/modules/admin/mappers/roleMappers';
 
 export function useListRolesPage() {
   const { t } = useTranslation();
@@ -24,19 +22,9 @@ export function useListRolesPage() {
     return () => clearTimeout(handler);
   }, [searchInput]);
 
-  const mappedData = mapApiPagedResponse<RoleResponse, Role>(
-    data?.data,
-    (roleData) => ({
-      id: roleData.id,
-      name: roleData.name,
-      description: roleData.description,
-      active: String(roleData.active) === 'true',
-    })
-  );
-  const roles = mappedData.items;
-  const totalCount = mappedData.totalCount;
+  const { items, totalCount } = mapPagedRoleResponseToRoles(data);
   const totalPages = Math.ceil(totalCount / pageSize);
-  const paginatedRoles = roles;
+  const paginatedRoles = items;
 
   const columns: RoleTableColumn[] = [
     { header: t('roles.list.table.column_name'), accessor: 'name' },
@@ -52,7 +40,6 @@ export function useListRolesPage() {
 
   return {
     isLoading,
-    error,
     columns,
     paginatedRoles,
     page,

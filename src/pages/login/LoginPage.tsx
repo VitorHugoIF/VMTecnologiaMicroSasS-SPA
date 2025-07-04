@@ -1,6 +1,7 @@
 import { Button, Input, Label, ProgressBar } from '@/components'
 import { Eye, EyeOff } from 'lucide-react'
 import { useLogin } from './useLogin'
+import { useTranslation } from 'react-i18next'
 
 export function LoginPage() {
   const {
@@ -15,11 +16,11 @@ export function LoginPage() {
     handleAuth0Login,
     loadingLogin,
   } = useLogin()
+  const { t } = useTranslation();
 
   if (loading) return <ProgressBar />
 
   return (
-
     <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
       <div className="hidden md:flex order-1 h-screen w-full md:w-1/2 items-center justify-center bg-gradient-to-br from-primary to-accent"></div>
       <div className="order-2 flex flex-col justify-center items-center w-full md:w-1/2 px-4 py-8 md:py-0 min-h-screen md:min-h-0">
@@ -31,13 +32,13 @@ export function LoginPage() {
           </div>
           <div className="shadow-none border-none bg-card rounded-xl">
             <div className="px-8 pt-8">
-              <div className="text-3xl mb-2 font-bold text-foreground">Welcome back!</div>
+              <div className="text-3xl mb-2 font-bold text-foreground">{t('login.welcome')}</div>
             </div>
             <div className="px-8 pb-8">
               <form onSubmit={handleLocalLogin} className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
                   <Label htmlFor="username" className="text-sm font-medium text-foreground">
-                    Username
+                    {t('login.username')}
                   </Label>
                   <Input
                     id="username"
@@ -49,7 +50,7 @@ export function LoginPage() {
                 </div>
                 <div className="flex flex-col gap-1 relative">
                   <Label htmlFor="password" className="text-sm font-medium text-foreground">
-                    Password
+                    {t('login.password')}
                   </Label>
                   <Input
                     id="password"
@@ -70,7 +71,7 @@ export function LoginPage() {
                 </div>
                 <div className="flex items-center justify-end mt-2">
                   <Button type="submit" loading={loadingLogin} className="w-full">
-                    Sign In
+                    {t('login.signIn')}
                   </Button>
                 </div>
               </form>
@@ -81,7 +82,7 @@ export function LoginPage() {
                   variant="secondary"
                   className="w-full"
                 >
-                  Sign in with Auth0
+                  {t('login.auth0')}
                 </Button>
               </div>
             </div>

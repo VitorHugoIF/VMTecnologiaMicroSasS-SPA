@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Input, Label, Button } from '@/components';
-import { ErrorAlert } from '../../components';
 import { useCreateRolePage } from './hooks/useCreateRolePage';
+import { ErrorAlert } from '../../components';
 
 export function CreateRolePage() {
   const { t } = useTranslation();
@@ -9,8 +9,7 @@ export function CreateRolePage() {
     form,
     onSubmit,
     handleCancel,
-    isPending,
-    apiError
+    isPending
   } = useCreateRolePage();
 
   const { register, handleSubmit, formState: { errors } } = form;
@@ -28,10 +27,10 @@ export function CreateRolePage() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
-          {(apiError || errors.name) && (
+          {errors.name && (
             <ErrorAlert
               title={t('common.error')}
-              description={apiError || errors.name?.message}
+              description={errors.name?.message}
             />
           )}
 
