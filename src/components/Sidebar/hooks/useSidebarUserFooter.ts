@@ -21,4 +21,4 @@ export function useSidebarUserFooter() {
   }, [openDropdown])
 
   return { openDropdown, setOpenDropdown, dropdownRef }
-} 
+}

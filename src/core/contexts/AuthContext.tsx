@@ -14,10 +14,10 @@ interface AuthContextType {
   user: AuthUser | null
   login: (user: AuthUser) => void
   logout: () => void
-  setLoading: (isLoading: boolean) => void,
-  isLoading: boolean,
-  isAuthenticated: boolean,
-  loginWithAuth0: (params?: RedirectLoginOptions) => void,
+  setLoading: (isLoading: boolean) => void
+  isLoading: boolean
+  isAuthenticated: boolean
+  loginWithAuth0: (params?: RedirectLoginOptions) => void
   error: Error | null | undefined
 }
 
@@ -29,5 +29,5 @@ export const AuthContext = createContext<AuthContextType>({
   setLoading: () => {},
   isAuthenticated: false,
   loginWithAuth0: () => {},
-  error: null
-}) 
+  error: null,
+})

@@ -16,7 +16,7 @@ export function LoginPage() {
     handleAuth0Login,
     loadingLogin,
   } = useLogin()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   if (loading) return <ProgressBar />
 

@@ -12,24 +12,17 @@ interface SidebarMenuTreeProps {
 }
 
 export function SidebarMenuTree({ items, open, itemAlign }: SidebarMenuTreeProps) {
-  const location = useLocation();
+  const location = useLocation()
   function renderMenuItems(items: SidebarMenuItemConfig[]) {
     return items.map((item) => {
       if (item.children && item.children.length > 0) {
         if (open) {
           return (
-            <SidebarGroupSection
-              key={item.label}
-              label={item.label}
-              colapsable={true}
-            >
-              <SidebarMenu>
-                {renderMenuItems(item.children)}
-              </SidebarMenu>
+            <SidebarGroupSection key={item.label} label={item.label} colapsable={true}>
+              <SidebarMenu>{renderMenuItems(item.children)}</SidebarMenu>
             </SidebarGroupSection>
           )
-        } 
-        else {
+        } else {
           return (
             <SidebarMenu key={item.label}>
               {item.children.map((child) => {
@@ -41,7 +34,11 @@ export function SidebarMenuTree({ items, open, itemAlign }: SidebarMenuTreeProps
                     icon={<Icon className="w-4 h-4" />}
                     label={child.label}
                     open={open}
-                    isActive={typeof window !== 'undefined' ? location.pathname.startsWith(child.href || '') : false}
+                    isActive={
+                      typeof window !== 'undefined'
+                        ? location.pathname.startsWith(child.href || '')
+                        : false
+                    }
                     className={itemAlign}
                   />
                 )
@@ -58,11 +55,13 @@ export function SidebarMenuTree({ items, open, itemAlign }: SidebarMenuTreeProps
           icon={<Icon className="w-4 h-4" />}
           label={item.label}
           open={open}
-          isActive={typeof window !== 'undefined' ? location.pathname.startsWith(item.href || '') : false}
+          isActive={
+            typeof window !== 'undefined' ? location.pathname.startsWith(item.href || '') : false
+          }
           className={itemAlign}
         />
       )
     })
   }
   return <>{renderMenuItems(items)}</>
-} 
+}

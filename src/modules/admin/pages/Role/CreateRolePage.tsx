@@ -1,29 +1,25 @@
-import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/Card';
-import { Input, Label, Button } from '@/components';
-import { useCreateRolePage } from './hooks/useCreateRolePage';
-import { ErrorAlert } from '../../../components';
+import { useTranslation } from 'react-i18next'
+import { Card } from '@/components/Card'
+import { Input, Label, Button } from '@/components'
+import { useCreateRolePage } from './hooks/useCreateRolePage'
+import { ErrorAlert } from '../../../components'
 
 export function CreateRolePage() {
-  const { t } = useTranslation();
-  const {
-    form,
-    onSubmit,
-    handleCancel,
-    isLoading
-  } = useCreateRolePage();
+  const { t } = useTranslation()
+  const { form, onSubmit, handleCancel, isLoading } = useCreateRolePage()
 
-  const { register, handleSubmit, formState: { errors } } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form
 
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('roles.add.title')} description={t('roles.add.description')}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {errors.name && (
-            <ErrorAlert
-              title={t('common.error')}
-              description={errors.name?.message}
-            />
+            <ErrorAlert title={t('common.error')} description={errors.name?.message} />
           )}
 
           <div className="space-y-4">
@@ -55,23 +51,15 @@ export function CreateRolePage() {
           </div>
 
           <div className="flex gap-3 pt-4">
-            <Button
-              type="submit"
-              loading={isLoading}
-            >
+            <Button type="submit" loading={isLoading}>
               {t('common.save')}
             </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleCancel}
-              disabled={isLoading}
-            >
+            <Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading}>
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Card>
     </div>
-  );
-} 
+  )
+}

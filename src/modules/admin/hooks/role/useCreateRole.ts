@@ -1,23 +1,26 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createRole } from "../../services/roleHttpService";
-import type { CreateRoleRequest } from "../../models";
-import { ApiError } from "@/core/models/errorResponse";
-import { Toast } from "@/components";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createRole } from '../../services/roleHttpService'
+import type { CreateRoleRequest } from '../../models'
+import { ApiError } from '@/core/models/errorResponse'
+import { Toast } from '@/components'
 
 export function useCreateRole() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (data: CreateRoleRequest) => createRole(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] });
+      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
     },
     onError: (error) => {
       if (error instanceof ApiError) {
-        Toast.error({ title: "Oops!", description: error.response.message }, { id: 'create-role-error' });
+        Toast.error(
+          { title: 'Oops!', description: error.response.message },
+          { id: 'create-role-error' },
+        )
       } else {
-        Toast.error({ title: "Oops!", description: error.message }, { id: 'create-role-error' });
+        Toast.error({ title: 'Oops!', description: error.message }, { id: 'create-role-error' })
       }
-    }
-  });
-} 
+    },
+  })
+}

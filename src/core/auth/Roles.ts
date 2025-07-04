@@ -1,6 +1,6 @@
 export const Roles = {
-    ADMIN : {
-        view: 'admin:view',
-        edit: 'admin:edit',
-    }
+  ADMIN: {
+    view: 'admin:view',
+    edit: 'admin:edit',
+  },
 }

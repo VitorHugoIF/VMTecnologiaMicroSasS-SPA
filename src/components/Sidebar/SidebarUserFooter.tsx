@@ -15,7 +15,7 @@ interface SidebarUserFooterProps {
     email?: string
     avatar?: string
   }
-  open: boolean,
+  open: boolean
 }
 
 function getAvatarProps(name?: string, email?: string) {
@@ -36,7 +36,9 @@ export function SidebarUserFooter({ user, open }: SidebarUserFooterProps) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="focus:outline-none w-full">
-          <div className={`flex items-center gap-3 w-full rounded-md transition-colors cursor-pointer${open ? ' px-2 py-1.5' : ''}`}>
+          <div
+            className={`flex items-center gap-3 w-full rounded-md transition-colors cursor-pointer${open ? ' px-2 py-1.5' : ''}`}
+          >
             {user.avatar ? (
               <img
                 src={user.avatar}
@@ -67,10 +69,7 @@ export function SidebarUserFooter({ user, open }: SidebarUserFooterProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" side="right" sideOffset={24} className={`w-64`}>
-        <DropdownMenuItem
-          className="w-full justify-center cursor-pointer"
-          onClick={logout}
-        >
+        <DropdownMenuItem className="w-full justify-center cursor-pointer" onClick={logout}>
           {t('logout')}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -81,4 +80,4 @@ export function SidebarUserFooter({ user, open }: SidebarUserFooterProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   )
-} 
+}

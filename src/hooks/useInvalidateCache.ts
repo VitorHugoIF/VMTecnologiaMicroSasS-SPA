@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
 export function useInvalidateCache() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
   useEffect(() => {
     return () => {
-      queryClient.invalidateQueries();
-    };
-  }, [queryClient]);
-} 
+      queryClient.invalidateQueries()
+    }
+  }, [queryClient])
+}

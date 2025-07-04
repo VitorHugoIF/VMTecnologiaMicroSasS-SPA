@@ -22,6 +22,9 @@
   "role": {
     "label": "Role"
   },
+  "plan": {
+    "label": "Plan"
+  },
   "welcome_back": "Welcome back!",
   "access_denied": "Access denied",
   "oops_this_page_not_found": "Oops, This Page Not Found!",
@@ -92,13 +95,15 @@
         "namePlaceholder": "Enter role name",
         "descriptionPlaceholder": "Enter role description",
         "nameRequired": "Name is required",
-        "descriptionRequired": "Description is required"
+        "descriptionRequired": "Description is required",
+        "submit": "Create Role"
       }
     },
     "view": {
       "title": "Role Details",
       "description": "View the details of this role",
       "errorLoading": "Error loading role",
+      "loading": "Loading...",
       "notFound": "Role not found",
       "notFoundDescription": "The requested role was not found",
       "form": {
@@ -110,7 +115,9 @@
         "noDescription": "No description provided"
       },
       "disable": "Disable",
-      "enable": "Enable"
+      "enable": "Enable",
+      "edit": "Edit",
+      "back": "Back"
     },
     "delete": {
       "title": "Disable Role",
@@ -126,7 +133,8 @@
         "namePlaceholder": "Enter role name",
         "descriptionPlaceholder": "Enter role description",
         "nameRequired": "Name is required",
-        "descriptionRequired": "Description is required"
+        "descriptionRequired": "Description is required",
+        "submit": "Save Changes"
       }
     }
   },
@@ -211,13 +219,94 @@
       }
     }
   },
-  "disable": {
-    "title": "Disable Role",
-    "description": "Are you sure you want to disable this role? This action can be reverted later."
-  },
-  "enable": {
-    "title": "Enable Role",
-    "description": "Are you sure you want to enable this role? This action can be reverted later."
+  "tenants": {
+    "list": {
+      "title": "Tenants",
+      "add": "Add",
+      "errorLoading": "Error loading tenants",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_slug": "Slug",
+        "column_email": "Email",
+        "column_plan": "Plan",
+        "column_status": "Status",
+        "column_actions": "Actions"
+      }
+    },
+    "add": {
+      "title": "Create New Tenant",
+      "description": "Fill in the fields below to create a new tenant",
+      "form": {
+        "name": "Name",
+        "slug": "Slug",
+        "email": "Email",
+        "plan": "Plan",
+        "status": "Status",
+        "namePlaceholder": "Enter tenant name",
+        "slugPlaceholder": "Enter tenant slug",
+        "emailPlaceholder": "Enter tenant email",
+        "planPlaceholder": "Select plan",
+        "statusPlaceholder": "Enter status",
+        "nameRequired": "Name is required",
+        "slugRequired": "Slug is required",
+        "emailRequired": "Email is required",
+        "planRequired": "Plan is required",
+        "statusRequired": "Status is required",
+        "submit": "Create Tenant"
+      }
+    },
+    "view": {
+      "title": "Tenant Details",
+      "description": "View the details of this tenant",
+      "errorLoading": "Error loading tenant",
+      "loading": "Loading...",
+      "notFound": "Tenant not found",
+      "notFoundDescription": "The requested tenant was not found",
+      "form": {
+        "name": "Name",
+        "slug": "Slug",
+        "email": "Email",
+        "plan": "Plan",
+        "status": "Status",
+        "id": "ID",
+        "noDescription": "No description provided"
+      },
+      "disable": "Disable",
+      "enable": "Enable",
+      "edit": "Edit",
+      "back": "Back"
+    },
+    "edit": {
+      "title": "Edit Tenant",
+      "description": "Change the fields below to edit the tenant",
+      "errorLoading": "Error loading tenant for editing",
+      "form": {
+        "name": "Name",
+        "slug": "Slug",
+        "email": "Email",
+        "plan": "Plan",
+        "status": "Status",
+        "namePlaceholder": "Enter tenant name",
+        "slugPlaceholder": "Enter tenant slug",
+        "emailPlaceholder": "Enter tenant email",
+        "planPlaceholder": "Select plan",
+        "statusPlaceholder": "Enter status",
+        "nameRequired": "Name is required",
+        "slugRequired": "Slug is required",
+        "emailRequired": "Email is required",
+        "planRequired": "Plan is required",
+        "statusRequired": "Status is required",
+        "submit": "Save Changes"
+      }
+    }
   },
   "table": {
     "table_column_actions": "Actions",
@@ -232,6 +321,8 @@
     "back": "Back",
     "edit": "Edit",
     "delete": "Disable",
+    "enable": "Enable",
+    "disable": "Disable",
     "loading": "Loading...",
     "active": "Active",
     "inactive": "Inactive"
@@ -243,4 +334,4 @@
     "password": "Password",
     "signIn": "Sign In"
   }
-} 
+}

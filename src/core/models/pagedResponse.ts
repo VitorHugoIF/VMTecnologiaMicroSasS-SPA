@@ -1,11 +1,11 @@
 export type PagedResponse<T> = {
-  success: boolean;
+  success: boolean
   data: {
-    items: T[];
-    totalCount: number;
-    page: number;
-    pageSize: number;
-  };
-  errors: string[];
-  message: string;
-}; 
+    items: T[]
+    totalCount: number
+    page: number
+    pageSize: number
+  }
+  errors: string[]
+  message: string
+}

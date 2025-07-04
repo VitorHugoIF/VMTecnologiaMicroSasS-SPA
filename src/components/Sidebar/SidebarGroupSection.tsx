@@ -12,12 +12,18 @@ interface SidebarGroupSectionProps {
   onOpenChange?: (open: boolean) => void
 }
 
-export function SidebarGroupSection({ label, children, colapsable, open, onOpenChange }: SidebarGroupSectionProps) {
+export function SidebarGroupSection({
+  label,
+  children,
+  colapsable,
+  open,
+  onOpenChange,
+}: SidebarGroupSectionProps) {
   const { t } = useTranslation()
   if (colapsable) {
     return (
       <Collapsible open={open} onOpenChange={onOpenChange}>
-        <SidebarGroup className='w-full'>
+        <SidebarGroup className="w-full">
           <SidebarGroupLabel className="px-4 text-xs text-muted-foreground mb-1 flex items-center w-full min-w-0">
             <span className="flex-1 truncate min-w-0">{t(label)}</span>
             <CollapsibleTrigger asChild>
@@ -27,9 +33,7 @@ export function SidebarGroupSection({ label, children, colapsable, open, onOpenC
             </CollapsibleTrigger>
           </SidebarGroupLabel>
           <CollapsibleContent>
-            <SidebarGroupContent>
-              {children}
-            </SidebarGroupContent>
+            <SidebarGroupContent>{children}</SidebarGroupContent>
           </CollapsibleContent>
         </SidebarGroup>
       </Collapsible>
@@ -40,9 +44,7 @@ export function SidebarGroupSection({ label, children, colapsable, open, onOpenC
       <SidebarGroupLabel className="px-4 text-xs text-muted-foreground mb-1 flex items-center">
         {t(label)}
       </SidebarGroupLabel>
-      <SidebarGroupContent>
-        {children}
-      </SidebarGroupContent>
+      <SidebarGroupContent>{children}</SidebarGroupContent>
     </SidebarGroup>
   )
-} 
+}

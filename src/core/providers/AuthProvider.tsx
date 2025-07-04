@@ -5,15 +5,15 @@ import { KeyStorageConfig } from '@/config/KeyStorageConfig'
 import { AuthContext, type AuthUser } from '../contexts/AuthContext'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-   const {
+  const {
     isAuthenticated: isAuth0Authenticated,
     user: auth0User,
     isLoading: isAuth0Loading,
     logout: auth0Logout,
     loginWithRedirect,
     getAccessTokenSilently,
-    error
-  } = useAuth0(); 
+    error,
+  } = useAuth0()
 
   const [user, setUser] = useState<AuthUser | null>(null)
   const [isLoading, setLoading] = useState(false)
@@ -31,17 +31,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const savedUser = localStorage.getItem(KeyStorageConfig.user)
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }  
-  },[])
+      setUser(JSON.parse(savedUser))
+    }
+  }, [])
 
   useEffect(() => {
     async function syncAuth0User() {
       setLoading(true)
 
       if (!isAuth0Loading && isAuth0Authenticated && auth0User && user == null) {
-        const accessToken = await getAccessTokenSilently();
-        
+        const accessToken = await getAccessTokenSilently()
+
         handleSaveUser({
           method: 'idp',
           email: auth0User.email,
@@ -50,21 +50,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           accessToken,
           avatar: auth0User.picture,
         })
-      } else if(!isAuth0Loading && !isAuth0Authenticated && user?.method === 'idp') {
+      } else if (!isAuth0Loading && !isAuth0Authenticated && user?.method === 'idp') {
         handleRemoveUser()
       } else {
         const savedUser = localStorage.getItem(KeyStorageConfig.user)
         if (savedUser) {
-          const parsedUser = JSON.parse(savedUser);
-          if (parsedUser['method'] === 'local') handleSaveUser(parsedUser);
-        }  
+          const parsedUser = JSON.parse(savedUser)
+          if (parsedUser['method'] === 'local') handleSaveUser(parsedUser)
+        }
       }
 
-      setLoading(false)      
-    }    
+      setLoading(false)
+    }
 
     syncAuth0User()
-  }, [isAuth0Loading, isAuth0Authenticated])
+  }, [isAuth0Loading, isAuth0Authenticated, auth0User, getAccessTokenSilently, user])
 
   const login = useCallback((user: AuthUser) => {
     setLoading(true)
@@ -75,30 +75,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(() => {
     setLoading(true)
-    handleRemoveUser();
+    handleRemoveUser()
     if (user?.method === 'idp' && auth0Logout) {
       auth0Logout()
     }
     setLoading(false)
   }, [user, auth0Logout])
 
-  const loginWithAuth0 = useCallback((options?: RedirectLoginOptions) => {
-    loginWithRedirect(options);
-  }, [loginWithRedirect]);
-
+  const loginWithAuth0 = useCallback(
+    (options?: RedirectLoginOptions) => {
+      loginWithRedirect(options)
+    },
+    [loginWithRedirect],
+  )
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      login, 
-      logout, 
-      isLoading: isLoading || isAuth0Loading, 
-      setLoading, 
-      isAuthenticated: !!user, 
-      loginWithAuth0,
-      error
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isLoading: isLoading || isAuth0Loading,
+        setLoading,
+        isAuthenticated: !!user,
+        loginWithAuth0,
+        error,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
-} 
+}

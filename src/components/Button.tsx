@@ -33,12 +33,11 @@ export function Button({
         <LoadingSpinner size={16} className="mr-2" />
       ) : (
         icon && (
-          <span className={
-            [
-              'flex items-center',
-              size === 'icon' ? '' : 'mr-2'
-            ].filter(Boolean).join(' ')
-          }>
+          <span
+            className={['flex items-center', size === 'icon' ? '' : 'mr-2']
+              .filter(Boolean)
+              .join(' ')}
+          >
             {icon}
           </span>
         )

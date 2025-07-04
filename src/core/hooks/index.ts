@@ -1,2 +1,2 @@
 export { useTheme } from './useTheme'
-export { useAuth } from './useAuth' 
+export { useAuth } from './useAuth'

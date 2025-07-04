@@ -1,25 +1,19 @@
-import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/Card';
-import { Button, ConfirmDialog } from '@/components';
-import { useViewRolePage } from './hooks/useViewRolePage';
-import { ErrorAlert } from '../../../components';
-import { Badge } from '@/components/ui/badge';
-import { Edit, ArrowLeft, Trash2 } from 'lucide-react';
-import { ViewRoleSkeleton } from './components/ViewRoleSkeleton';
+import { useTranslation } from 'react-i18next'
+import { Card } from '@/components/Card'
+import { Button, ConfirmDialog } from '@/components'
+import { useViewRolePage } from './hooks/useViewRolePage'
+import { ErrorAlert } from '../../../components'
+import { Badge } from '@/components/ui/badge'
+import { Edit, ArrowLeft, Trash2 } from 'lucide-react'
+import { ViewRoleSkeleton } from './components/ViewRoleSkeleton'
 
 export function ViewRolePage() {
-  const { t } = useTranslation();
-  const {
-    isLoading,
-    role,
-    isDeleting,
-    handleEdit,
-    handleBack,
-    handleToggleActive
-  } = useViewRolePage();
+  const { t } = useTranslation()
+  const { isLoading, role, isDeleting, handleEdit, handleBack, handleToggleActive } =
+    useViewRolePage()
 
   if (isLoading) {
-    return <ViewRoleSkeleton />;
+    return <ViewRoleSkeleton />
   }
 
   if (!role) {
@@ -30,27 +24,20 @@ export function ViewRolePage() {
           description={t('roles.view.notFoundDescription')}
         />
       </div>
-    );
+    )
   }
 
   return (
     <div className="flex flex-col gap-3">
-      <Card 
-        title={t('roles.view.title')} 
+      <Card
+        title={t('roles.view.title')}
         description={t('roles.view.description')}
         footer={
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              icon={<ArrowLeft className="w-4 h-4" />}
-            >
+            <Button variant="outline" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
               {t('common.back')}
             </Button>
-            <Button
-              onClick={handleEdit}
-              icon={<Edit className="w-4 h-4" />}
-            >
+            <Button onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
               {t('common.edit')}
             </Button>
             {role.active ? (
@@ -64,8 +51,8 @@ export function ViewRolePage() {
                     {t('roles.view.disable')}
                   </Button>
                 }
-                title={t('roles.disable.title')}
-                description={t('roles.disable.description')}
+                title={t('roles.delete.title')}
+                description={t('roles.delete.description')}
                 confirmText={t('roles.view.disable')}
                 cancelText={t('common.cancel')}
                 onConfirm={() => handleToggleActive(false)}
@@ -82,8 +69,8 @@ export function ViewRolePage() {
                     {t('roles.view.enable')}
                   </Button>
                 }
-                title={t('roles.enable.title')}
-                description={t('roles.enable.description')}
+                title={t('common.enable')}
+                description={t('common.enable')}
                 confirmText={t('roles.view.enable')}
                 cancelText={t('common.cancel')}
                 onConfirm={() => handleToggleActive(true)}
@@ -96,22 +83,16 @@ export function ViewRolePage() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-gray-500">
-                {t('roles.view.form.code')}
-              </h3>
+              <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.code')}</h3>
               <p className="text-lg">{role.code || '-'}</p>
             </div>
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-gray-500">
-                {t('roles.view.form.name')}
-              </h3>
+              <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.name')}</h3>
               <p className="text-lg">{role.name || '-'}</p>
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-gray-500">
-                {t('roles.view.form.status')}
-              </h3>
+              <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.status')}</h3>
               <div className="mt-1">
                 {role.active ? (
                   <Badge variant="default">{t('roles.list.table.column_active_true')}</Badge>
@@ -131,5 +112,5 @@ export function ViewRolePage() {
         </div>
       </Card>
     </div>
-  );
-} 
+  )
+}

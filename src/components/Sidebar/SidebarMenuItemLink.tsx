@@ -13,11 +13,18 @@ interface SidebarMenuItemLinkProps {
   className?: string
 }
 
-export function SidebarMenuItemLink({ href, icon, label, open, isActive, className }: SidebarMenuItemLinkProps) {
+export function SidebarMenuItemLink({
+  href,
+  icon,
+  label,
+  open,
+  isActive,
+  className,
+}: SidebarMenuItemLinkProps) {
   const { t } = useTranslation()
   const gapClass = open ? 'gap-3' : 'gap-0'
   return (
-    <SidebarMenuItem className='list-none px-2'>
+    <SidebarMenuItem className="list-none px-2">
       {open ? (
         <Link
           to={href}
@@ -43,4 +50,4 @@ export function SidebarMenuItemLink({ href, icon, label, open, isActive, classNa
       )}
     </SidebarMenuItem>
   )
-} 
+}

@@ -1,9 +1,9 @@
-import { useParams, useNavigate } from "react-router-dom"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
-import { Input } from "@/components/Input"
-import { Label } from "@/components/Label"
-import { Textarea } from "@/components/Textarea"
+import { useParams, useNavigate } from 'react-router-dom'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/Button'
+import { Input } from '@/components/Input'
+import { Label } from '@/components/Label'
+import { Textarea } from '@/components/Textarea'
 import { useEditPlanPage } from './hooks/useEditPlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -12,11 +12,7 @@ export function EditPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const {
-    form,
-    isLoading,
-    onSubmit,
-  } = useEditPlanPage(id!)
+  const { form, isLoading, onSubmit } = useEditPlanPage(id!)
 
   return (
     <div className="flex flex-col gap-3">
@@ -31,9 +27,7 @@ export function EditPlanPage() {
                 placeholder={t('plans.edit.form.namePlaceholder')}
               />
               {form.formState.errors.name && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.name.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
               )}
             </div>
 
@@ -45,9 +39,7 @@ export function EditPlanPage() {
                 placeholder={t('plans.edit.form.descriptionPlaceholder')}
               />
               {form.formState.errors.description && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.description.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.description.message}</p>
               )}
             </div>
 
@@ -61,9 +53,7 @@ export function EditPlanPage() {
                 placeholder={t('plans.edit.form.pricePlaceholder')}
               />
               {form.formState.errors.price && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.price.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.price.message}</p>
               )}
             </div>
           </div>
@@ -84,4 +74,4 @@ export function EditPlanPage() {
       </Card>
     </div>
   )
-} 
+}

@@ -1,1 +1,1 @@
-export * from './admin/AdminModule'; 
+export * from './admin/AdminModule'

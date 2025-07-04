@@ -6,4 +6,4 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const isNullOrWhiteSpace = (str?: string | null | undefined): boolean =>
-  !str || str.trim().length === 0;
+  !str || str.trim().length === 0

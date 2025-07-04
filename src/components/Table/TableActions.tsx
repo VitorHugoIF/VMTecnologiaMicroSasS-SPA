@@ -8,18 +8,21 @@ import {
 import { useTranslation } from 'react-i18next'
 
 interface TableActionsProps<T> {
-  row: T;
-  onView?: (row: T) => void;
-  onEdit?: (row: T) => void;
+  row: T
+  onView?: (row: T) => void
+  onEdit?: (row: T) => void
 }
 
 export function TableActions<T>({ row, onView, onEdit }: TableActionsProps<T>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition" aria-label="Ações">
+        <button
+          className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition"
+          aria-label="Ações"
+        >
           <MoreVertical className="size-5 text-foreground" />
         </button>
       </DropdownMenuTrigger>
@@ -37,4 +40,4 @@ export function TableActions<T>({ row, onView, onEdit }: TableActionsProps<T>) {
       </DropdownMenuContent>
     </DropdownMenu>
   )
-} 
+}

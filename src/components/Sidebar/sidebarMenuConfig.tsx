@@ -26,4 +26,4 @@ export const sidebarMenuConfig: SidebarMenuGroupConfig[] = [
       { label: 'sidebar.admin.user', href: PREFIX_ROUTE + '/admin/user', icon: Users },
     ],
   },
-] 
+]

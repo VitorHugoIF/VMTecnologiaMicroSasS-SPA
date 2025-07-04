@@ -1,24 +1,22 @@
-import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/Card';
-import { Input, Label, Button } from '@/components';
-import { ErrorAlert } from '../../../components';
-import { useEditRolePage } from './hooks/useEditRolePage';
-import { EditRoleSkeleton } from './components/EditRoleSkeleton';
+import { useTranslation } from 'react-i18next'
+import { Card } from '@/components/Card'
+import { Input, Label, Button } from '@/components'
+import { ErrorAlert } from '../../../components'
+import { useEditRolePage } from './hooks/useEditRolePage'
+import { EditRoleSkeleton } from './components/EditRoleSkeleton'
 
 export function EditRolePage() {
-  const { t } = useTranslation();
-  const {
-    form,
-    onSubmit,
-    handleCancel,
-    isLoading,
-    isDataLoading,
-  } = useEditRolePage();
+  const { t } = useTranslation()
+  const { form, onSubmit, handleCancel, isLoading, isDataLoading } = useEditRolePage()
 
-  const { register, handleSubmit, formState: { errors } } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form
 
   if (isDataLoading) {
-    return <EditRoleSkeleton />;
+    return <EditRoleSkeleton />
   }
 
   return (
@@ -26,10 +24,7 @@ export function EditRolePage() {
       <Card title={t('roles.edit.title')} description={t('roles.edit.description')}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {errors.name && (
-            <ErrorAlert
-              title={t('common.error')}
-              description={errors.name?.message}
-            />
+            <ErrorAlert title={t('common.error')} description={errors.name?.message} />
           )}
 
           <div className="space-y-4">
@@ -61,23 +56,15 @@ export function EditRolePage() {
           </div>
 
           <div className="flex gap-3 pt-4">
-            <Button
-              type="submit"
-              loading={isLoading}
-            >
+            <Button type="submit" loading={isLoading}>
               {t('common.save')}
             </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleCancel}
-              disabled={isLoading}
-            >
+            <Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading}>
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Card>
     </div>
-  );
-} 
+  )
+}

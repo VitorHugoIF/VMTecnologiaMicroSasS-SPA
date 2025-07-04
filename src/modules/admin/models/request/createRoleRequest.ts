@@ -1,4 +1,4 @@
 export type CreateRoleRequest = {
-  name?: string;
-  description?: string;
-} 
+  name?: string
+  description?: string
+}

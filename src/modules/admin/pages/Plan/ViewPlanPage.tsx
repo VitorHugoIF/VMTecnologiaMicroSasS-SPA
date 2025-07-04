@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
-import { Badge } from "@/components/ui/badge"
+import { useParams, useNavigate } from 'react-router-dom'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/Button'
+import { Badge } from '@/components/ui/badge'
 import { useViewPlanPage } from './hooks/useViewPlanPage.tsx'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -12,14 +12,9 @@ export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const {
-    plan,
-    isLoading,
-    isEnabling,
-    isDisabling,
-    handleEnable,
-    handleDisable,
-  } = useViewPlanPage(id!)
+  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable } = useViewPlanPage(
+    id!,
+  )
 
   if (isLoading) {
     return <ViewPlanSkeleton />
@@ -46,7 +41,9 @@ export function ViewPlanPage() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-gray-500">{t('plans.view.form.description')}</h3>
+            <h3 className="text-sm font-medium text-gray-500">
+              {t('plans.view.form.description')}
+            </h3>
             <p className="text-lg">{plan.description || t('plans.view.form.noDescription')}</p>
           </div>
 
@@ -67,15 +64,10 @@ export function ViewPlanPage() {
           </div>
 
           <div className="flex gap-2 pt-4">
-            <Button
-              onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))}
-            >
+            <Button onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))}>
               {t('plans.view.edit')}
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => navigate(ADMIN_ROUTES.plans.list)}
-            >
+            <Button variant="outline" onClick={() => navigate(ADMIN_ROUTES.plans.list)}>
               {t('plans.view.back')}
             </Button>
             {plan.active ? (
@@ -87,11 +79,7 @@ export function ViewPlanPage() {
                 {t('plans.view.disable')}
               </Button>
             ) : (
-              <Button
-                variant="default"
-                onClick={() => handleEnable(plan.id!)}
-                loading={isEnabling}
-              >
+              <Button variant="default" onClick={() => handleEnable(plan.id!)} loading={isEnabling}>
                 {t('plans.view.enable')}
               </Button>
             )}
@@ -100,4 +88,4 @@ export function ViewPlanPage() {
       </Card>
     </div>
   )
-} 
+}

@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom"
-import { Card } from "@/components/Card"
+import { useNavigate } from 'react-router-dom'
+import { Card } from '@/components/Card'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
 import { TableHeaderActions } from '../../../components'
@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 
 export function ListRolesPage() {
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+  const navigate = useNavigate()
+  const { t } = useTranslation()
   const {
     isLoading,
     columns,
@@ -23,7 +23,7 @@ export function ListRolesPage() {
     setSort,
     search,
     setSearch,
-  } = useListRolesPage();
+  } = useListRolesPage()
 
   return (
     <div className="flex flex-col gap-3">
@@ -41,7 +41,7 @@ export function ListRolesPage() {
           data={paginatedRoles}
           columns={columns}
           isLoading={isLoading}
-          actions={role => (
+          actions={(role) => (
             <TableActions
               row={role}
               onView={(r: Role) => navigate(ADMIN_ROUTES.roles.view(r.id!))}
@@ -52,19 +52,15 @@ export function ListRolesPage() {
           order={order}
           onSort={(accessor) => {
             if (sort === accessor) {
-              setOrder(order === 1 ? 0 : 1);
+              setOrder(order === 1 ? 0 : 1)
             } else {
-              setSort(accessor);
-              setOrder(1);
+              setSort(accessor)
+              setOrder(1)
             }
           }}
         />
-        <TablePagination
-          page={page}
-          totalPages={totalPages}
-          onPageChange={setPage}
-        />
+        <TablePagination page={page} totalPages={totalPages} onPageChange={setPage} />
       </Card>
     </div>
-  );
-} 
+  )
+}

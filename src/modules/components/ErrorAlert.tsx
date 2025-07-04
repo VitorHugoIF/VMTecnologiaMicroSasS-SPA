@@ -1,11 +1,11 @@
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { AlertCircleIcon } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import { AlertCircleIcon } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 interface ErrorAlertProps {
-  title?: ReactNode;
-  description?: ReactNode;
-  icon?: ReactNode;
+  title?: ReactNode
+  description?: ReactNode
+  icon?: ReactNode
 }
 
 export function ErrorAlert({
@@ -19,5 +19,5 @@ export function ErrorAlert({
       <AlertTitle>{title}</AlertTitle>
       {description && <AlertDescription>{description}</AlertDescription>}
     </Alert>
-  );
-} 
+  )
+}

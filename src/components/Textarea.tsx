@@ -9,18 +9,21 @@ interface CustomTextareaProps extends TextareaProps {
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
-  ({ 
-    className = '', 
-    minHeight = '120px',
-    maxHeight = '300px',
-    resizable = false,
-    style,
-    ...props 
-  }, ref) => {
+  (
+    {
+      className = '',
+      minHeight = '120px',
+      maxHeight = '300px',
+      resizable = false,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
     const textareaStyle = {
       minHeight,
       maxHeight,
-      resize: resizable ? 'vertical' as const : 'none' as const,
+      resize: resizable ? ('vertical' as const) : ('none' as const),
       ...style,
     }
 
@@ -35,4 +38,4 @@ export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
   },
 )
 
-Textarea.displayName = 'Textarea' 
+Textarea.displayName = 'Textarea'

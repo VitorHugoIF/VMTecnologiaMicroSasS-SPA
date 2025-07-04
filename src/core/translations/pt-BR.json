@@ -17,10 +17,13 @@
     "title": "Dashboard"
   },
   "tenant": {
-    "label": "Tenant"
+    "label": "Inquilino"
   },
   "role": {
     "label": "Papel"
+  },
+  "plan": {
+    "label": "Plano"
   },
   "welcome_back": "Bem-vindo de volta!",
   "access_denied": "Acesso negado",
@@ -29,7 +32,7 @@
     "admin": {
       "title": "Administração",
       "dashboard": "Dashboard",
-      "tenant": "Tenant",
+      "tenant": "Inquilino",
       "role": "Papel",
       "plan": "Plano",
       "user": "Usuário"
@@ -92,13 +95,15 @@
         "namePlaceholder": "Digite o nome da função",
         "descriptionPlaceholder": "Digite a descrição da função",
         "nameRequired": "O nome é obrigatório",
-        "descriptionRequired": "A descrição é obrigatória"
+        "descriptionRequired": "A descrição é obrigatória",
+        "submit": "Criar Função"
       }
     },
     "view": {
       "title": "Detalhes da Função",
       "description": "Visualize os detalhes desta função",
       "errorLoading": "Erro ao carregar função",
+      "loading": "Carregando...",
       "notFound": "Função não encontrada",
       "notFoundDescription": "A função solicitada não foi encontrada",
       "form": {
@@ -110,7 +115,9 @@
         "noDescription": "Nenhuma descrição fornecida"
       },
       "disable": "Desabilitar",
-      "enable": "Habilitar"
+      "enable": "Habilitar",
+      "edit": "Editar",
+      "back": "Voltar"
     },
     "delete": {
       "title": "Desabilitar Função",
@@ -126,7 +133,8 @@
         "namePlaceholder": "Digite o nome da função",
         "descriptionPlaceholder": "Digite a descrição da função",
         "nameRequired": "O nome é obrigatório",
-        "descriptionRequired": "A descrição é obrigatória"
+        "descriptionRequired": "A descrição é obrigatória",
+        "submit": "Salvar Alterações"
       }
     }
   },
@@ -211,13 +219,94 @@
       }
     }
   },
-  "disable": {
-    "title": "Desabilitar Função",
-    "description": "Tem certeza que deseja desabilitar esta função? Esta ação pode ser revertida posteriormente."
-  },
-  "enable": {
-    "title": "Habilitar Função",
-    "description": "Tem certeza que deseja habilitar esta função? Esta ação pode ser revertida posteriormente."
+  "tenants": {
+    "list": {
+      "title": "Inquilinos",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar inquilinos",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_slug": "Slug",
+        "column_email": "E-mail",
+        "column_plan": "Plano",
+        "column_status": "Status",
+        "column_actions": "Ações"
+      }
+    },
+    "add": {
+      "title": "Criar Novo Inquilino",
+      "description": "Preencha os campos abaixo para criar um novo inquilino",
+      "form": {
+        "name": "Nome",
+        "slug": "Slug",
+        "email": "E-mail",
+        "plan": "Plano",
+        "status": "Status",
+        "namePlaceholder": "Digite o nome do inquilino",
+        "slugPlaceholder": "Digite o slug do inquilino",
+        "emailPlaceholder": "Digite o e-mail do inquilino",
+        "planPlaceholder": "Selecione o plano",
+        "statusPlaceholder": "Digite o status",
+        "nameRequired": "O nome é obrigatório",
+        "slugRequired": "O slug é obrigatório",
+        "emailRequired": "O e-mail é obrigatório",
+        "planRequired": "O plano é obrigatório",
+        "statusRequired": "O status é obrigatório",
+        "submit": "Criar Inquilino"
+      }
+    },
+    "view": {
+      "title": "Detalhes do Inquilino",
+      "description": "Visualize os detalhes deste inquilino",
+      "errorLoading": "Erro ao carregar inquilino",
+      "loading": "Carregando...",
+      "notFound": "Inquilino não encontrado",
+      "notFoundDescription": "O inquilino solicitado não foi encontrado",
+      "form": {
+        "name": "Nome",
+        "slug": "Slug",
+        "email": "E-mail",
+        "plan": "Plano",
+        "status": "Status",
+        "id": "ID",
+        "noDescription": "Nenhuma descrição fornecida"
+      },
+      "disable": "Desabilitar",
+      "enable": "Habilitar",
+      "edit": "Editar",
+      "back": "Voltar"
+    },
+    "edit": {
+      "title": "Editar Inquilino",
+      "description": "Altere os campos abaixo para editar o inquilino",
+      "errorLoading": "Erro ao carregar inquilino para edição",
+      "form": {
+        "name": "Nome",
+        "slug": "Slug",
+        "email": "E-mail",
+        "plan": "Plano",
+        "status": "Status",
+        "namePlaceholder": "Digite o nome do inquilino",
+        "slugPlaceholder": "Digite o slug do inquilino",
+        "emailPlaceholder": "Digite o e-mail do inquilino",
+        "planPlaceholder": "Selecione o plano",
+        "statusPlaceholder": "Digite o status",
+        "nameRequired": "O nome é obrigatório",
+        "slugRequired": "O slug é obrigatório",
+        "emailRequired": "O e-mail é obrigatório",
+        "planRequired": "O plano é obrigatório",
+        "statusRequired": "O status é obrigatório",
+        "submit": "Salvar Alterações"
+      }
+    }
   },
   "table": {
     "table_column_actions": "Ações",
@@ -232,6 +321,8 @@
     "back": "Voltar",
     "edit": "Editar",
     "delete": "Desabilitar",
+    "enable": "Habilitar",
+    "disable": "Desabilitar",
     "loading": "Carregando...",
     "active": "Ativo",
     "inactive": "Inativo"
@@ -243,4 +334,4 @@
     "password": "Senha",
     "signIn": "Entrar"
   }
-} 
+}

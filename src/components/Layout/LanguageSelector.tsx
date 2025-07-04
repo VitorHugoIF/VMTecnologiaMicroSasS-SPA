@@ -3,7 +3,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuItem
+  DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +21,7 @@ interface LanguageSelectorProps {
 
 export function LanguageSelector({ languages, onChange }: LanguageSelectorProps) {
   const { t, i18n } = useTranslation()
-  const selected = languages.find(l => l.code === i18n.language) || languages[0]
+  const selected = languages.find((l) => l.code === i18n.language) || languages[0]
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -34,13 +34,18 @@ export function LanguageSelector({ languages, onChange }: LanguageSelectorProps)
               <CountryFlag
                 countryCode={selected.countryCode}
                 svg
-                style={{ width: '1.5em', height: '1em', objectFit: 'cover', display: 'inline-block' }}
+                style={{
+                  width: '1.5em',
+                  height: '1em',
+                  objectFit: 'cover',
+                  display: 'inline-block',
+                }}
                 title={selected.label}
               />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {languages.map(lang => (
+            {languages.map((lang) => (
               <DropdownMenuItem
                 key={lang.code}
                 onClick={() => {
@@ -49,7 +54,19 @@ export function LanguageSelector({ languages, onChange }: LanguageSelectorProps)
                 }}
                 className="gap-2"
               >
-                <CountryFlag countryCode={lang.countryCode} svg style={{ width: '1.5em', height: '1em', objectFit: 'cover', display: 'inline-block' }} title={t(`languages.${lang.code === 'pt-BR' ? 'portuguese_brazil' : 'english_us'}`)} />
+                <CountryFlag
+                  countryCode={lang.countryCode}
+                  svg
+                  style={{
+                    width: '1.5em',
+                    height: '1em',
+                    objectFit: 'cover',
+                    display: 'inline-block',
+                  }}
+                  title={t(
+                    `languages.${lang.code === 'pt-BR' ? 'portuguese_brazil' : 'english_us'}`,
+                  )}
+                />
                 {t(`languages.${lang.code === 'pt-BR' ? 'portuguese_brazil' : 'english_us'}`)}
               </DropdownMenuItem>
             ))}
@@ -59,4 +76,4 @@ export function LanguageSelector({ languages, onChange }: LanguageSelectorProps)
       <TooltipContent>{t('settings.change_language')}</TooltipContent>
     </Tooltip>
   )
-} 
+}

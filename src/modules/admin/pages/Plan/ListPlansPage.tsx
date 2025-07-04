@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom"
-import { Card } from "@/components/Card"
+import { useNavigate } from 'react-router-dom'
+import { Card } from '@/components/Card'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListPlansPage } from './hooks/useListPlansPage'
 import { TableHeaderActions } from '../../../components'
@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 
 export function ListPlansPage() {
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+  const navigate = useNavigate()
+  const { t } = useTranslation()
   const {
     isLoading,
     columns,
@@ -23,7 +23,7 @@ export function ListPlansPage() {
     setSort,
     search,
     setSearch,
-  } = useListPlansPage();
+  } = useListPlansPage()
 
   return (
     <div className="flex flex-col gap-3">
@@ -41,7 +41,7 @@ export function ListPlansPage() {
           data={paginatedPlans}
           columns={columns}
           isLoading={isLoading}
-          actions={plan => (
+          actions={(plan) => (
             <TableActions
               row={plan}
               onView={(p: Plan) => navigate(ADMIN_ROUTES.plans.view(p.id!))}
@@ -52,19 +52,15 @@ export function ListPlansPage() {
           order={order}
           onSort={(accessor) => {
             if (sort === accessor) {
-              setOrder(order === 1 ? 0 : 1);
+              setOrder(order === 1 ? 0 : 1)
             } else {
-              setSort(accessor);
-              setOrder(1);
+              setSort(accessor)
+              setOrder(1)
             }
           }}
         />
-        <TablePagination
-          page={page}
-          totalPages={totalPages}
-          onPageChange={setPage}
-        />
+        <TablePagination page={page} totalPages={totalPages} onPageChange={setPage} />
       </Card>
     </div>
-  );
-} 
+  )
+}

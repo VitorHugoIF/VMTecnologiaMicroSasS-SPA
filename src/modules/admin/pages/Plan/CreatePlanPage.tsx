@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
-import { Input } from "@/components/Input"
-import { Label } from "@/components/Label"
-import { Textarea } from "@/components/Textarea"
+import { useNavigate } from 'react-router-dom'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/Button'
+import { Input } from '@/components/Input'
+import { Label } from '@/components/Label'
+import { Textarea } from '@/components/Textarea'
 import { useCreatePlanPage } from './hooks/useCreatePlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -11,11 +11,7 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 export function CreatePlanPage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const {
-    form,
-    isLoading,
-    onSubmit,
-  } = useCreatePlanPage()
+  const { form, isLoading, onSubmit } = useCreatePlanPage()
 
   return (
     <div className="flex flex-col gap-3">
@@ -30,9 +26,7 @@ export function CreatePlanPage() {
                 placeholder={t('plans.add.form.namePlaceholder')}
               />
               {form.formState.errors.name && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.name.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
               )}
             </div>
 
@@ -44,9 +38,7 @@ export function CreatePlanPage() {
                 placeholder={t('plans.add.form.descriptionPlaceholder')}
               />
               {form.formState.errors.description && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.description.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.description.message}</p>
               )}
             </div>
 
@@ -60,9 +52,7 @@ export function CreatePlanPage() {
                 placeholder={t('plans.add.form.pricePlaceholder')}
               />
               {form.formState.errors.price && (
-                <p className="text-sm text-red-600">
-                  {form.formState.errors.price.message}
-                </p>
+                <p className="text-sm text-red-600">{form.formState.errors.price.message}</p>
               )}
             </div>
           </div>
@@ -83,4 +73,4 @@ export function CreatePlanPage() {
       </Card>
     </div>
   )
-} 
+}

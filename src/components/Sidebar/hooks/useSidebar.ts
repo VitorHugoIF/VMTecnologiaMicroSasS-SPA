@@ -22,4 +22,4 @@ export function useSidebarLogic() {
     itemAlign,
     mobileOverlay,
   }
-} 
+}

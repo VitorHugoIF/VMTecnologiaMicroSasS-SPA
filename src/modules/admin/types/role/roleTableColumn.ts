@@ -1,4 +1,4 @@
 import type { TableColumn } from '@/components'
-import type { Role } from './role/role'
+import type { Role } from './role'
 
-export type RoleTableColumn = TableColumn<Role> 
+export type RoleTableColumn = TableColumn<Role>

@@ -1,6 +1,6 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { ListRolesPage, CreateRolePage, ViewRolePage, EditRolePage } from "../pages";
-import { NOT_FOUND_ROUTE } from "@/routes/routeRoles";
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { ListRolesPage, CreateRolePage, ViewRolePage, EditRolePage } from '../pages'
+import { NOT_FOUND_ROUTE } from '@/routes/routeRoles'
 
 export function RoleRoutes() {
   return (
@@ -11,5 +11,5 @@ export function RoleRoutes() {
       <Route path="edit/:id" element={<EditRolePage />} />
       <Route path="*" element={<Navigate to={NOT_FOUND_ROUTE} />} />
     </Routes>
-  );
-} 
+  )
+}
