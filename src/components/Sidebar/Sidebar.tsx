@@ -10,7 +10,7 @@ import { SidebarMenuTree } from './SidebarMenuTree'
 import { SidebarUserFooter } from './SidebarUserFooter'
 import { useSidebarLogic } from './hooks/useSidebar'
 import logo from '@/assets/react.svg'
-import { useAuth } from '@/core/providers/AuthProvider'
+import { useAuth } from '@/core/hooks/useAuth'
 
 export function Sidebar() {
   const { open, setOpen, isMobile, itemAlign, mobileOverlay } = useSidebarLogic()

@@ -7,13 +7,13 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useTranslation } from 'react-i18next'
 
-interface TableActionsProps<T = any> {
+interface TableActionsProps<T> {
   row: T;
   onView?: (row: T) => void;
   onEdit?: (row: T) => void;
 }
 
-export function TableActions<T = any>({ row, onView, onEdit }: TableActionsProps<T>) {
+export function TableActions<T>({ row, onView, onEdit }: TableActionsProps<T>) {
   const { t } = useTranslation();
 
   return (

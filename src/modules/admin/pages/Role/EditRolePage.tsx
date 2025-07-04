@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Input, Label, Button } from '@/components';
-import { ErrorAlert } from '../../components';
+import { ErrorAlert } from '../../../components';
 import { useEditRolePage } from './hooks/useEditRolePage';
 import { EditRoleSkeleton } from './components/EditRoleSkeleton';
 

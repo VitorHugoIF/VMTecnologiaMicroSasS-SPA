@@ -21,6 +21,12 @@ export const ADMIN_ROUTES = {
     edit: (id: string) => PREFIX_ROUTE + `/admin/roles/edit/${id}`,
     view: (id: string) => PREFIX_ROUTE + `/admin/roles/view/${id}`
   },
+  plans: {
+    list: PREFIX_ROUTE + '/admin/plans',
+    add: PREFIX_ROUTE + '/admin/plans/add',
+    edit: (id: string) => PREFIX_ROUTE + `/admin/plans/edit/${id}`,
+    view: (id: string) => PREFIX_ROUTE + `/admin/plans/view/${id}`
+  },
   users: PREFIX_ROUTE + '/admin/users'
 }
 

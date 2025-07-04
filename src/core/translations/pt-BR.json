@@ -31,6 +31,7 @@
       "dashboard": "Dashboard",
       "tenant": "Tenant",
       "role": "Papel",
+      "plan": "Plano",
       "user": "Usuário"
     }
   },
@@ -129,6 +130,87 @@
       }
     }
   },
+  "plans": {
+    "list": {
+      "title": "Planos",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar planos",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_description": "Descrição",
+        "column_price": "Preço",
+        "column_active": "Ativo",
+        "column_active_true": "Ativo",
+        "column_active_false": "Inativo",
+        "column_actions": "Ações"
+      }
+    },
+    "add": {
+      "title": "Criar Novo Plano",
+      "description": "Preencha os campos abaixo para criar um novo plano",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "price": "Preço",
+        "namePlaceholder": "Digite o nome do plano",
+        "descriptionPlaceholder": "Digite a descrição do plano",
+        "pricePlaceholder": "Digite o preço do plano",
+        "nameRequired": "O nome é obrigatório",
+        "descriptionRequired": "A descrição é obrigatória",
+        "priceRequired": "O preço é obrigatório",
+        "submit": "Criar Plano"
+      }
+    },
+    "view": {
+      "title": "Detalhes do Plano",
+      "description": "Visualize os detalhes deste plano",
+      "errorLoading": "Erro ao carregar plano",
+      "loading": "Carregando...",
+      "notFound": "Plano não encontrado",
+      "notFoundDescription": "O plano solicitado não foi encontrado",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "price": "Preço",
+        "status": "Status",
+        "id": "ID",
+        "noDescription": "Nenhuma descrição fornecida"
+      },
+      "disable": "Desabilitar",
+      "enable": "Habilitar",
+      "edit": "Editar",
+      "back": "Voltar"
+    },
+    "delete": {
+      "title": "Desabilitar Plano",
+      "description": "Tem certeza que deseja desabilitar este plano? Esta ação pode ser revertida posteriormente."
+    },
+    "edit": {
+      "title": "Editar Plano",
+      "description": "Altere os campos abaixo para editar o plano",
+      "errorLoading": "Erro ao carregar plano para edição",
+      "form": {
+        "name": "Nome",
+        "description": "Descrição",
+        "price": "Preço",
+        "namePlaceholder": "Digite o nome do plano",
+        "descriptionPlaceholder": "Digite a descrição do plano",
+        "pricePlaceholder": "Digite o preço do plano",
+        "nameRequired": "O nome é obrigatório",
+        "descriptionRequired": "A descrição é obrigatória",
+        "priceRequired": "O preço é obrigatório",
+        "submit": "Salvar Alterações"
+      }
+    }
+  },
   "disable": {
     "title": "Desabilitar Função",
     "description": "Tem certeza que deseja desabilitar esta função? Esta ação pode ser revertida posteriormente."
@@ -149,7 +231,10 @@
     "error": "Erro",
     "back": "Voltar",
     "edit": "Editar",
-    "delete": "Desabilitar"
+    "delete": "Desabilitar",
+    "loading": "Carregando...",
+    "active": "Ativo",
+    "inactive": "Inativo"
   },
   "login": {
     "auth0": "Logar como administrador",

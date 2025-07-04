@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export function RoleViewSkeleton() {
+export function ViewRoleSkeleton() {
   return (
     <div className="flex flex-col gap-3">
       <div className="bg-card rounded-md shadow-lg overflow-hidden">

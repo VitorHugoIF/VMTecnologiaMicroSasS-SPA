@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
-import { TableHeaderActions } from '../../components'
+import { TableHeaderActions } from '../../../components'
 import type { Role } from '../../types'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'

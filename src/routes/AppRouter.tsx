@@ -6,7 +6,7 @@ import { ERROR_ROUTE, FORBIDDEN_ROUTE, MAIN_ROUTE, MAIN_ROUTE_AUTH0, PREFIX_ROUT
 import { lazy, Suspense } from 'react'
 import { ProgressBar } from '@/components'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { AuthUser } from '@/core/providers/AuthProvider'
+import type { AuthUser } from '@/core/contexts/AuthContext'
 import { useAuth } from '@/core'
 
 function getMainUrlRoute(user: AuthUser | null) {

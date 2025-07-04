@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetRole } from '../../../hooks/useGetRole';
+import { useGetRole } from '../../../hooks/role/useGetRole';
 import { ADMIN_ROUTES } from '@/routes/routeRoles';
 import { useState } from 'react';
 import { mapRoleResponseToRole } from '@/modules/admin/mappers/roleMappers';

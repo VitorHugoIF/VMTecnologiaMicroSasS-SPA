@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { Button, ConfirmDialog } from '@/components';
 import { useViewRolePage } from './hooks/useViewRolePage';
-import { ErrorAlert } from '../../components';
+import { ErrorAlert } from '../../../components';
 import { Badge } from '@/components/ui/badge';
 import { Edit, ArrowLeft, Trash2 } from 'lucide-react';
-import { RoleViewSkeleton } from './components/RoleViewSkeleton';
+import { ViewRoleSkeleton } from './components/ViewRoleSkeleton';
 
 export function ViewRolePage() {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ export function ViewRolePage() {
   } = useViewRolePage();
 
   if (isLoading) {
-    return <RoleViewSkeleton />;
+    return <ViewRoleSkeleton />;
   }
 
   if (!role) {

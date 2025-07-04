@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Input, Label, Button } from '@/components';
 import { useCreateRolePage } from './hooks/useCreateRolePage';
-import { ErrorAlert } from '../../components';
+import { ErrorAlert } from '../../../components';
 
 export function CreateRolePage() {
   const { t } = useTranslation();

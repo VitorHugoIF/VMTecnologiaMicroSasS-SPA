@@ -71,7 +71,7 @@ export function Table<T>({ data, columns, isLoading, actions, className, sort, o
               <TableRow key={i} className="hover:bg-muted/30 transition border-b border-border">
                 {columns.map((col, idx) => (
                   <TableCell key={idx} className={`px-4 py-2 text-foreground ${col.className ?? ''}`}> 
-                    {col.render ? col.render(row) : col.accessor ? (row as any)[col.accessor] : null}
+                    {col.render ? col.render(row) : col.accessor ? String(row[col.accessor] ?? '') : null}
                   </TableCell>
                 ))}
                 {actions && <TableCell className="px-4 py-2">{actions(row)}</TableCell>}

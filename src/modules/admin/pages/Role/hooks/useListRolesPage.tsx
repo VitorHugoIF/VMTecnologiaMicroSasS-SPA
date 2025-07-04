@@ -13,7 +13,7 @@ export function useListRolesPage() {
   const [sort, setSort] = useState<string|undefined>(undefined);
   const [searchInput, setSearchInput] = useState<string|undefined>(undefined);
   const [search, setSearch] = useState<string|undefined>(undefined);
-  const { data, isLoading, error } = useGetRoles(page, pageSize, order, sort, search);
+  const { data, isLoading } = useGetRoles(page, pageSize, order, sort, search);
 
   useEffect(() => {
     const handler = setTimeout(() => {

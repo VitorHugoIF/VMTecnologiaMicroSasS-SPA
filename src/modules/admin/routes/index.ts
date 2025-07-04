@@ -1,1 +1,2 @@
-export { RoleRoutes } from './roleRoutes'; 
+export { RoleRoutes } from './roleRoutes'
+export { PlanRoutes } from './planRoutes'; 

@@ -6,10 +6,18 @@ export type ToastContent =
   | ReactNode
   | { title?: ReactNode; description?: ReactNode };
 
+export interface ToastOptions {
+  description?: ReactNode;
+  duration?: number;
+  icon?: ReactNode;
+  id?: string;
+  [key: string]: unknown;
+}
+
 function handleToast(
-  fn: (msg: ReactNode, options?: any) => void,
+  fn: (msg: ReactNode, options?: ToastOptions) => void,
   content: ToastContent,
-  options: any,
+  options: ToastOptions,
   defaultTitle: string
 ) {
   if (
@@ -28,8 +36,8 @@ function handleToast(
 }
 
 export const Toast = {
-  success: (content: ToastContent, options?: any) => handleToast(sonnerToast.success, content, options, 'Success'),
-  error: (content: ToastContent, options?: any) => handleToast(sonnerToast.error, content, options, 'Error'),
-  warning: (content: ToastContent, options?: any) => handleToast(sonnerToast.warning, content, options, 'Warning'),
-  info: (content: ToastContent, options?: any) => handleToast(sonnerToast.info, content, options, 'Info'),
+  success: (content: ToastContent, options?: ToastOptions) => handleToast(sonnerToast.success, content, options ?? {}, 'Success'),
+  error: (content: ToastContent, options?: ToastOptions) => handleToast(sonnerToast.error, content, options ?? {}, 'Error'),
+  warning: (content: ToastContent, options?: ToastOptions) => handleToast(sonnerToast.warning, content, options ?? {}, 'Warning'),
+  info: (content: ToastContent, options?: ToastOptions) => handleToast(sonnerToast.info, content, options ?? {}, 'Info'),
 }; 

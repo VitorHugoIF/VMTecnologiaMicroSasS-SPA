@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { roleHttpService } from "../services";
+import { roleHttpService } from "../../services";
 import { QueryTimeConfig } from "@/config/queryTimeConfig";
 
 export function useGetRoles(page: number, pageSize: number, order?: number, sort?: string, search?: string) {

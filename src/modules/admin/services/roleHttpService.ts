@@ -2,10 +2,10 @@ import { http } from "@/services/http";
 import type { RoleResponse } from "../models";
 import type { ApiResponse } from "@/core/models/apiResponse";
 import type { PagedResponse } from "@/core/models/pagedResponse";
-import type { CreateRoleDto } from '../models/request/CreateRoleDto';
-import type { UpdateRoleDto } from '../models/request/UpdateRoleDto';
+import type { CreateRoleDto } from '../models/request/createRoleDto';
+import type { UpdateRoleDto } from '../models/request/updateRoleDto';
 
-const prefix ='api/admin'
+const prefix ='api/admin/role'
 
 export async function getRoles(
     page: number = 1,
@@ -23,33 +23,33 @@ export async function getRoles(
     if (search) params.append('search', search);
 
     const { data } = await http.get<PagedResponse<RoleResponse>>(
-        `${prefix}/role?${params.toString()}`
+        `${prefix}?${params.toString()}`
     );
 
     return data;
 }
 
 export async function getRole(id: string) {
-    const { data } = await http.get<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`);
+    const { data } = await http.get<ApiResponse<RoleResponse>>(`${prefix}/${id}`);
     return data;
 }
 
 export async function createRole(dto: CreateRoleDto) {
-    const { data } =  await http.post<ApiResponse<RoleResponse>>(`${prefix}/role`, dto);
+    const { data } =  await http.post<ApiResponse<RoleResponse>>(`${prefix}`, dto);
     return data;
 }
 
 export async function enableRole(id: string) {
-    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/enable`);
+    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/${id}/enable`);
     return data;
 }
 
 export async function disableRole(id: string) {
-    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/role/${id}/disable`);
+    const { data } =  await http.patch<ApiResponse<RoleResponse>>(`${prefix}/${id}/disable`);
     return data;
 }
 
 export async function updateRole(id: string, dto: UpdateRoleDto) {
-    const { data } =  await http.put<ApiResponse<RoleResponse>>(`${prefix}/role/${id}`, dto);
+    const { data } =  await http.put<ApiResponse<RoleResponse>>(`${prefix}/${id}`, dto);
     return data;
 }

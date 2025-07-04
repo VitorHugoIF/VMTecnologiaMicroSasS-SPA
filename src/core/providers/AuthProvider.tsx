@@ -1,37 +1,8 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import type { RedirectLoginOptions } from '@auth0/auth0-react'
 import { KeyStorageConfig } from '@/config/KeyStorageConfig'
-
-export interface AuthUser {
-  method: 'idp' | 'local'
-  email?: string
-  name?: string
-  sub?: string
-  accessToken?: string
-  avatar?: string
-}
-
-interface AuthContextType {
-  user: AuthUser | null
-  login: (user: AuthUser) => void
-  logout: () => void
-  setLoading: (isLoading: boolean) => void,
-  isLoading: boolean,
-  isAuthenticated: boolean,
-  loginWithAuth0: (params?: any) => void,
-  error: Error | null | undefined
-}
-
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  login: () => {},
-  logout: () => {},
-  isLoading: false,
-  setLoading: () => {},
-  isAuthenticated: false,
-  loginWithAuth0: () => {},
-  error: null
-})
+import { AuthContext, type AuthUser } from '../contexts/AuthContext'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
    const {
@@ -109,11 +80,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       auth0Logout()
     }
     setLoading(false)
-  }, [user])
+  }, [user, auth0Logout])
 
-  const loginWithAuth0 = useCallback((options?: any) => {
+  const loginWithAuth0 = useCallback((options?: RedirectLoginOptions) => {
     loginWithRedirect(options);
-  }, []);
+  }, [loginWithRedirect]);
 
 
   return (
@@ -130,8 +101,4 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-export function useAuth() {
-  return useContext(AuthContext)
 } 

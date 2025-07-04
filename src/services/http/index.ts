@@ -50,7 +50,7 @@ http.interceptors.response.use(
       });
     } 
     
-    const apiData = error.response.data as Partial<ApiResponse<any>>;
+    const apiData = error.response.data as Partial<ApiResponse<unknown>>;
     message = apiData.message || message;
     errors = apiData.errors || [message];
     if (status === 500) {

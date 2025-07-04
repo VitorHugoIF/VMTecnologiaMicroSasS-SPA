@@ -11,6 +11,7 @@ export * from './Layout/MainLayout'
 export { Toast } from './Toast/Toast'
 export * from './Table'
 export type { TableColumn } from './Table'
+export * from './Textarea'
 
 //ShadCN
 export {
@@ -25,6 +26,7 @@ export {
 export { Button as ShadButton, buttonVariants as shadButtonVariants } from './ui/button'
 export { Input as ShadInput } from './ui/input'
 export { Label as ShadLabel } from './ui/label'
+export { Textarea as ShadTextarea } from './ui/textarea'
 export {
   Table as ShadTable,
   TableHeader as ShadTableHeader,

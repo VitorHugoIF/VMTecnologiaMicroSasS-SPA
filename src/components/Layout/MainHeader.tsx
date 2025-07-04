@@ -1,7 +1,7 @@
 import { LanguageSelector } from './LanguageSelector'
 import { Menu, Sun, Moon } from 'lucide-react'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
-import { useTheme } from '@/core/providers'
+import { useTheme } from '@/core/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import { useSidebar } from '@/components/ui/sidebar'
 

@@ -1,5 +1,5 @@
 import type { RoleResponse } from '../models/response/roleResponse';
-import type { Role } from '../types/role';
+import type { Role } from '../types/role/role';
 import type { PagedResponse } from '@/core/models/pagedResponse';
 
 export function mapRoleResponseToRole(response?: RoleResponse): Role | undefined {
@@ -8,7 +8,7 @@ export function mapRoleResponseToRole(response?: RoleResponse): Role | undefined
     id: response.id,
     name: response.name,
     description: response.description,
-    active: String(response.active) === 'true',
+    active: response.active,
     code: response.code,
   };
 }

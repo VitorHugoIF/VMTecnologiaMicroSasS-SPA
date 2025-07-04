@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { roleHttpService } from '../services';
-import type { UpdateRoleDto } from '../models/request/UpdateRoleDto';
+import { roleHttpService } from '../../services';
+import type { UpdateRoleDto } from '../../models/request/updateRoleDto';
 import { ApiError } from "@/core/models/errorResponse";
 import { Toast } from "@/components";
 

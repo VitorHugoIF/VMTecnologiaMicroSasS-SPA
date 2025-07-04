@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
 import { ChevronDown } from 'lucide-react'
-import { useAuth } from '@/core/providers/AuthProvider'
+import { useAuth } from '@/core/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
 interface SidebarUserFooterProps {

@@ -31,6 +31,7 @@
       "dashboard": "Dashboard",
       "tenant": "Tenant",
       "role": "Role",
+      "plan": "Plan",
       "user": "User"
     }
   },
@@ -129,6 +130,87 @@
       }
     }
   },
+  "plans": {
+    "list": {
+      "title": "Plans",
+      "add": "Add",
+      "errorLoading": "Error loading plans",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_description": "Description",
+        "column_price": "Price",
+        "column_active": "Active",
+        "column_active_true": "Active",
+        "column_active_false": "Inactive",
+        "column_actions": "Actions"
+      }
+    },
+    "add": {
+      "title": "Create New Plan",
+      "description": "Fill in the fields below to create a new plan",
+      "form": {
+        "name": "Name",
+        "description": "Description",
+        "price": "Price",
+        "namePlaceholder": "Enter plan name",
+        "descriptionPlaceholder": "Enter plan description",
+        "pricePlaceholder": "Enter plan price",
+        "nameRequired": "Name is required",
+        "descriptionRequired": "Description is required",
+        "priceRequired": "Price is required",
+        "submit": "Create Plan"
+      }
+    },
+    "view": {
+      "title": "Plan Details",
+      "description": "View the details of this plan",
+      "errorLoading": "Error loading plan",
+      "loading": "Loading...",
+      "notFound": "Plan not found",
+      "notFoundDescription": "The requested plan was not found",
+      "form": {
+        "name": "Name",
+        "description": "Description",
+        "price": "Price",
+        "status": "Status",
+        "id": "ID",
+        "noDescription": "No description provided"
+      },
+      "disable": "Disable",
+      "enable": "Enable",
+      "edit": "Edit",
+      "back": "Back"
+    },
+    "delete": {
+      "title": "Disable Plan",
+      "description": "Are you sure you want to disable this plan? This action can be reverted later."
+    },
+    "edit": {
+      "title": "Edit Plan",
+      "description": "Change the fields below to edit the plan",
+      "errorLoading": "Error loading plan for editing",
+      "form": {
+        "name": "Name",
+        "description": "Description",
+        "price": "Price",
+        "namePlaceholder": "Enter plan name",
+        "descriptionPlaceholder": "Enter plan description",
+        "pricePlaceholder": "Enter plan price",
+        "nameRequired": "Name is required",
+        "descriptionRequired": "Description is required",
+        "priceRequired": "Price is required",
+        "submit": "Save Changes"
+      }
+    }
+  },
   "disable": {
     "title": "Disable Role",
     "description": "Are you sure you want to disable this role? This action can be reverted later."
@@ -149,7 +231,10 @@
     "error": "Error",
     "back": "Back",
     "edit": "Edit",
-    "delete": "Disable"
+    "delete": "Disable",
+    "loading": "Loading...",
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "login": {
     "auth0": "Sign in as administrator",

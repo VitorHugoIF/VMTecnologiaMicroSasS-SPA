@@ -39,7 +39,7 @@ export function useEditRolePage() {
     try {
       await mutateAsync({ id: id!, ...formData });
       navigate(ADMIN_ROUTES.roles.list);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);   
     }
   };

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useCreateRole } from '../../../hooks/useCreateRole';
+import { useCreateRole } from '../../../hooks/role/useCreateRole';
 import { ADMIN_ROUTES } from '@/routes/routeRoles';
 
 export function useCreateRolePage() {
@@ -28,7 +28,7 @@ export function useCreateRolePage() {
       await mutateAsync(data);
       form.reset();
       navigate(ADMIN_ROUTES.roles.list);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
     }
   };

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { roleHttpService } from "../services";
+import { roleHttpService } from "../../services";
 import { QueryTimeConfig } from "@/config/queryTimeConfig";
 import { isNullOrWhiteSpace } from "@/lib/utils";
 

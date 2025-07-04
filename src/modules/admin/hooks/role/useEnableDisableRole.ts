@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { enableRole, disableRole } from "../services/httpService";
+import { enableRole, disableRole } from "../../services/roleHttpService";
 import { ApiError } from "@/core/models/errorResponse";
 import { Toast } from "@/components";
 
