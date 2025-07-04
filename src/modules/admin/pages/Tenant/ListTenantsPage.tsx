@@ -3,7 +3,7 @@ import { Card } from '@/components/Card'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListTenantsPage } from './hooks/useListTenantsPage'
 import { TableHeaderActions, ErrorAlert } from '../../../components'
-import { tenantTableColumns } from '../../types/tenant/tenantTableColumn'
+import { useTenantTableColumns } from '../../types/tenant/tenantTableColumn'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 
@@ -24,6 +24,8 @@ export function ListTenantsPage() {
     handleSearchChange,
     handleSortChange,
   } = useListTenantsPage()
+
+  const columns = useTenantTableColumns()
 
   if (error) {
     return (
@@ -47,7 +49,7 @@ export function ListTenantsPage() {
         <TableComponent
           className="rounded-none border-x-0"
           data={data?.data.items || []}
-          columns={tenantTableColumns}
+          columns={columns}
           isLoading={isLoading}
           actions={(tenant) => (
             <TableActions
