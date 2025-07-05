@@ -10,7 +10,7 @@ export function useCreateRole() {
   return useMutation({
     mutationFn: (data: CreateRoleRequest) => RoleHttpService.createRole(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {

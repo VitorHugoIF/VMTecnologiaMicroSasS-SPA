@@ -8,7 +8,7 @@ export function useCreateTenant() {
   return useMutation({
     mutationFn: (request: CreateTenantRequest) => TenantHttpService.createTenant(request),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tenants'] })
+      queryClient.invalidateQueries()
     },
   })
 }

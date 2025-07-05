@@ -6,17 +6,15 @@ export function useEnableDisableTenant() {
 
   const enableMutation = useMutation({
     mutationFn: (id: string) => TenantHttpService.enableTenant(id),
-    onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: ['tenants'] })
-      queryClient.invalidateQueries({ queryKey: ['tenant', id] })
+    onSuccess: () => {
+      queryClient.invalidateQueries()
     },
   })
 
   const disableMutation = useMutation({
     mutationFn: (id: string) => TenantHttpService.disableTenant(id),
-    onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: ['tenants'] })
-      queryClient.invalidateQueries({ queryKey: ['tenant', id] })
+    onSuccess: () => {
+      queryClient.invalidateQueries()
     },
   })
 

@@ -9,7 +9,7 @@ export function useEnableDisablePlan() {
   const enableMutation = useMutation({
     mutationFn: (id: string) => PlanHttpService.enablePlan(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {
@@ -24,7 +24,7 @@ export function useEnableDisablePlan() {
   const disableMutation = useMutation({
     mutationFn: (id: string) => PlanHttpService.disablePlan(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {

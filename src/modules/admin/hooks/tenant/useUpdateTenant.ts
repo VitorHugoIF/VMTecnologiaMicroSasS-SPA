@@ -8,9 +8,8 @@ export function useUpdateTenant() {
   return useMutation({
     mutationFn: ({ id, request }: { id: string; request: UpdateTenantRequest }) =>
       TenantHttpService.updateTenant(id, request),
-    onSuccess: (_, { id }) => {
-      queryClient.invalidateQueries({ queryKey: ['tenants'] })
-      queryClient.invalidateQueries({ queryKey: ['tenant', id] })
+    onSuccess: () => {
+      queryClient.invalidateQueries()
     },
   })
 }

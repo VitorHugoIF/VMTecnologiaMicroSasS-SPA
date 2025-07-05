@@ -9,7 +9,7 @@ export function useUpdateUser() {
     mutationFn: ({ id, data }: { id: string; data: UpdateUserRequest }) =>
       UserHttpService.updateUser(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetUsers'] })
+      queryClient.invalidateQueries()
     },
   })
 } 

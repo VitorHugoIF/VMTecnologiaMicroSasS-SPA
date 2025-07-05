@@ -9,8 +9,7 @@ export function useEnableDisableRole() {
   const enable = useMutation({
     mutationFn: (id: string) => RoleHttpService.enableRole(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetRole'] })
-      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {
@@ -25,8 +24,7 @@ export function useEnableDisableRole() {
   const disable = useMutation({
     mutationFn: (id: string) => RoleHttpService.disableRole(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetRole'] })
-      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {

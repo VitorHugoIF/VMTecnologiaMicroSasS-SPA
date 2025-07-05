@@ -9,8 +9,7 @@ export function useUpdateRole() {
   return useMutation({
     mutationFn: (data: UpdateRoleRequest) => RoleHttpService.updateRole(data.id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetRole'] })
-      queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {

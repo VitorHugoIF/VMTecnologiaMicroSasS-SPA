@@ -10,7 +10,7 @@ export function useCreatePlan() {
   return useMutation({
     mutationFn: (data: CreatePlanRequest) => PlanHttpService.createPlan(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
+      queryClient.invalidateQueries()
     },
     onError: (error) => {
       if (error instanceof ApiError && error.response.status >= 500) {

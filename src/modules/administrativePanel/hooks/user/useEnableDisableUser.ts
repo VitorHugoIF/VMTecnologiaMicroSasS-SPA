@@ -7,14 +7,14 @@ export function useEnableDisableUser() {
   const enableMutation = useMutation({
     mutationFn: (id: string) => UserHttpService.enableUser(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetUsers'] })
+      queryClient.invalidateQueries()
     },
   })
 
   const disableMutation = useMutation({
     mutationFn: (id: string) => UserHttpService.disableUser(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetUsers'] })
+      queryClient.invalidateQueries()
     },
   })
 

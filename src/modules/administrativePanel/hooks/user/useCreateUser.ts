@@ -8,7 +8,7 @@ export function useCreateUser() {
   return useMutation({
     mutationFn: (data: CreateUserRequest) => UserHttpService.createUser(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetUsers'] })
+      queryClient.invalidateQueries()
     },
   })
 } 
