@@ -3,6 +3,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import type { RedirectLoginOptions } from '@auth0/auth0-react'
 import { KeyStorageConfig } from '@/config/KeyStorageConfig'
 import { AuthContext, type AuthUser } from '../contexts/AuthContext'
+import { CustomClaims } from '../auth/Roles'
+import { jwtDecode } from 'jwt-decode'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const {
@@ -41,7 +43,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (!isAuth0Loading && isAuth0Authenticated && auth0User && user == null) {
         const accessToken = await getAccessTokenSilently()
-
+        let roles: string[] = []
+        try {
+          const decoded = jwtDecode(accessToken) as Record<string, unknown>
+          roles = (decoded[CustomClaims.Roles] as string[]) || []
+        } catch {
+          roles = []
+        }
         handleSaveUser({
           method: 'idp',
           email: auth0User.email,
@@ -49,6 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           sub: auth0User.sub,
           accessToken,
           avatar: auth0User.picture,
+          roles,
         })
       } else if (!isAuth0Loading && !isAuth0Authenticated && user?.method === 'idp') {
         handleRemoveUser()

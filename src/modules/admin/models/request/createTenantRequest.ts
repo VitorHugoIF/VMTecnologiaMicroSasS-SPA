@@ -3,5 +3,4 @@ export type CreateTenantRequest = {
   slug: string
   email: string
   planId: string
-  status: string
 }

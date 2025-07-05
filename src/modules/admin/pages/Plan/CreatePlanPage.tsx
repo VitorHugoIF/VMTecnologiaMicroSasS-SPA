@@ -7,17 +7,26 @@ import { Textarea } from '@/components/Textarea'
 import { useCreatePlanPage } from './hooks/useCreatePlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
+import { ErrorAlert } from '@/modules/components/ErrorAlert'
+import { formatErrors } from '@/lib/utils'
+import { ApiError } from '@/core/models/errorResponse'
 
 export function CreatePlanPage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { form, isLoading, onSubmit } = useCreatePlanPage()
+  const { form, isLoading, onSubmit, error } = useCreatePlanPage()
 
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('plans.add.title')}>
         <form onSubmit={onSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4">
+          {error && (
+            <ErrorAlert 
+              title={t('common.error')} 
+              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            />
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">{t('plans.add.form.name')}</Label>
               <Input
@@ -27,18 +36,6 @@ export function CreatePlanPage() {
               />
               {form.formState.errors.name && (
                 <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="description">{t('plans.add.form.description')}</Label>
-              <Textarea
-                id="description"
-                {...form.register('description')}
-                placeholder={t('plans.add.form.descriptionPlaceholder')}
-              />
-              {form.formState.errors.description && (
-                <p className="text-sm text-red-600">{form.formState.errors.description.message}</p>
               )}
             </div>
 
@@ -53,6 +50,18 @@ export function CreatePlanPage() {
               />
               {form.formState.errors.price && (
                 <p className="text-sm text-red-600">{form.formState.errors.price.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="description">{t('plans.add.form.description')}</Label>
+              <Textarea
+                id="description"
+                {...form.register('description')}
+                placeholder={t('plans.add.form.descriptionPlaceholder')}
+              />
+              {form.formState.errors.description && (
+                <p className="text-sm text-red-600">{form.formState.errors.description.message}</p>
               )}
             </div>
           </div>

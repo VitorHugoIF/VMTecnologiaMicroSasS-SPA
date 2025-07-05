@@ -3,7 +3,7 @@ import { mapPlanResponseToPlan } from '../../../mappers/planMappers'
 import type { Plan } from '../../../types'
 
 export function useViewPlanPage(id: string) {
-  const { data: axiosData, isLoading } = useGetPlan(id)
+  const { data: axiosData, isLoading, error } = useGetPlan(id)
   const { enablePlan, disablePlan, isEnabling, isDisabling } = useEnableDisablePlan()
 
   const apiData = axiosData?.data
@@ -24,5 +24,6 @@ export function useViewPlanPage(id: string) {
     isDisabling,
     handleEnable,
     handleDisable,
+    error,
   }
 }

@@ -56,6 +56,7 @@ export function Table<T>({
                   {col.header}
                   {col.accessor &&
                     sort === col.accessor &&
+                    order !== undefined &&
                     (order === 1 ? <span>▲</span> : <span>▼</span>)}
                   {col.accessor && sort !== col.accessor && <span className="opacity-30">⇅</span>}
                 </span>

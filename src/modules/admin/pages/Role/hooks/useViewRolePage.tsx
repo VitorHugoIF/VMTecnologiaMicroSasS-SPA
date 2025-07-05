@@ -11,7 +11,7 @@ export function useViewRolePage() {
   const { id } = useParams<{ id: string }>()
   const [isDeleting, setIsDeleting] = useState(false)
 
-  const { data: axiosData, isLoading } = useGetRole({ id: id || '' })
+  const { data: axiosData, isLoading, error } = useGetRole({ id: id || '' })
 
   const apiData = axiosData?.data
   const role: Role | undefined = mapRoleResponseToRole(apiData)
@@ -52,5 +52,6 @@ export function useViewRolePage() {
     handleEdit,
     handleBack,
     handleToggleActive,
+    error,
   }
 }

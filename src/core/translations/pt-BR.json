@@ -36,6 +36,10 @@
       "role": "Papel",
       "plan": "Plano",
       "user": "Usuário"
+    },
+    "administrativePanel": {
+      "title": "Painel Administrativo",
+      "users": "Usuários"
     }
   },
   "forbidden": {
@@ -63,6 +67,12 @@
     "subtitle": "Confirmação necessária",
     "description": "Para acessar o sistema, confirme seu endereço de e-mail através do link enviado para sua caixa de entrada.",
     "go_home": "Voltar para a página inicial"
+  },
+  "validation": {
+    "required": "Este campo é obrigatório",
+    "minLength": "Deve ter pelo menos {{min}} caracteres",
+    "email": "E-mail inválido",
+    "minValue": "Deve ser maior ou igual a {{min}}"
   },
   "roles": {
     "list": {
@@ -255,11 +265,15 @@
         "emailPlaceholder": "Digite o e-mail do inquilino",
         "planPlaceholder": "Selecione o plano",
         "statusPlaceholder": "Digite o status",
+        "selectedPlan": "Plano selecionado",
         "nameRequired": "O nome é obrigatório",
         "slugRequired": "O slug é obrigatório",
         "emailRequired": "O e-mail é obrigatório",
         "planRequired": "O plano é obrigatório",
         "statusRequired": "O status é obrigatório",
+        "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
+        "slugMinLength": "Slug deve ter pelo menos 2 caracteres",
+        "emailInvalid": "E-mail inválido",
         "submit": "Criar Inquilino"
       }
     },
@@ -299,11 +313,93 @@
         "emailPlaceholder": "Digite o e-mail do inquilino",
         "planPlaceholder": "Selecione o plano",
         "statusPlaceholder": "Digite o status",
+        "selectedPlan": "Plano selecionado",
         "nameRequired": "O nome é obrigatório",
         "slugRequired": "O slug é obrigatório",
         "emailRequired": "O e-mail é obrigatório",
         "planRequired": "O plano é obrigatório",
         "statusRequired": "O status é obrigatório",
+        "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
+        "slugMinLength": "Slug deve ter pelo menos 2 caracteres",
+        "emailInvalid": "E-mail inválido",
+        "submit": "Salvar Alterações"
+      }
+    }
+  },
+  "users": {
+    "list": {
+      "title": "Usuários",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar usuários",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_active": "Ativo",
+        "column_active_true": "Ativo",
+        "column_active_false": "Inativo",
+        "column_roles": "Perfis",
+        "column_created_at": "Criado em",
+        "column_actions": "Ações"
+      }
+    },
+    "add": {
+      "title": "Criar Novo Usuário",
+      "description": "Preencha os campos abaixo para criar um novo usuário",
+      "form": {
+        "name": "Nome",
+        "password": "Senha",
+        "roles": "Perfis",
+        "namePlaceholder": "Digite o nome do usuário",
+        "passwordPlaceholder": "Digite a senha do usuário",
+        "rolesPlaceholder": "Selecione os perfis do usuário",
+        "nameRequired": "O nome é obrigatório",
+        "passwordRequired": "A senha deve ter pelo menos 6 caracteres",
+        "rolesRequired": "Pelo menos um perfil é obrigatório",
+        "selectedRole": "Perfil selecionado",
+        "submit": "Criar Usuário"
+      }
+    },
+    "view": {
+      "title": "Detalhes do Usuário",
+      "description": "Visualize os detalhes deste usuário",
+      "errorLoading": "Erro ao carregar usuário",
+      "loading": "Carregando...",
+      "notFound": "Usuário não encontrado",
+      "notFoundDescription": "O usuário solicitado não foi encontrado",
+      "form": {
+        "name": "Nome",
+        "status": "Status",
+        "roles": "Perfis",
+        "createdAt": "Criado em",
+        "noRoles": "Nenhum perfil atribuído"
+      },
+      "disable": "Desabilitar",
+      "enable": "Habilitar",
+      "edit": "Editar",
+      "back": "Voltar"
+    },
+    "delete": {
+      "title": "Desabilitar Usuário",
+      "description": "Tem certeza que deseja desabilitar este usuário? Esta ação pode ser revertida posteriormente."
+    },
+    "edit": {
+      "title": "Editar Usuário",
+      "description": "Altere os campos abaixo para editar o usuário",
+      "errorLoading": "Erro ao carregar usuário para edição",
+      "form": {
+        "name": "Nome",
+        "password": "Senha",
+        "namePlaceholder": "Digite o nome do usuário",
+        "passwordPlaceholder": "Digite a nova senha do usuário",
+        "nameRequired": "O nome é obrigatório",
+        "passwordRequired": "A senha deve ter pelo menos 6 caracteres",
         "submit": "Salvar Alterações"
       }
     }

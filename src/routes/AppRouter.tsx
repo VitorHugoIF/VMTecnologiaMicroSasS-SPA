@@ -15,6 +15,8 @@ import { ProgressBar } from '@/components'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AuthUser } from '@/core/contexts/AuthContext'
 import { useAuth } from '@/core'
+import { RoleGuard } from '@/core/guards/RoleGuard'
+import { Roles } from '@/core/auth/Roles'
 
 function getMainUrlRoute(user: AuthUser | null) {
   return user?.method === 'idp' ? MAIN_ROUTE_AUTH0 : MAIN_ROUTE
@@ -31,6 +33,7 @@ function RootRedirect() {
 const queryClient = new QueryClient()
 
 const AdminModule = lazy(() => import('@/modules').then((m) => ({ default: m.AdminModule })))
+const AdministrativePanelModule = lazy(() => import('@/modules').then((m) => ({ default: m.AdministrativePanelModule })))
 
 export function AppRouter() {
   const { user } = useAuth()
@@ -51,9 +54,21 @@ export function AppRouter() {
             <Route
               path="admin/*"
               element={
-                <Suspense fallback={<ProgressBar />}>
-                  <AdminModule />
-                </Suspense>
+                <RoleGuard requiredRoles={[Roles.SuperAdmin]}>
+                  <Suspense fallback={<ProgressBar />}>
+                    <AdminModule />
+                  </Suspense>
+                </RoleGuard>
+              }
+            />
+            <Route
+              path="administrative-panel/*"
+              element={
+                <RoleGuard requiredRoles={[Roles.SuperAdmin]}>
+                  <Suspense fallback={<ProgressBar />}>
+                    <AdministrativePanelModule />
+                  </Suspense>
+                </RoleGuard>
               }
             />
           </Route>

@@ -7,3 +7,10 @@ export function cn(...inputs: ClassValue[]) {
 
 export const isNullOrWhiteSpace = (str?: string | null | undefined): boolean =>
   !str || str.trim().length === 0
+
+export const formatErrors = (errors?: string[] | null): string => {
+  if (!errors || !Array.isArray(errors) || errors.length === 0) {
+    return ''
+  }
+  return errors.join(', ')
+}

@@ -23,6 +23,12 @@ export function mapPagedPlanResponseToPlans(paged?: PagedResponse<PlanResponse>)
   }
 }
 
+export function mapPagedPlanResponseToActivePlans(paged?: PagedResponse<PlanResponse>) {
+  return Array.isArray(paged?.data?.items)
+    ? (paged.data.items.map(mapPlanResponseToPlan).filter(Boolean) as Plan[])
+    : []
+}
+
 export function mapPlanToCreatePlanRequest(plan: Plan): CreatePlanRequest {
   return {
     name: plan.name,

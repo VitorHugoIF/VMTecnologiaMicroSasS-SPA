@@ -11,8 +11,8 @@ export function useEditRolePage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
-  const { mutateAsync, isPending } = useUpdateRole()
-  const { data, isLoading } = useGetRole({ id: id || '' })
+  const { mutateAsync, isPending, error } = useUpdateRole()
+  const { data, isLoading, error: roleError } = useGetRole({ id: id || '' })
 
   const schema = z.object({
     name: z.string().min(1, t('roles.edit.form.nameRequired')),
@@ -54,5 +54,6 @@ export function useEditRolePage() {
     handleCancel,
     isLoading: isPending,
     isDataLoading: isLoading,
+    error: roleError || error,
   }
 }

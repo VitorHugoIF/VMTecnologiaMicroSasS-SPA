@@ -36,6 +36,10 @@
       "role": "Role",
       "plan": "Plan",
       "user": "User"
+    },
+    "administrativePanel": {
+      "title": "Administrative Panel",
+      "users": "Users"
     }
   },
   "forbidden": {
@@ -63,6 +67,12 @@
     "subtitle": "Confirmation required",
     "description": "To access the system, confirm your email address through the link sent to your inbox.",
     "go_home": "Go Back Home"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Must have at least {{min}} characters",
+    "email": "Invalid email",
+    "minValue": "Must be greater than or equal to {{min}}"
   },
   "roles": {
     "list": {
@@ -255,11 +265,15 @@
         "emailPlaceholder": "Enter tenant email",
         "planPlaceholder": "Select plan",
         "statusPlaceholder": "Enter status",
+        "selectedPlan": "Selected plan",
         "nameRequired": "Name is required",
         "slugRequired": "Slug is required",
         "emailRequired": "Email is required",
         "planRequired": "Plan is required",
         "statusRequired": "Status is required",
+        "nameMinLength": "Name must have at least 2 characters",
+        "slugMinLength": "Slug must have at least 2 characters",
+        "emailInvalid": "Invalid email",
         "submit": "Create Tenant"
       }
     },
@@ -299,11 +313,93 @@
         "emailPlaceholder": "Enter tenant email",
         "planPlaceholder": "Select plan",
         "statusPlaceholder": "Enter status",
+        "selectedPlan": "Selected plan",
         "nameRequired": "Name is required",
         "slugRequired": "Slug is required",
         "emailRequired": "Email is required",
         "planRequired": "Plan is required",
         "statusRequired": "Status is required",
+        "nameMinLength": "Name must have at least 2 characters",
+        "slugMinLength": "Slug must have at least 2 characters",
+        "emailInvalid": "Invalid email",
+        "submit": "Save Changes"
+      }
+    }
+  },
+  "users": {
+    "list": {
+      "title": "Users",
+      "add": "Add",
+      "errorLoading": "Error loading users",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_active": "Active",
+        "column_active_true": "Active",
+        "column_active_false": "Inactive",
+        "column_roles": "Roles",
+        "column_created_at": "Created at",
+        "column_actions": "Actions"
+      }
+    },
+    "add": {
+      "title": "Create New User",
+      "description": "Fill in the fields below to create a new user",
+      "form": {
+        "name": "Name",
+        "password": "Password",
+        "roles": "Roles",
+        "namePlaceholder": "Enter user name",
+        "passwordPlaceholder": "Enter user password",
+        "rolesPlaceholder": "Select user roles",
+        "nameRequired": "Name is required",
+        "passwordRequired": "Password must have at least 6 characters",
+        "rolesRequired": "At least one role is required",
+        "selectedRole": "Selected role",
+        "submit": "Create User"
+      }
+    },
+    "view": {
+      "title": "User Details",
+      "description": "View the details of this user",
+      "errorLoading": "Error loading user",
+      "loading": "Loading...",
+      "notFound": "User not found",
+      "notFoundDescription": "The requested user was not found",
+      "form": {
+        "name": "Name",
+        "status": "Status",
+        "roles": "Roles",
+        "createdAt": "Created at",
+        "noRoles": "No roles assigned"
+      },
+      "disable": "Disable",
+      "enable": "Enable",
+      "edit": "Edit",
+      "back": "Back"
+    },
+    "delete": {
+      "title": "Disable User",
+      "description": "Are you sure you want to disable this user? This action can be reverted later."
+    },
+    "edit": {
+      "title": "Edit User",
+      "description": "Change the fields below to edit the user",
+      "errorLoading": "Error loading user for editing",
+      "form": {
+        "name": "Name",
+        "password": "Password",
+        "namePlaceholder": "Enter user name",
+        "passwordPlaceholder": "Enter new user password",
+        "nameRequired": "Name is required",
+        "passwordRequired": "Password must have at least 6 characters",
         "submit": "Save Changes"
       }
     }
@@ -328,7 +424,7 @@
     "inactive": "Inactive"
   },
   "login": {
-    "auth0": "Sign in as administrator",
+    "auth0": "Login as administrator",
     "welcome": "Welcome back!",
     "username": "Username",
     "password": "Password",

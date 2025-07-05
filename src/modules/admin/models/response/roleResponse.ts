@@ -5,3 +5,9 @@ export type RoleResponse = {
   active?: boolean
   code?: string
 }
+
+export type ActiveRoleResponse = {
+  id?: string
+  name?: string
+  description?: string
+}

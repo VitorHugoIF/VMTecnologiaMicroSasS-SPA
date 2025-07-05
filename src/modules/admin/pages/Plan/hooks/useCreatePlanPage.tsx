@@ -9,7 +9,7 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 export function useCreatePlanPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { mutateAsync, isPending } = useCreatePlan()
+  const { mutateAsync, isPending, error } = useCreatePlan()
 
   const schema = z.object({
     name: z.string().min(1, t('plans.add.form.nameRequired')),
@@ -43,5 +43,6 @@ export function useCreatePlanPage() {
     onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isPending,
+    error,
   }
 }

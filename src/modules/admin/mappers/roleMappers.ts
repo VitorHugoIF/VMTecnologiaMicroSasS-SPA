@@ -1,4 +1,4 @@
-import type { RoleResponse } from '../models/response/roleResponse'
+import type { RoleResponse, ActiveRoleResponse } from '../models/response/roleResponse'
 import type { Role } from '../types/role/role'
 import type { CreateRoleRequest, UpdateRoleRequest } from '../models'
 import type { PagedResponse } from '@/core/models/pagedResponse'
@@ -21,6 +21,20 @@ export function mapPagedRoleResponseToRoles(paged?: PagedResponse<RoleResponse>)
       : [],
     totalCount: paged?.data?.totalCount ?? 0,
   }
+}
+
+export function mapPagedRoleResponseToActiveRoles(paged?: PagedResponse<RoleResponse>): ActiveRoleResponse[] {
+  if (!paged?.data?.items || !Array.isArray(paged.data.items)) {
+    return []
+  }
+  
+  return paged.data.items
+    .filter(role => role.active === true)
+    .map(role => ({
+      id: role.id,
+      name: role.name,
+      description: role.description,
+    }))
 }
 
 export function mapRoleToCreateRoleRequest(role: Role): CreateRoleRequest {

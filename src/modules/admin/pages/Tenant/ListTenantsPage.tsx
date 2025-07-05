@@ -6,6 +6,8 @@ import { TableHeaderActions, ErrorAlert } from '../../../components'
 import { useTenantTableColumns } from '../../types/tenant/tenantTableColumn'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
+import { formatErrors } from '@/lib/utils'
+import { ApiError } from '@/core/models/errorResponse'
 
 export function ListTenantsPage() {
   const navigate = useNavigate()
@@ -28,9 +30,13 @@ export function ListTenantsPage() {
   const columns = useTenantTableColumns()
 
   if (error) {
+    const errorMessage = error instanceof ApiError 
+      ? formatErrors(error.response.errors)
+      : error.message
+      
     return (
       <div className="flex flex-col gap-3">
-        <ErrorAlert title={t('tenants.list.errorLoading')} description={error.message} />
+        <ErrorAlert title={t('tenants.list.errorLoading')} description={errorMessage} />
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getTenants } from '../../services/tenantHttpService'
+import { TenantHttpService } from '../../../services/http'
 import { mapTenantResponseToTenant } from '../../mappers/tenantMappers'
 import type { Tenant } from '../../types'
 
@@ -13,7 +13,7 @@ export function useGetTenants(
   return useQuery({
     queryKey: ['tenants', page, size, search, sort, order],
     queryFn: async () => {
-      const response = await getTenants(page, size, search, sort, order)
+      const response = await TenantHttpService.getTenants(page, size, search, sort, order)
       return {
         ...response,
         data: {

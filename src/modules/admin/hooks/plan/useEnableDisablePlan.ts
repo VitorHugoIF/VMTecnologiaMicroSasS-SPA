@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { enablePlan, disablePlan } from '../../services/planHttpService'
+import { PlanHttpService } from '../../../services/http'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'
 
@@ -7,7 +7,7 @@ export function useEnableDisablePlan() {
   const queryClient = useQueryClient()
 
   const enableMutation = useMutation({
-    mutationFn: (id: string) => enablePlan(id),
+    mutationFn: (id: string) => PlanHttpService.enablePlan(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
     },
@@ -24,7 +24,7 @@ export function useEnableDisablePlan() {
   })
 
   const disableMutation = useMutation({
-    mutationFn: (id: string) => disablePlan(id),
+    mutationFn: (id: string) => PlanHttpService.disablePlan(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
     },

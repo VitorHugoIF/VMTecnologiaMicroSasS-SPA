@@ -7,14 +7,28 @@ import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ViewPlanSkeleton } from './components/ViewPlanSkeleton'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
+import { formatErrors } from '@/lib/utils'
+import { ApiError } from '@/core/models/errorResponse'
 
 export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable } = useViewPlanPage(
+  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable, error } = useViewPlanPage(
     id!,
   )
+
+  if (error) {
+    const errorMessage = error instanceof ApiError 
+      ? formatErrors(error.response.errors)
+      : error.message
+      
+    return (
+      <div className="flex flex-col gap-3">
+        <ErrorAlert title={t('common.error')} description={errorMessage} />
+      </div>
+    )
+  }
 
   if (isLoading) {
     return <ViewPlanSkeleton />
@@ -34,17 +48,10 @@ export function ViewPlanPage() {
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('plans.view.title')}>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h3 className="text-sm font-medium text-gray-500">{t('plans.view.form.name')}</h3>
             <p className="text-lg">{plan.name}</p>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-medium text-gray-500">
-              {t('plans.view.form.description')}
-            </h3>
-            <p className="text-lg">{plan.description || t('plans.view.form.noDescription')}</p>
           </div>
 
           <div>
@@ -63,27 +70,34 @@ export function ViewPlanPage() {
             </div>
           </div>
 
-          <div className="flex gap-2 pt-4">
-            <Button onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))}>
-              {t('plans.view.edit')}
-            </Button>
-            <Button variant="outline" onClick={() => navigate(ADMIN_ROUTES.plans.list)}>
-              {t('plans.view.back')}
-            </Button>
-            {plan.active ? (
-              <Button
-                variant="destructive"
-                onClick={() => handleDisable(plan.id!)}
-                loading={isDisabling}
-              >
-                {t('plans.view.disable')}
-              </Button>
-            ) : (
-              <Button variant="default" onClick={() => handleEnable(plan.id!)} loading={isEnabling}>
-                {t('plans.view.enable')}
-              </Button>
-            )}
+          <div className="md:col-span-2">
+            <h3 className="text-sm font-medium text-gray-500">
+              {t('plans.view.form.description')}
+            </h3>
+            <p className="text-lg">{plan.description || t('plans.view.form.noDescription')}</p>
           </div>
+        </div>
+
+        <div className="flex gap-2 pt-4">
+          <Button onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))}>
+            {t('plans.view.edit')}
+          </Button>
+          <Button variant="outline" onClick={() => navigate(ADMIN_ROUTES.plans.list)}>
+            {t('plans.view.back')}
+          </Button>
+          {plan.active ? (
+            <Button
+              variant="destructive"
+              onClick={() => handleDisable(plan.id!)}
+              loading={isDisabling}
+            >
+              {t('plans.view.disable')}
+            </Button>
+          ) : (
+            <Button variant="default" onClick={() => handleEnable(plan.id!)} loading={isEnabling}>
+              {t('plans.view.enable')}
+            </Button>
+          )}
         </div>
       </Card>
     </div>

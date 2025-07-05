@@ -1,9 +1,9 @@
 import { http } from '@/services/http'
-import type { PlanResponse } from '../models'
+import type { PlanResponse } from '../../admin/models'
 import type { ApiResponse } from '@/core/models/apiResponse'
 import type { PagedResponse } from '@/core/models/pagedResponse'
-import type { CreatePlanRequest } from '../models/request/createPlanRequest'
-import type { UpdatePlanRequest } from '../models/request/updatePlanRequest'
+import type { CreatePlanRequest } from '../../admin/models/request/createPlanRequest'
+import type { UpdatePlanRequest } from '../../admin/models/request/updatePlanRequest'
 
 const prefix = 'api/admin/plan'
 
@@ -21,6 +21,18 @@ export async function getPlans(
   if (order !== undefined) params.append('order', String(order))
   if (sort) params.append('sort', sort)
   if (search) params.append('search', search)
+
+  const { data } = await http.get<PagedResponse<PlanResponse>>(`${prefix}?${params.toString()}`)
+
+  return data
+}
+
+export async function getActivePlans() {
+  const params = new URLSearchParams({
+    page: String(1),
+    pageSize: String(1000),
+    active: String(true)
+  })
 
   const { data } = await http.get<PagedResponse<PlanResponse>>(`${prefix}?${params.toString()}`)
 

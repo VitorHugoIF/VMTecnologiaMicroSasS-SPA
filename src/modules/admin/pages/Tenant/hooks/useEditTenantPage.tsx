@@ -1,25 +1,50 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { useTranslation } from 'react-i18next'
 import { useGetTenant, useUpdateTenant } from '../../../hooks/tenant'
-import type { UpdateTenantRequest } from '../../../models'
+import { useGetActivePlans } from '../../../hooks/plan/useGetActivePlans'
 
 export function useEditTenantPage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const { data: tenant, isLoading: isLoadingTenant, error: tenantError } = useGetTenant(id!)
   const updateTenantMutation = useUpdateTenant()
+  const { data: activePlans, isLoading: isLoadingPlans } = useGetActivePlans()
 
-  const [formData, setFormData] = useState<UpdateTenantRequest>({
-    name: '',
-    slug: '',
-    email: '',
-    planId: '',
-    status: '',
+  const updateTenantSchema = z.object({
+    name: z.string()
+      .min(1, t('tenants.edit.form.nameRequired'))
+      .min(2, t('tenants.edit.form.nameMinLength')),
+    slug: z.string()
+      .min(1, t('tenants.edit.form.slugRequired'))
+      .min(2, t('tenants.edit.form.slugMinLength')),
+    email: z.string()
+      .min(1, t('tenants.edit.form.emailRequired'))
+      .email(t('tenants.edit.form.emailInvalid')),
+    planId: z.string().min(1, t('tenants.edit.form.planRequired')),
+    status: z.string().min(1, t('tenants.edit.form.statusRequired')),
+  })
+
+  type UpdateTenantFormData = z.infer<typeof updateTenantSchema>
+
+  const form = useForm<UpdateTenantFormData>({
+    resolver: zodResolver(updateTenantSchema),
+    defaultValues: {
+      name: '',
+      slug: '',
+      email: '',
+      planId: '',
+      status: '',
+    },
   })
 
   useEffect(() => {
     if (tenant) {
-      setFormData({
+      form.reset({
         name: tenant.name,
         slug: tenant.slug,
         email: tenant.email,
@@ -27,34 +52,37 @@ export function useEditTenantPage() {
         status: tenant.status,
       })
     }
-  }, [tenant])
+  }, [tenant, form])
 
-  const handleInputChange = (field: keyof UpdateTenantRequest, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
+  const onSubmit = async (data: UpdateTenantFormData) => {
     if (!id) return
 
     try {
-      await updateTenantMutation.mutateAsync({ id, request: formData })
+      await updateTenantMutation.mutateAsync({ id, request: data })
       navigate('/app/admin/tenant')
     } catch (error) {
       console.error('Error updating tenant:', error)
     }
   }
 
+  const handleCancel = () => {
+    navigate('/app/admin/tenant')
+  }
+
+  const planOptions = activePlans?.map(plan => ({
+    value: plan.id || '',
+    label: plan.name || '',
+    disabled: false
+  })) || []
+
   return {
     tenant,
-    formData,
-    handleInputChange,
-    handleSubmit,
+    form,
+    onSubmit,
+    handleCancel,
     isLoading: isLoadingTenant || updateTenantMutation.isPending,
+    isLoadingPlans,
+    planOptions,
     error: tenantError || updateTenantMutation.error,
   }
 }

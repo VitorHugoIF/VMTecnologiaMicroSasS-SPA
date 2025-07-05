@@ -8,6 +8,7 @@ export interface AuthUser {
   sub?: string
   accessToken?: string
   avatar?: string
+  roles?: string[]
 }
 
 interface AuthContextType {

@@ -10,8 +10,8 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 export function useEditPlanPage(id: string) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { mutateAsync, isPending } = useUpdatePlan()
-  const { data, isLoading } = useGetPlan(id)
+  const { mutateAsync, isPending, error } = useUpdatePlan()
+  const { data, isLoading, error: planError } = useGetPlan(id)
 
   const schema = z.object({
     name: z.string().min(1, t('plans.edit.form.nameRequired')),
@@ -54,5 +54,6 @@ export function useEditPlanPage(id: string) {
     onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isPending || isLoading,
+    error: planError || error,
   }
 }

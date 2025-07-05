@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { createRole } from '../../services/roleHttpService'
+import { RoleHttpService } from '../../../services/http'
 import type { CreateRoleRequest } from '../../models'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'
@@ -8,7 +8,7 @@ export function useCreateRole() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: CreateRoleRequest) => createRole(data),
+    mutationFn: (data: CreateRoleRequest) => RoleHttpService.createRole(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
     },

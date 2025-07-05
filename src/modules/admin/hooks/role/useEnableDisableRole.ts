@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { enableRole, disableRole } from '../../services/roleHttpService'
+import { RoleHttpService } from '../../../services/http'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'
 
@@ -7,7 +7,7 @@ export function useEnableDisableRole() {
   const queryClient = useQueryClient()
 
   const enable = useMutation({
-    mutationFn: (id: string) => enableRole(id),
+    mutationFn: (id: string) => RoleHttpService.enableRole(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetRole'] })
       queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
@@ -25,7 +25,7 @@ export function useEnableDisableRole() {
   })
 
   const disable = useMutation({
-    mutationFn: (id: string) => disableRole(id),
+    mutationFn: (id: string) => RoleHttpService.disableRole(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetRole'] })
       queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })

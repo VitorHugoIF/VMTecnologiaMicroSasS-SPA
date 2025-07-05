@@ -5,8 +5,8 @@ export function useListTenantsPage() {
   const [page, setPage] = useState(1)
   const [size, setSize] = useState(10)
   const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('')
-  const [order, setOrder] = useState<number>(0)
+  const [sort, setSort] = useState<string | undefined>(undefined)
+  const [order, setOrder] = useState<number | undefined>(undefined)
 
   const { data, isLoading, error } = useGetTenants(page, size, search, sort, order)
 

@@ -9,7 +9,7 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 export function useCreateRolePage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { mutateAsync, isPending } = useCreateRole()
+  const { mutateAsync, isPending, error } = useCreateRole()
 
   const schema = z.object({
     name: z.string().min(1, t('roles.add.form.nameRequired')),
@@ -42,5 +42,6 @@ export function useCreateRolePage() {
     onSubmit,
     handleCancel,
     isLoading: isPending,
+    error,
   }
 }

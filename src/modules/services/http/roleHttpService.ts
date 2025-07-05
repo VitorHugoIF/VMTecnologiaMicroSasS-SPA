@@ -1,9 +1,9 @@
 import { http } from '@/services/http'
-import type { RoleResponse } from '../models'
+import type { RoleResponse } from '../../admin/models'
 import type { ApiResponse } from '@/core/models/apiResponse'
 import type { PagedResponse } from '@/core/models/pagedResponse'
-import type { CreateRoleRequest } from '../models/request/createRoleRequest'
-import type { UpdateRoleRequest } from '../models/request/updateRoleRequest'
+import type { CreateRoleRequest } from '../../admin/models/request/createRoleRequest'
+import type { UpdateRoleRequest } from '../../admin/models/request/updateRoleRequest'
 
 const prefix = 'api/admin/role'
 
@@ -21,6 +21,18 @@ export async function getRoles(
   if (order !== undefined) params.append('order', String(order))
   if (sort) params.append('sort', sort)
   if (search) params.append('search', search)
+
+  const { data } = await http.get<PagedResponse<RoleResponse>>(`${prefix}?${params.toString()}`)
+
+  return data
+}
+
+export async function getActiveRoles() {
+  const params = new URLSearchParams({
+    page: String(1),
+    pageSize: String(1000),
+    active: String(true)
+  })
 
   const { data } = await http.get<PagedResponse<RoleResponse>>(`${prefix}?${params.toString()}`)
 

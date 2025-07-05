@@ -1,43 +1,68 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { useTranslation } from 'react-i18next'
 import { useCreateTenant } from '../../../hooks/tenant/useCreateTenant'
-import type { CreateTenantRequest } from '../../../models'
+import { useGetActivePlans } from '../../../hooks/plan/useGetActivePlans'
 
 export function useCreateTenantPage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const createTenantMutation = useCreateTenant()
+  const { data: activePlans, isLoading: isLoadingPlans } = useGetActivePlans()
 
-  const [formData, setFormData] = useState<CreateTenantRequest>({
-    name: '',
-    slug: '',
-    email: '',
-    planId: '',
-    status: '',
+  const createTenantSchema = z.object({
+    name: z.string()
+      .min(1, t('tenants.add.form.nameRequired'))
+      .min(2, t('tenants.add.form.nameMinLength')),
+    slug: z.string()
+      .min(1, t('tenants.add.form.slugRequired'))
+      .min(2, t('tenants.add.form.slugMinLength')),
+    email: z.string()
+      .min(1, t('tenants.add.form.emailRequired'))
+      .email(t('tenants.add.form.emailInvalid')),
+    planId: z.string().min(1, t('tenants.add.form.planRequired')),
   })
 
-  const handleInputChange = (field: keyof CreateTenantRequest, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
-  }
+  type CreateTenantFormData = z.infer<typeof createTenantSchema>
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const form = useForm<CreateTenantFormData>({
+    resolver: zodResolver(createTenantSchema),
+    defaultValues: {
+      name: '',
+      slug: '',
+      email: '',
+      planId: '',
+    },
+  })
 
+  const onSubmit = async (data: CreateTenantFormData) => {
     try {
-      await createTenantMutation.mutateAsync(formData)
+      await createTenantMutation.mutateAsync(data)
       navigate('/app/admin/tenant')
     } catch (error) {
       console.error('Error creating tenant:', error)
     }
   }
 
+  const handleCancel = () => {
+    navigate('/app/admin/tenant')
+  }
+
+  const planOptions = activePlans?.map(plan => ({
+    value: plan.id || '',
+    label: plan.name || '',
+    disabled: false
+  })) || []
+
   return {
-    formData,
-    handleInputChange,
-    handleSubmit,
+    form,
+    onSubmit,
+    handleCancel,
     isLoading: createTenantMutation.isPending,
+    isLoadingPlans,
+    planOptions,
     error: createTenantMutation.error,
   }
 }

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { createPlan } from '../../services/planHttpService'
+import { PlanHttpService } from '../../../services/http'
 import type { CreatePlanRequest } from '../../models'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'
@@ -8,7 +8,7 @@ export function useCreatePlan() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: CreatePlanRequest) => createPlan(data),
+    mutationFn: (data: CreatePlanRequest) => PlanHttpService.createPlan(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
     },

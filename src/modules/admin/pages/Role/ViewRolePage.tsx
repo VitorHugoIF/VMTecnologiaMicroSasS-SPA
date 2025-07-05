@@ -6,11 +6,25 @@ import { ErrorAlert } from '../../../components'
 import { Badge } from '@/components/ui/badge'
 import { Edit, ArrowLeft, Trash2 } from 'lucide-react'
 import { ViewRoleSkeleton } from './components/ViewRoleSkeleton'
+import { formatErrors } from '@/lib/utils'
+import { ApiError } from '@/core/models/errorResponse'
 
 export function ViewRolePage() {
   const { t } = useTranslation()
-  const { isLoading, role, isDeleting, handleEdit, handleBack, handleToggleActive } =
+  const { isLoading, role, isDeleting, handleEdit, handleBack, handleToggleActive, error } =
     useViewRolePage()
+
+  if (error) {
+    const errorMessage = error instanceof ApiError 
+      ? formatErrors(error.response.errors)
+      : error.message
+      
+    return (
+      <div className="flex flex-col gap-3">
+        <ErrorAlert title={t('common.error')} description={errorMessage} />
+      </div>
+    )
+  }
 
   if (isLoading) {
     return <ViewRoleSkeleton />

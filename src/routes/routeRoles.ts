@@ -34,3 +34,13 @@ export const ADMIN_ROUTES = {
   },
   users: PREFIX_ROUTE + '/admin/users',
 }
+
+// Administrative Panel Routes
+export const ADMINISTRATIVE_PANEL_ROUTES = {
+  users: {
+    list: PREFIX_ROUTE + '/administrative-panel/user',
+    add: PREFIX_ROUTE + '/administrative-panel/user/add',
+    edit: (id: string) => PREFIX_ROUTE + `/administrative-panel/user/edit/${id}`,
+    view: (id: string) => PREFIX_ROUTE + `/administrative-panel/user/view/${id}`,
+  },
+}

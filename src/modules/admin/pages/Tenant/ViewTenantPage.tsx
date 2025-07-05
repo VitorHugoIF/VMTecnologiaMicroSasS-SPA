@@ -28,7 +28,7 @@ export function ViewTenantPage() {
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('tenants.view.title')} description={t('tenants.view.description')}>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h3 className="text-sm font-medium text-gray-500">{t('tenants.view.form.name')}</h3>
             <p className="text-lg">{tenant.name}</p>
