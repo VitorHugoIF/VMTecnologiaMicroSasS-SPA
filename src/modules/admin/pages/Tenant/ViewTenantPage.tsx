@@ -42,14 +42,31 @@ export function ViewTenantPage() {
             <p className="text-lg">{tenant.email}</p>
           </div>
           <div>
-            <h3 className="text-sm font-medium text-gray-500">{t('tenants.view.form.plan')}</h3>
-            <p className="text-lg">{tenant.planId}</p>
-          </div>
-          <div>
             <h3 className="text-sm font-medium text-gray-500">{t('tenants.view.form.status')}</h3>
             <p className="text-lg">{tenant.status}</p>
           </div>
         </div>
+        
+        {tenant.plan && (
+          <div className="mt-6 border-t pt-4">
+            <h3 className="text-lg font-medium mb-3">{t('tenants.view.planInfo.title')}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">{t('tenants.view.planInfo.name')}</h4>
+                <p className="text-lg">{tenant.plan.name}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">{t('tenants.view.planInfo.description')}</h4>
+                <p className="text-lg">{tenant.plan.description}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">{t('tenants.view.planInfo.price')}</h4>
+                <p className="text-lg">R$ {tenant.plan.price.toFixed(2)}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        
         <div className="flex gap-3 pt-4">
           <Button variant="outline" onClick={() => window.history.back()}>
             {t('tenants.view.back')}

@@ -3,6 +3,17 @@ import type { Tenant } from '../types/tenant/tenant'
 import type { CreateTenantRequest, UpdateTenantRequest } from '../models'
 import type { PagedResponse } from '@/core/models/pagedResponse'
 
+function mapPlanResponseToPlan(response?: TenantResponse['plan']): Tenant['plan'] | undefined {
+  if (!response) return undefined
+  return {
+    id: response.id,
+    name: response.name,
+    description: response.description,
+    price: response.price,
+    active: response.active,
+  }
+}
+
 export function mapTenantResponseToTenant(response?: TenantResponse): Tenant | undefined {
   if (!response) return undefined
   return {
@@ -12,6 +23,7 @@ export function mapTenantResponseToTenant(response?: TenantResponse): Tenant | u
     email: response.email,
     planId: response.planId,
     status: response.status,
+    plan: mapPlanResponseToPlan(response.plan),
   }
 }
 

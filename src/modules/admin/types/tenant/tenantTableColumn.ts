@@ -20,6 +20,7 @@ export function useTenantTableColumns(): TableColumn<Tenant>[] {
     {
       accessor: 'planId',
       header: t('tenants.list.table.column_plan'),
+      render: (tenant: Tenant) => tenant.plan?.name || tenant.planId,
     },
     {
       accessor: 'status',

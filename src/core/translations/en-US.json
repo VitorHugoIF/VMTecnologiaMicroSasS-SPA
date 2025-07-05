@@ -293,6 +293,12 @@
         "id": "ID",
         "noDescription": "No description provided"
       },
+      "planInfo": {
+        "title": "Plan Information",
+        "name": "Plan Name",
+        "description": "Description",
+        "price": "Price"
+      },
       "disable": "Disable",
       "enable": "Enable",
       "edit": "Edit",

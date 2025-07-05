@@ -22,15 +22,30 @@ export function ViewTenantSkeleton() {
             <Skeleton className="h-4 w-24 mb-2" />
             <Skeleton className="h-6 w-20" />
           </div>
-          <div>
-            <Skeleton className="h-4 w-24 mb-2" />
-            <Skeleton className="h-6 w-32" />
+        </div>
+        
+        <div className="mt-6 border-t pt-4">
+          <Skeleton className="h-6 w-48 mb-3" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <Skeleton className="h-4 w-32 mb-2" />
+              <Skeleton className="h-6 w-40" />
+            </div>
+            <div>
+              <Skeleton className="h-4 w-24 mb-2" />
+              <Skeleton className="h-6 w-48" />
+            </div>
+            <div>
+              <Skeleton className="h-4 w-16 mb-2" />
+              <Skeleton className="h-6 w-20" />
+            </div>
           </div>
-          <div className="flex gap-2 pt-4 md:col-span-2">
-            <Skeleton className="h-10 w-20" />
-            <Skeleton className="h-10 w-20" />
-            <Skeleton className="h-10 w-24" />
-          </div>
+        </div>
+        
+        <div className="flex gap-2 pt-4">
+          <Skeleton className="h-10 w-20" />
+          <Skeleton className="h-10 w-20" />
+          <Skeleton className="h-10 w-24" />
         </div>
       </Card>
     </div>

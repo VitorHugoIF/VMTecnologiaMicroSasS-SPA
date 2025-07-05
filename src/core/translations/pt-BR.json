@@ -293,6 +293,12 @@
         "id": "ID",
         "noDescription": "Nenhuma descrição fornecida"
       },
+      "planInfo": {
+        "title": "Informações do Plano",
+        "name": "Nome do Plano",
+        "description": "Descrição",
+        "price": "Preço"
+      },
       "disable": "Desabilitar",
       "enable": "Habilitar",
       "edit": "Editar",
