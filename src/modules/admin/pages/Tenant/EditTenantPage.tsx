@@ -5,6 +5,9 @@ import { ErrorAlert } from '../../../components'
 import { useEditTenantPage } from './hooks/useEditTenantPage'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { EditTenantSkeleton } from './components/EditTenantSkeleton'
+import { TenantStatusLabels } from '../../types/tenant/tenantStatus'
+import type { TenantStatus } from '../../types/tenant/tenantStatus'
 
 export function EditTenantPage() {
   const { t } = useTranslation()
@@ -17,34 +20,7 @@ export function EditTenantPage() {
   } = form
 
   if (isLoading && !tenant) {
-    return (
-      <div className="flex flex-col gap-3">
-        <Card title={t('tenants.edit.title')} description={t('tenants.edit.description')}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-10 w-full bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-10 w-full bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-10 w-full bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-10 w-full bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-10 w-full bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        </Card>
-      </div>
-    )
+    return <EditTenantSkeleton />
   }
 
   return (
@@ -132,11 +108,14 @@ export function EditTenantPage() {
               <Label htmlFor="status">
                 {t('tenants.edit.form.status')} <span style={{ color: 'red' }}>*</span>
               </Label>
-              <Input
+              <Select
                 id="status"
-                {...register('status')}
+                options={Object.entries(TenantStatusLabels).map(([value, label]) => ({ value, label: t(`tenants.status.${label}`) }))}
+                value={form.watch('status') || ''}
+                onValueChange={value => form.setValue('status', value as TenantStatus)}
                 placeholder={t('tenants.edit.form.statusPlaceholder')}
                 disabled={isLoading}
+                required
               />
               {errors.status && (
                 <p className="text-sm text-red-600">{errors.status.message}</p>

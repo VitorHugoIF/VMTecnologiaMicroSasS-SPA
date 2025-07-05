@@ -10,12 +10,17 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { EditPlanSkeleton } from './components/EditPlanSkeleton'
 
 export function EditPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { form, isLoading, onSubmit, error } = useEditPlanPage(id!)
+
+  if (isLoading) {
+    return <EditPlanSkeleton />
+  }
 
   return (
     <div className="flex flex-col gap-3">

@@ -330,6 +330,11 @@
         "emailInvalid": "E-mail inválido",
         "submit": "Salvar Alterações"
       }
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "expired": "Expirado"
     }
   },
   "users": {
