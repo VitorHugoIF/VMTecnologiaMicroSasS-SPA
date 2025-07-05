@@ -14,7 +14,6 @@ export function EditUserPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = form
 
   if (isDataLoading) {

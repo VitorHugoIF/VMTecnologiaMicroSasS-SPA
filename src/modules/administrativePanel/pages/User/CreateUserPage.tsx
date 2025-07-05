@@ -13,7 +13,6 @@ export function CreateUserPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = form
 
   return (

@@ -6,7 +6,7 @@ import { MainContent } from './MainContent'
 export function MainLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex w-full min-h-screen">
+      <div className="flex w-full min-h-screen flex-col md:flex-row">
         <Sidebar />
         <MainContent>{children}</MainContent>
       </div>

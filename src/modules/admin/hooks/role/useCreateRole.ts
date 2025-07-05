@@ -13,13 +13,11 @@ export function useCreateRole() {
       queryClient.invalidateQueries({ queryKey: ['useGetRoles'] })
     },
     onError: (error) => {
-      if (error instanceof ApiError) {
+      if (error instanceof ApiError && error.response.status >= 500) {
         Toast.error(
           { title: 'Oops!', description: error.response.message },
           { id: 'create-role-error' },
         )
-      } else {
-        Toast.error({ title: 'Oops!', description: error.message }, { id: 'create-role-error' })
       }
     },
   })

@@ -16,7 +16,7 @@ export function useEditPlanPage(id: string) {
   const schema = z.object({
     name: z.string().min(1, t('plans.edit.form.nameRequired')),
     description: z.string().min(1, t('plans.edit.form.descriptionRequired')),
-    price: z.number().min(0, t('plans.edit.form.priceRequired')),
+    price: z.coerce.number().min(0, t('plans.edit.form.priceRequired')),
   })
 
   type FormSchema = z.infer<typeof schema>

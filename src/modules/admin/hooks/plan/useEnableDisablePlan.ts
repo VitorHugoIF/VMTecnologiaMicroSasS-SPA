@@ -12,13 +12,11 @@ export function useEnableDisablePlan() {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
     },
     onError: (error) => {
-      if (error instanceof ApiError) {
+      if (error instanceof ApiError && error.response.status >= 500) {
         Toast.error(
           { title: 'Oops!', description: error.response.message },
           { id: 'enable-plan-error' },
         )
-      } else {
-        Toast.error({ title: 'Oops!', description: error.message }, { id: 'enable-plan-error' })
       }
     },
   })
@@ -29,13 +27,11 @@ export function useEnableDisablePlan() {
       queryClient.invalidateQueries({ queryKey: ['useGetPlans'] })
     },
     onError: (error) => {
-      if (error instanceof ApiError) {
+      if (error instanceof ApiError && error.response.status >= 500) {
         Toast.error(
           { title: 'Oops!', description: error.response.message },
           { id: 'disable-plan-error' },
         )
-      } else {
-        Toast.error({ title: 'Oops!', description: error.message }, { id: 'disable-plan-error' })
       }
     },
   })

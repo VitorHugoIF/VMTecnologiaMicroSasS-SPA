@@ -30,7 +30,6 @@ export function mapTenantToCreateTenantRequest(tenant: Tenant): CreateTenantRequ
     slug: tenant.slug,
     email: tenant.email,
     planId: tenant.planId,
-    status: tenant.status,
   }
 }
 

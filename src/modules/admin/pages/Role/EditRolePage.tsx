@@ -14,7 +14,6 @@ export function EditRolePage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = form
 
   if (isDataLoading) {

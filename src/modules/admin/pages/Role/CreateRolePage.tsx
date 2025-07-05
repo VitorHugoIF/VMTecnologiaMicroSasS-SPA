@@ -13,7 +13,6 @@ export function CreateRolePage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = form
 
   return (

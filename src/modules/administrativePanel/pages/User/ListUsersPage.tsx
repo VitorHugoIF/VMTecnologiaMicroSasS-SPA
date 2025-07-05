@@ -27,7 +27,7 @@ export function ListUsersPage() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Card>
+      <Card className="w-full">
         <TableHeaderActions
           title={t('users.list.title')}
           search={search || ''}

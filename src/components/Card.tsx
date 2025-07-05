@@ -15,6 +15,7 @@ interface CardProps {
   children: ReactNode
   className?: string
   contentClassName?: string
+  style?: React.CSSProperties
 }
 
 export function Card({
@@ -24,9 +25,10 @@ export function Card({
   children,
   className = '',
   contentClassName = '',
+  style,
 }: CardProps) {
   return (
-    <ShadcnCard className={className}>
+    <ShadcnCard className={className} style={style}>
       {(title || description) && (
         <CardHeader>
           {title && <CardTitle>{title}</CardTitle>}

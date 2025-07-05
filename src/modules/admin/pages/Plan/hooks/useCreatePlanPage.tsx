@@ -14,7 +14,7 @@ export function useCreatePlanPage() {
   const schema = z.object({
     name: z.string().min(1, t('plans.add.form.nameRequired')),
     description: z.string().min(1, t('plans.add.form.descriptionRequired')),
-    price: z.number().min(0, t('plans.add.form.priceRequired')),
+    price: z.coerce.number().min(0, t('plans.add.form.priceRequired')),
   })
 
   type FormSchema = z.infer<typeof schema>

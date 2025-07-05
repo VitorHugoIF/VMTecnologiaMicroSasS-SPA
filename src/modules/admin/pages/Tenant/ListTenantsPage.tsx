@@ -43,7 +43,7 @@ export function ListTenantsPage() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Card>
+      <Card className="w-full">
         <TableHeaderActions
           title={t('tenants.list.title')}
           search={search || ''}
