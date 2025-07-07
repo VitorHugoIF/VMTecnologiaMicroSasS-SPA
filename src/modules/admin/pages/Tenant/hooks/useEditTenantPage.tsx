@@ -6,6 +6,11 @@ import { z } from 'zod'
 import { useTranslation } from 'react-i18next'
 import { useGetTenant, useUpdateTenant } from '../../../hooks/tenant'
 import { useGetActivePlans } from '../../../hooks/plan/useGetActivePlans'
+import { TenantStatusLabels } from '@/modules/admin/types/tenant/tenantStatus'
+
+function getStatusCodeFromLabel(label: string) {
+  return Object.entries(TenantStatusLabels).find(([, v]) => v === label)?.[0] ?? '';
+}
 
 export function useEditTenantPage() {
   const { t } = useTranslation()
@@ -49,10 +54,19 @@ export function useEditTenantPage() {
         slug: tenant.slug,
         email: tenant.email,
         planId: tenant.planId,
-        status: tenant.status,
+        status: getStatusCodeFromLabel(tenant.status),
       })
     }
   }, [tenant, form])
+
+  useEffect(() => {
+    if(!isLoadingPlans && !isLoadingTenant) {
+      setTimeout(() => {
+        form.setValue('planId', tenant?.planId ?? '')
+        form.setValue('status', getStatusCodeFromLabel(tenant?.status ?? ''))
+      }, 100);
+    }
+  }, [isLoadingPlans, isLoadingTenant, tenant])
 
   const onSubmit = async (data: UpdateTenantFormData) => {
     if (!id) return

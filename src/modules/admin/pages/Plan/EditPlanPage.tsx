@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Card } from '@/components/Card'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import { Label } from '@/components/Label'
 import { Textarea } from '@/components/Textarea'
 import { useEditPlanPage } from './hooks/useEditPlanPage'
 import { useTranslation } from 'react-i18next'
@@ -34,41 +33,38 @@ export function EditPlanPage() {
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">{t('plans.edit.form.name')}</Label>
               <Input
                 id="name"
                 {...form.register('name')}
+                label={t('plans.edit.form.name')}
                 placeholder={t('plans.edit.form.namePlaceholder')}
+                required
+                error={form.formState.errors.name?.message}
               />
-              {form.formState.errors.name && (
-                <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
-              )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="price">{t('plans.edit.form.price')}</Label>
               <Input
                 id="price"
                 type="number"
                 step="0.01"
                 {...form.register('price')}
+                label={t('plans.edit.form.price')}
                 placeholder={t('plans.edit.form.pricePlaceholder')}
+                required
+                error={form.formState.errors.price?.message}
               />
-              {form.formState.errors.price && (
-                <p className="text-sm text-red-600">{form.formState.errors.price.message}</p>
-              )}
             </div>
 
             <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="description">{t('plans.edit.form.description')}</Label>
               <Textarea
                 id="description"
                 {...form.register('description')}
+                label={t('plans.edit.form.description')}
                 placeholder={t('plans.edit.form.descriptionPlaceholder')}
+                required
+                error={form.formState.errors.description?.message}
               />
-              {form.formState.errors.description && (
-                <p className="text-sm text-red-600">{form.formState.errors.description.message}</p>
-              )}
             </div>
           </div>
 

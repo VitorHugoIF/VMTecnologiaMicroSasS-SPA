@@ -8,6 +8,8 @@ import {
 } from '@/components/ui/select'
 import { LoadingSpinner } from './LoadingSpinner'
 import { useTranslation } from 'react-i18next'
+import React from 'react'
+import { Label } from './Label'
 
 interface SelectOption {
   value: string
@@ -31,75 +33,79 @@ interface SelectProps {
   id?: string
 }
 
-export function Select({
-  options,
-  value,
-  onValueChange,
-  placeholder = 'Selecione uma opção',
-  label,
-  disabled = false,
-  loading = false,
-  error,
-  className = '',
-  size = 'default',
-  required = false,
-  name,
-  id,
-}: SelectProps) {
-  const { t } = useTranslation()
-  const isDisabled = disabled || loading
+export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
+  ({
+    options,
+    value,
+    onValueChange,
+    placeholder = 'Selecione uma opção',
+    label,
+    disabled = false,
+    loading = false,
+    error,
+    className = '',
+    size = 'default',
+    required = false,
+    name,
+    id,
+    ...rest
+  }, ref) => {
+    const { t } = useTranslation()
+    const isDisabled = disabled || loading
 
-  return (
-    <div className={`w-full ${className}`}>
-      {label && (
-        <label 
-          htmlFor={id} 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+    return (
+      <div className={`w-full ${className}`}>
+        {label && (
+          <Label 
+            htmlFor={id} 
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
+            {label}
+            {required && <span className="text-red-500 ml-1">*</span>}
+          </Label>
+        )}
+        <ShadSelect
+          value={value}
+          onValueChange={onValueChange}
+          disabled={isDisabled}
+          name={name}
+          {...rest}
         >
-          {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
-        </label>
-      )}
-      
-      <ShadSelect
-        value={value}
-        onValueChange={onValueChange}
-        disabled={isDisabled}
-        name={name}
-      >
-        <SelectTrigger 
-          id={id}
-          size={size}
-          className={`w-full ${error ? 'border-red-500 focus-visible:ring-red-500/50' : ''}`}
-        >
-          {loading ? (
-            <div className="flex items-center gap-2">
-              <LoadingSpinner size={16} />
-              <span className="text-muted-foreground">{t('common.loading')}</span>
-            </div>
-          ) : (
-            <SelectValue placeholder={placeholder} />
-          )}
-        </SelectTrigger>
-        
-        <SelectContent>
-          <SelectGroup>
-            {options.map((option) => (
-              <SelectItem
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-              >
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </ShadSelect>
-      
-      {error && (
-        <p className="mt-1 text-sm text-red-500">{error}</p>
-      )}
-    </div>
-  )
-} 
+          <SelectTrigger 
+            id={id}
+            size={size}
+            className={`w-full ${error ? 'border-red-500 focus-visible:ring-red-500/50' : ''}`}
+            ref={ref}
+          >
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <LoadingSpinner size={16} />
+                <span className="text-muted-foreground">{t('common.loading')}</span>
+              </div>
+            ) : (
+              <SelectValue placeholder={placeholder} />
+            )}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {options.map((option) => (
+                <SelectItem
+                  key={option.value}
+                  value={option.value}
+                  disabled={option.disabled}
+                >
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </ShadSelect>
+        {error && (
+          <p className="mt-1 text-sm text-red-500">{error}</p>
+        )}
+      </div>
+    )
+  }
+)
+
+Select.displayName = 'Select' 

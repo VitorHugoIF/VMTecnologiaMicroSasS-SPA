@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
-import { Input, Label, Button } from '@/components'
+import { Input, Button } from '@/components'
 import { useCreateRolePage } from './hooks/useCreateRolePage'
 import { ErrorAlert } from '../../../components'
 import { formatErrors } from '@/lib/utils'
@@ -28,28 +28,28 @@ export function CreateRolePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">
-                {t('roles.add.form.name')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="name"
                 type="text"
                 placeholder={t('roles.add.form.namePlaceholder')}
                 disabled={isLoading}
                 {...register('name')}
+                label={t('roles.add.form.name')}
+                required
+                error={form.formState?.errors?.name?.message}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">
-                {t('roles.add.form.description')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="description"
                 type="text"
                 placeholder={t('roles.add.form.descriptionPlaceholder')}
                 disabled={isLoading}
                 {...register('description')}
+                label={t('roles.add.form.description')}
+                required
+                error={form.formState?.errors?.description?.message}
               />
             </div>
           </div>

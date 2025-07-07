@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
-import { Input, Label, Button } from '@/components'
+import { Input, Button } from '@/components'
 import { ErrorAlert } from '../../../components'
 import { useEditUserPage } from './hooks/useEditUserPage'
 import { EditUserSkeleton } from './components/EditUserSkeleton'
@@ -33,28 +33,28 @@ export function EditUserPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">
-                {t('users.edit.form.name')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="name"
                 type="text"
                 placeholder={t('users.edit.form.namePlaceholder')}
                 disabled={isLoading}
                 {...register('name')}
+                label={t('users.edit.form.name')}
+                required
+                error={form.formState?.errors?.name?.message}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">
-                {t('users.edit.form.password')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="password"
                 type="password"
                 placeholder={t('users.edit.form.passwordPlaceholder')}
                 disabled={isLoading}
                 {...register('password')}
+                label={t('users.edit.form.password')}
+                required
+                error={form.formState?.errors?.password?.message}
               />
             </div>
           </div>

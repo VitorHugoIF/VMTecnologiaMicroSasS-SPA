@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
-import { Input, Label, Button } from '@/components'
+import { Input, Button } from '@/components'
 import { ErrorAlert } from '../../../components'
 import { useEditRolePage } from './hooks/useEditRolePage'
 import { EditRoleSkeleton } from './components/EditRoleSkeleton'
@@ -33,28 +33,28 @@ export function EditRolePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">
-                {t('roles.edit.form.name')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="name"
                 type="text"
                 placeholder={t('roles.edit.form.namePlaceholder')}
                 disabled={isLoading}
                 {...register('name')}
+                label={t('roles.edit.form.name')}
+                required
+                error={form.formState?.errors?.name?.message}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">
-                {t('roles.edit.form.description')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="description"
                 type="text"
                 placeholder={t('roles.edit.form.descriptionPlaceholder')}
                 disabled={isLoading}
                 {...register('description')}
+                label={t('roles.edit.form.description')}
+                required
+                error={form.formState?.errors?.description?.message}
               />
             </div>
           </div>

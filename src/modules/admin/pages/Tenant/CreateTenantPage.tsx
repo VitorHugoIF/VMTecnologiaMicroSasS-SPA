@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
-import { Input, Label, Button, Select } from '@/components'
+import { Input, Button, Select } from '@/components'
 import { ErrorAlert } from '../../../components'
 import { useCreateTenantPage } from './hooks/useCreateTenantPage'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { Controller } from 'react-hook-form'
 
 export function CreateTenantPage() {
   const { t } = useTranslation()
@@ -28,74 +29,59 @@ export function CreateTenantPage() {
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">
-                {t('tenants.add.form.name')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="name"
                 {...register('name')}
+                label={t('tenants.add.form.name')}
                 placeholder={t('tenants.add.form.namePlaceholder')}
                 disabled={isLoading}
+                required
+                error={errors.name?.message}
               />
-              {errors.name && (
-                <p className="text-sm text-red-600">{errors.name.message}</p>
-              )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="slug">
-                {t('tenants.add.form.slug')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="slug"
                 {...register('slug')}
+                label={t('tenants.add.form.slug')}
                 placeholder={t('tenants.add.form.slugPlaceholder')}
                 disabled={isLoading}
+                required
+                error={errors.slug?.message}
               />
-              {errors.slug && (
-                <p className="text-sm text-red-600">{errors.slug.message}</p>
-              )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">
-                {t('tenants.add.form.email')} <span style={{ color: 'red' }}>*</span>
-              </Label>
               <Input
                 id="email"
                 type="email"
                 {...register('email')}
+                label={t('tenants.add.form.email')}
                 placeholder={t('tenants.add.form.emailPlaceholder')}
                 disabled={isLoading}
+                required
+                error={errors.email?.message}
               />
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="planId">
-                {t('tenants.add.form.plan')} <span style={{ color: 'red' }}>*</span>
-              </Label>
-              <Select
-                id="planId"
-                options={planOptions}
-                value={form.watch('planId') || ''}
-                onValueChange={(value) => {
-                  form.setValue('planId', value)
-                }}
-                placeholder={t('tenants.add.form.planPlaceholder')}
-                loading={isLoadingPlans}
-                disabled={isLoading}
-                required
-              />
-              {errors.planId && (
-                <p className="text-sm text-red-600">{errors.planId.message}</p>
-              )}
-              {form.watch('planId') && (
-                <div className="mt-2">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('tenants.add.form.selectedPlan')}: {planOptions.find(opt => opt.value === form.watch('planId'))?.label}
-                  </p>
-                </div>
-              )}
+              <Controller
+                control={form.control}
+                name="planId"
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    id="planId"
+                    label={t('tenants.add.form.plan')}
+                    options={planOptions}
+                    value={field.value || ''}
+                    onValueChange={field.onChange}
+                    placeholder={t('tenants.add.form.planPlaceholder')}
+                    loading={isLoadingPlans}
+                    disabled={isLoading}
+                    required
+                    error={errors.planId?.message}
+                  />
+                )}
+              />           
             </div>
           </div>
           <div className="flex gap-3 pt-4">
