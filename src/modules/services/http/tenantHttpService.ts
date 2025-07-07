@@ -8,14 +8,14 @@ const prefix = 'api/admin/tenant'
 
 export async function getTenants(
   page: number = 1,
-  size: number = 10,
+  pageSize: number = 10,
   search?: string,
   sort?: string,
   order?: number,
 ) {
   const params = new URLSearchParams({
     page: page.toString(),
-    size: size.toString(),
+    pageSize: pageSize.toString(),
   })
 
   if (search) params.append('search', search)

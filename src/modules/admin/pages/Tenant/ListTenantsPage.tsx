@@ -13,16 +13,15 @@ export function ListTenantsPage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const {
-    data,
+    tenants,
     isLoading,
     error,
     page,
-    size,
+    totalPages,
     search,
     sort,
     order,
     handlePageChange,
-
     handleSearchChange,
     handleSortChange,
   } = useListTenantsPage()
@@ -54,7 +53,7 @@ export function ListTenantsPage() {
         />
         <TableComponent
           className="rounded-none border-x-0"
-          data={data?.data.items || []}
+          data={tenants}
           columns={columns}
           isLoading={isLoading}
           actions={(tenant) => (
@@ -76,7 +75,7 @@ export function ListTenantsPage() {
         />
         <TablePagination
           page={page}
-          totalPages={data?.data.totalCount ? Math.ceil(data.data.totalCount / size) : 1}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
         />
       </Card>

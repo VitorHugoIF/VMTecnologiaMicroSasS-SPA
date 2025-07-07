@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { TenantHttpService } from '../../../services/http'
 import { mapTenantResponseToTenant } from '../../mappers/tenantMappers'
+import { QueryTimeConfig } from '@/config/queryTimeConfig'
 
 export function useGetTenant(id: string) {
   return useQuery({
@@ -10,6 +11,6 @@ export function useGetTenant(id: string) {
       return mapTenantResponseToTenant(response.data)
     },
     enabled: !!id,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: QueryTimeConfig.tenants.staleTime,
   })
 }

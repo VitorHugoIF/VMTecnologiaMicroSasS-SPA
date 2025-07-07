@@ -1,27 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useGetTenants } from '../../../hooks/tenant/useGetTenants'
 
 export function useListTenantsPage() {
   const [page, setPage] = useState(1)
-  const [size, setSize] = useState(10)
+  const [pageSize, setPageSize] = useState(10)
+  const [searchInput, setSearchInput] = useState('')
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState<string | undefined>(undefined)
   const [order, setOrder] = useState<number | undefined>(undefined)
 
-  const { data, isLoading, error } = useGetTenants(page, size, search, sort, order)
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSearch(searchInput)
+    }, 900)
+    return () => clearTimeout(handler)
+  }, [searchInput])
+
+  const { data, isLoading, error } = useGetTenants(page, pageSize, search, sort, order)
+  const tenants = data?.data?.items || []
+  const totalCount = data?.data?.totalCount || 0
+  const totalPages = Math.ceil(totalCount / pageSize)
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage)
   }
 
   const handleSizeChange = (newSize: number) => {
-    setSize(newSize)
+    setPageSize(newSize)
     setPage(1)
   }
 
   const handleSearchChange = (newSearch: string) => {
-    setSearch(newSearch)
-    setPage(1)
+    setSearchInput(newSearch)
   }
 
   const handleSortChange = (newSort: string, newOrder: number) => {
@@ -31,14 +41,20 @@ export function useListTenantsPage() {
   }
 
   return {
-    data,
     isLoading,
-    error,
+    tenants,
     page,
-    size,
-    search,
-    sort,
+    setPage,
+    pageSize,
+    setPageSize,
+    totalPages,
     order,
+    setOrder,
+    sort,
+    setSort,
+    search: searchInput,
+    setSearch: setSearchInput,
+    error,
     handlePageChange,
     handleSizeChange,
     handleSearchChange,

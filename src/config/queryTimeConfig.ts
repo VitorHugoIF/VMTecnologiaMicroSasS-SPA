@@ -1,8 +1,16 @@
+const _1Hour = 60 * 60 * 1000;
+
 export const QueryTimeConfig = {
   roles: {
-    staleTime: 60 * 60 * 1000, // 1 hora
+    staleTime: _1Hour,
   },
   plans: {
-    staleTime: 60 * 60 * 1000, // 1 hora
+    staleTime: _1Hour,
+  },
+  users: {
+    staleTime: _1Hour,
+  },
+  tenants: {
+    staleTime: _1Hour,
   },
 }

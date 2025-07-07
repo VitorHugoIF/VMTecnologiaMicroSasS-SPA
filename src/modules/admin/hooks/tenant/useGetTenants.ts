@@ -2,18 +2,19 @@ import { useQuery } from '@tanstack/react-query'
 import { TenantHttpService } from '../../../services/http'
 import { mapTenantResponseToTenant } from '../../mappers/tenantMappers'
 import type { Tenant } from '../../types'
+import { QueryTimeConfig } from '@/config/queryTimeConfig'
 
 export function useGetTenants(
   page: number = 1,
-  size: number = 10,
+  pageSize: number = 10,
   search?: string,
   sort?: string,
   order?: number,
 ) {
   return useQuery({
-    queryKey: ['tenants', page, size, search, sort, order],
+    queryKey: ['tenants', page, pageSize, search, sort, order],
     queryFn: async () => {
-      const response = await TenantHttpService.getTenants(page, size, search, sort, order)
+      const response = await TenantHttpService.getTenants(page, pageSize, search, sort, order)
       return {
         ...response,
         data: {
@@ -22,6 +23,6 @@ export function useGetTenants(
         },
       }
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: QueryTimeConfig.tenants.staleTime,
   })
 }

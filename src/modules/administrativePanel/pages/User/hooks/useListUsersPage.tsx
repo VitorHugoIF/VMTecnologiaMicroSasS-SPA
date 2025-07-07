@@ -5,6 +5,7 @@ import type { User } from '../../../types'
 import { Badge } from '@/components/ui/badge'
 import { useTranslation } from 'react-i18next'
 import type { TableColumn } from '@/components/Table'
+import { useGetActiveRoles } from '../../../hooks/role/useGetActiveRoles'
 
 export function useListUsersPage() {
   const { t } = useTranslation()
@@ -15,6 +16,7 @@ export function useListUsersPage() {
   const [searchInput, setSearchInput] = useState<string | undefined>(undefined)
   const [search, setSearch] = useState<string | undefined>(undefined)
   const { data, isLoading } = useGetUsers(page, pageSize, order, sort, search)
+  const { data: rolesData } = useGetActiveRoles()
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -23,7 +25,16 @@ export function useListUsersPage() {
     return () => clearTimeout(handler)
   }, [searchInput])
 
-  const paginatedUsers: User[] = data?.data?.items?.map(mapUserListResponseToUser) || []
+  const paginatedUsers: User[] = (data?.data?.items || []).map((user) => {
+    const mapped = mapUserListResponseToUser(user)
+    if (mapped.roles && rolesData) {
+      mapped.roles = mapped.roles.map((role) => {
+        const found = rolesData.find((r) => r.id === role.name)
+        return found ? { ...role, name: found.name } : role
+      })
+    }
+    return mapped
+  })
   const totalPages = data?.data ? Math.ceil(data.data.totalCount / pageSize) : 0
 
   const columns: TableColumn<User>[] = [

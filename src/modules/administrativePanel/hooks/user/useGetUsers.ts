@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { UserHttpService } from '../../../services/http'
+import { QueryTimeConfig } from '@/config/queryTimeConfig'
 
 export function useGetUsers(
   page: number,
@@ -10,7 +11,7 @@ export function useGetUsers(
 ) {
   return useQuery({
     queryKey: ['useGetUsers', page, pageSize, order, sort, search],
-    queryFn: () => UserHttpService.getUsers(page, pageSize, order, sort, search),
-    staleTime: 60 * 60 * 1000, // 1 hora
+    queryFn: async () => UserHttpService.getUsers(page, pageSize, order, sort, search),
+    staleTime: QueryTimeConfig.users.staleTime,
   })
 } 
