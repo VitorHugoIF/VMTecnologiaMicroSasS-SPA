@@ -2,9 +2,8 @@ export type User = {
   id?: string
   name?: string
   active?: boolean
-  createdAt?: string
-  updatedAt?: string
   roles?: Role[]
+  createdAt?: string
 }
 
 export type Role = {

@@ -2,9 +2,8 @@ export type UserResponse = {
   id?: string
   name?: string
   active?: boolean
-  createdAt?: string
-  updatedAt?: string
   roles?: RoleResponse[]
+  createdAt?: string
 }
 
 export type UserListResponse = {

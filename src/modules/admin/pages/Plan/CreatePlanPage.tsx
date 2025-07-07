@@ -1,8 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import { Card } from '@/components/Card'
 import { Button } from '@/components/Button'
-import { Input } from '@/components/Input'
-import { Textarea } from '@/components/Textarea'
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { useCreatePlanPage } from './hooks/useCreatePlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -18,63 +26,83 @@ export function CreatePlanPage() {
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('plans.add.title')}>
-        <form onSubmit={onSubmit} className="space-y-4">
-          {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
-            />
-          )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Input
-                id="name"
-                {...form.register('name')}
-                label={t('plans.add.form.name')}
-                placeholder={t('plans.add.form.namePlaceholder')}
-                required
-                error={form.formState.errors.name?.message}
+        <Form {...form}>
+          <form onSubmit={onSubmit} className="space-y-4">
+            {error && (
+              <ErrorAlert 
+                title={t('common.error')} 
+                description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+              />
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('plans.add.form.name')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="name"
+                        placeholder={t('plans.add.form.namePlaceholder')}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('plans.add.form.price')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="price"
+                        type="number"
+                        step="0.01"
+                        placeholder={t('plans.add.form.pricePlaceholder')}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem className="md:col-span-2">
+                    <FormLabel>{t('plans.add.form.description')}</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        id="description"
+                        placeholder={t('plans.add.form.descriptionPlaceholder')}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
-
-            <div className="space-y-2">
-              <Input
-                id="price"
-                type="number"
-                step="0.01"
-                {...form.register('price')}
-                label={t('plans.add.form.price')}
-                placeholder={t('plans.add.form.pricePlaceholder')}
-                required
-                error={form.formState.errors.price?.message}
-              />
+            <div className="flex gap-2">
+              <Button type="submit" loading={isLoading}>
+                {t('plans.add.form.submit')}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => navigate(ADMIN_ROUTES.plans.list)}
+              >
+                {t('common.cancel')}
+              </Button>
             </div>
-
-            <div className="space-y-2 md:col-span-2">
-              <Textarea
-                id="description"
-                {...form.register('description')}
-                label={t('plans.add.form.description')}
-                placeholder={t('plans.add.form.descriptionPlaceholder')}
-                required
-                error={form.formState.errors.description?.message}
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <Button type="submit" loading={isLoading}>
-              {t('plans.add.form.submit')}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => navigate(ADMIN_ROUTES.plans.list)}
-            >
-              {t('common.cancel')}
-            </Button>
-          </div>
-        </form>
+          </form>
+        </Form>
       </Card>
     </div>
   )

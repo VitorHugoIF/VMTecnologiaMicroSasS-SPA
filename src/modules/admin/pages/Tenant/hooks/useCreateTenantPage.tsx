@@ -58,7 +58,7 @@ export function useCreateTenantPage() {
 
   return {
     form,
-    onSubmit,
+    onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: createTenantMutation.isPending,
     isLoadingPlans,

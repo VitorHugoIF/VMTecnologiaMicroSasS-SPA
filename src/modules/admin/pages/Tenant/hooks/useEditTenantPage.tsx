@@ -89,14 +89,17 @@ export function useEditTenantPage() {
     disabled: false
   })) || []
 
+  const optionsStatus = Object.entries(TenantStatusLabels).map(([value, label]) => ({ value, label: t(`tenants.status.${label}`) }));
+
   return {
     tenant,
     form,
-    onSubmit,
+    onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isLoadingTenant || updateTenantMutation.isPending,
     isLoadingPlans,
     planOptions,
     error: tenantError || updateTenantMutation.error,
+    optionsStatus,
   }
 }

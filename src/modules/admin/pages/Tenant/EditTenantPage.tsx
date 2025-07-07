@@ -6,20 +6,18 @@ import { useEditTenantPage } from './hooks/useEditTenantPage'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { EditTenantSkeleton } from './components/EditTenantSkeleton'
-import { TenantStatusLabels } from '../../types/tenant/tenantStatus'
-import { Controller } from 'react-hook-form'
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '@/components/ui/form'
 
 export function EditTenantPage() {
   const { t } = useTranslation()
-  const { tenant, form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error } = useEditTenantPage()
-
-  const optionsStatus = Object.entries(TenantStatusLabels).map(([value, label]) => ({ value, label: t(`tenants.status.${label}`) }));
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = form
+  const { tenant, form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error, optionsStatus } = useEditTenantPage()
 
   if (isLoading && !tenant) {
     return <EditTenantSkeleton />
@@ -28,104 +26,127 @@ export function EditTenantPage() {
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('tenants.edit.title')} description={t('tenants.edit.description')}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {error && (
-            <ErrorAlert 
-              title={t('tenants.edit.errorLoading')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
-            />
-          )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Input
-                id="name"
-                {...register('name')}
-                label={t('tenants.edit.form.name')}
-                placeholder={t('tenants.edit.form.namePlaceholder')}
-                disabled={isLoading}
-                required
-                error={errors.name?.message}
+        <Form {...form}>
+          <form onSubmit={onSubmit} className="space-y-4">
+            {error && (
+              <ErrorAlert 
+                title={t('tenants.edit.errorLoading')} 
+                description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
               />
-            </div>
-            <div className="space-y-2">
-              <Input
-                id="slug"
-                {...register('slug')}
-                label={t('tenants.edit.form.slug')}
-                placeholder={t('tenants.edit.form.slugPlaceholder')}
-                disabled={isLoading}
-                required
-                error={errors.slug?.message}
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('tenants.edit.form.name')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="name"
+                        placeholder={t('tenants.edit.form.namePlaceholder')}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="space-y-2">
-              <Input
-                id="email"
-                type="email"
-                {...register('email')}
-                label={t('tenants.edit.form.email')}
-                placeholder={t('tenants.edit.form.emailPlaceholder')}
-                disabled={isLoading}
-                required
-                error={errors.email?.message}
+              <FormField
+                control={form.control}
+                name="slug"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('tenants.edit.form.slug')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="slug"
+                        placeholder={t('tenants.edit.form.slugPlaceholder')}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="space-y-2">
-              <Controller
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('tenants.edit.form.email')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder={t('tenants.edit.form.emailPlaceholder')}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
                 control={form.control}
                 name="planId"
                 render={({ field }) => (
-                  <Select
-                    {...field}
-                    id="planId"
-                    label={t('tenants.edit.form.plan')}
-                    options={planOptions}
-                    value={field.value || ''}
-                    onValueChange={field.onChange}
-                    placeholder={t('tenants.edit.form.planPlaceholder')}
-                    loading={isLoadingPlans}
-                    disabled={isLoading}
-                    required
-                    error={errors.planId?.message || ''}
-                  />
+                  <FormItem>
+                    <FormLabel>{t('tenants.edit.form.plan')}</FormLabel>
+                    <FormControl>
+                      <Select
+                        id="planId"
+                        options={planOptions}
+                        value={field.value || ''}
+                        onValueChange={field.onChange}
+                        placeholder={t('tenants.edit.form.planPlaceholder')}
+                        loading={isLoadingPlans}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
-            </div>
-            <div className="space-y-2">
-              <Controller
+              <FormField
                 control={form.control}
                 name="status"
                 render={({ field }) => (
-                  <Select
-                    {...field}
-                    id="status"
-                    label={t('tenants.edit.form.status')}
-                    options={optionsStatus}
-                    value={field.value || ''}
-                    onValueChange={field.onChange}
-                    placeholder={t('tenants.edit.form.statusPlaceholder')}
-                    disabled={isLoading}
-                    required
-                    error={errors.status?.message || ''}
-                  />
+                  <FormItem>
+                    <FormLabel>{t('tenants.edit.form.status')}</FormLabel>
+                    <FormControl>
+                      <Select
+                        id="status"
+                        options={optionsStatus}
+                        value={field.value || ''}
+                        onValueChange={field.onChange}
+                        placeholder={t('tenants.edit.form.statusPlaceholder')}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
             </div>
-          </div>
-          <div className="flex gap-3 pt-4">
-            <Button type="submit" loading={isLoading}>
-              {t('tenants.edit.form.submit')}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleCancel}
-              disabled={isLoading}
-            >
-              {t('common.cancel')}
-            </Button>
-          </div>
-        </form>
+            <div className="flex gap-3 pt-4">
+              <Button type="submit" loading={isLoading}>
+                {t('tenants.edit.form.submit')}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleCancel}
+                disabled={isLoading}
+              >
+                {t('common.cancel')}
+              </Button>
+            </div>
+          </form>
+        </Form>
       </Card>
     </div>
   )

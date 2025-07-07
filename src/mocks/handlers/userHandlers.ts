@@ -1,8 +1,13 @@
 import { http, HttpResponse } from 'msw';
-import type { UserResponse, UserListResponse } from '../../modules/administrativePanel/models';
+import type { UserListResponse, RoleResponse } from '../../modules/administrativePanel/models';
 import type { PagedResponse } from '../../core/models/pagedResponse';
 
 const base = '/api/auth/users';
+
+const mockRoles: RoleResponse[] = [
+  { id: '1', name: 'Admin', description: 'Administrador', active: true, code: 'ADMIN' },
+  { id: '2', name: 'User', description: 'Usuário', active: true, code: 'USER' },
+];
 
 export const userHandlers = [
   http.get(base, ({ request }) => {
@@ -10,13 +15,13 @@ export const userHandlers = [
     const page = Number(url.searchParams.get('page') ?? 1);
     const pageSize = Number(url.searchParams.get('pageSize') ?? 10);
     const search = url.searchParams.get('search')?.toLowerCase() || '';
-    let items = [
+    let items: UserListResponse[] = [
       { id: '1', name: 'Usuário 1', active: true, roles: ['1'] },
       { id: '2', name: 'Usuário 2', active: false, roles: ['2'] },
     ];
     if (search) {
       items = items.filter(item =>
-        item.name.toLowerCase().includes(search)
+        (item.name || '').toLowerCase().includes(search)
       );
     }
     const totalCount = items.length;
@@ -36,35 +41,41 @@ export const userHandlers = [
   }),
   http.get(`${base}/:id`, ({ params }) => {
     const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
+    const userRoles = id === '1' ? [mockRoles[0]] : [mockRoles[1]];
     const response = {
       data: {
         id,
         name: `Usuário ${id}`,
         active: true,
-        createdAt: '2023-01-01',
-        updatedAt: '2023-01-10',
-        roles: [{ id: '1', name: 'Admin', active: true, code: 'ADMIN' }],
+        createdAt: '2023-01-01T00:00:00Z',
+        roles: userRoles,
       }
     };
     return HttpResponse.json(response);
   }),
   http.post(base, async ({ request }) => {
-    const body = await request.json() as Omit<UserResponse, 'id'>;
+    const body = await request.json() as { name: string; password: string; roles: string[] };
     const response = {
       data: {
         id: '999',
-        ...body,
+        name: body.name,
+        active: true,
+        createdAt: new Date().toISOString(),
+        roles: mockRoles.filter(r => body.roles.includes(r.id!)),
       }
     };
     return HttpResponse.json(response, { status: 201 });
   }),
   http.put(`${base}/:id`, async ({ params, request }) => {
     const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
-    const body = await request.json() as Omit<UserResponse, 'id'>;
+    const body = await request.json() as { name: string; password: string; roles: string[] };
     const response = {
       data: {
         id,
-        ...body,
+        name: body.name,
+        active: true,
+        createdAt: new Date().toISOString(),
+        roles: mockRoles.filter(r => body.roles.includes(r.id!)),
       }
     };
     return HttpResponse.json(response);

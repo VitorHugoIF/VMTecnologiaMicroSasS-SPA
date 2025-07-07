@@ -407,6 +407,9 @@
       "form": {
         "name": "Name",
         "password": "Password",
+        "roles": "Roles",
+        "rolesPlaceholder": "Select user roles",
+        "rolesRequired": "At least one role is required",
         "namePlaceholder": "Enter user name",
         "passwordPlaceholder": "Enter new user password",
         "nameRequired": "Name is required",

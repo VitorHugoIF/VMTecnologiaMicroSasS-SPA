@@ -407,6 +407,9 @@
       "form": {
         "name": "Nome",
         "password": "Senha",
+        "roles": "Perfis",
+        "rolesPlaceholder": "Selecione os perfis do usuário",
+        "rolesRequired": "Pelo menos um perfil é obrigatório",
         "namePlaceholder": "Digite o nome do usuário",
         "passwordPlaceholder": "Digite a nova senha do usuário",
         "nameRequired": "O nome é obrigatório",

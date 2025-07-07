@@ -6,15 +6,18 @@ import { useEditRolePage } from './hooks/useEditRolePage'
 import { EditRoleSkeleton } from './components/EditRoleSkeleton'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '@/components/ui/form'
 
 export function EditRolePage() {
   const { t } = useTranslation()
   const { form, onSubmit, handleCancel, isLoading, isDataLoading, error } = useEditRolePage()
-
-  const {
-    register,
-    handleSubmit,
-  } = form
 
   if (isDataLoading) {
     return <EditRoleSkeleton />
@@ -23,51 +26,64 @@ export function EditRolePage() {
   return (
     <div className="flex flex-col gap-3">
       <Card title={t('roles.edit.title')} description={t('roles.edit.description')}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
-            />
-          )}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Input
-                id="name"
-                type="text"
-                placeholder={t('roles.edit.form.namePlaceholder')}
-                disabled={isLoading}
-                {...register('name')}
-                label={t('roles.edit.form.name')}
-                required
-                error={form.formState?.errors?.name?.message}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {error && (
+              <ErrorAlert 
+                title={t('common.error')} 
+                description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+              />
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('roles.edit.form.name')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder={t('roles.edit.form.namePlaceholder')}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('roles.edit.form.description')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="description"
+                        type="text"
+                        placeholder={t('roles.edit.form.descriptionPlaceholder')}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
-
-            <div className="space-y-2">
-              <Input
-                id="description"
-                type="text"
-                placeholder={t('roles.edit.form.descriptionPlaceholder')}
-                disabled={isLoading}
-                {...register('description')}
-                label={t('roles.edit.form.description')}
-                required
-                error={form.formState?.errors?.description?.message}
-              />
+            <div className="flex gap-3 pt-4">
+              <Button type="submit" loading={isLoading}>
+                {t('common.save')}
+              </Button>
+              <Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading}>
+                {t('common.cancel')}
+              </Button>
             </div>
-          </div>
-
-          <div className="flex gap-3 pt-4">
-            <Button type="submit" loading={isLoading}>
-              {t('common.save')}
-            </Button>
-            <Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading}>
-              {t('common.cancel')}
-            </Button>
-          </div>
-        </form>
+          </form>
+        </Form>
       </Card>
     </div>
   )

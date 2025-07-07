@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCreateUser, useGetActiveRoles } from '../../../hooks'
 import { ADMINISTRATIVE_PANEL_ROUTES } from '@/routes/routeRoles'
+import { mapUserToCreateUserRequest } from '../../../mappers/userMappers'
 
 export function useCreateUserPage() {
   const { t } = useTranslation()
@@ -27,7 +28,7 @@ export function useCreateUserPage() {
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      await mutateAsync(data)
+      await mutateAsync(mapUserToCreateUserRequest(data as any))
       form.reset()
       navigate(ADMINISTRATIVE_PANEL_ROUTES.users.list)
     } catch (err: unknown) {
@@ -47,7 +48,7 @@ export function useCreateUserPage() {
 
   return {
     form,
-    onSubmit,
+    onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isPending,
     isLoadingRoles,

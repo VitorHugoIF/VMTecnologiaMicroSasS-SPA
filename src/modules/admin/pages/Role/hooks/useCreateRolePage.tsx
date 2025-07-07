@@ -39,7 +39,7 @@ export function useCreateRolePage() {
 
   return {
     form,
-    onSubmit,
+    onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isPending,
     error,

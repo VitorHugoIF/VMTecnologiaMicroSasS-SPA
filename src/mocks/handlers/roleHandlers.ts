@@ -12,7 +12,7 @@ export const roleHandlers = [
     const search = url.searchParams.get('search')?.toLowerCase() || '';
     let items = [
       { id: '1', name: 'Admin', description: 'Administrador do sistema', active: true, code: 'ADMIN' },
-      { id: '2', name: 'User', description: 'Usuário comum', active: false, code: 'USER' },
+      { id: '2', name: 'User', description: 'Usuário comum', active: true, code: 'USER' },
     ];
     if (search) {
       items = items.filter(item =>

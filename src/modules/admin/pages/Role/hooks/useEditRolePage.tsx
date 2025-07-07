@@ -50,7 +50,7 @@ export function useEditRolePage() {
 
   return {
     form,
-    onSubmit,
+    onSubmit: form.handleSubmit(onSubmit),
     handleCancel,
     isLoading: isPending,
     isDataLoading: isLoading,
