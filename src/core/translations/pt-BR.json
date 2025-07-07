@@ -355,7 +355,7 @@
         "column_active": "Ativo",
         "column_active_true": "Ativo",
         "column_active_false": "Inativo",
-        "column_roles": "Perfis",
+        "column_roles": "Papeis",
         "column_created_at": "Criado em",
         "column_actions": "Ações"
       }
@@ -366,14 +366,14 @@
       "form": {
         "name": "Nome",
         "password": "Senha",
-        "roles": "Perfis",
+        "roles": "Papeis",
         "namePlaceholder": "Digite o nome do usuário",
         "passwordPlaceholder": "Digite a senha do usuário",
-        "rolesPlaceholder": "Selecione os perfis do usuário",
+        "rolesPlaceholder": "Selecione os papeis do usuário",
         "nameRequired": "O nome é obrigatório",
         "passwordRequired": "A senha deve ter pelo menos 6 caracteres",
-        "rolesRequired": "Pelo menos um perfil é obrigatório",
-        "selectedRole": "Perfil selecionado",
+        "rolesRequired": "Pelo menos um papel é obrigatório",
+        "selectedRole": "Papel selecionado",
         "submit": "Criar Usuário"
       }
     },
@@ -387,9 +387,9 @@
       "form": {
         "name": "Nome",
         "status": "Status",
-        "roles": "Perfis",
+        "roles": "Papeis",
         "createdAt": "Criado em",
-        "noRoles": "Nenhum perfil atribuído"
+        "noRoles": "Nenhum papel atribuído"
       },
       "disable": "Desabilitar",
       "enable": "Habilitar",
@@ -407,9 +407,9 @@
       "form": {
         "name": "Nome",
         "password": "Senha",
-        "roles": "Perfis",
-        "rolesPlaceholder": "Selecione os perfis do usuário",
-        "rolesRequired": "Pelo menos um perfil é obrigatório",
+        "roles": "Papeis",
+        "rolesPlaceholder": "Selecione os papeis do usuário",
+        "rolesRequired": "Pelo menos um papel é obrigatório",
         "namePlaceholder": "Digite o nome do usuário",
         "passwordPlaceholder": "Digite a nova senha do usuário",
         "nameRequired": "O nome é obrigatório",

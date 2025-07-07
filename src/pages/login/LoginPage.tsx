@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ProgressBar } from '@/components'
+import { Button } from '@/components'
 import { Eye, EyeOff } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
@@ -31,7 +31,7 @@ export function LoginPage() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(/* values: z.infer<typeof loginSchema> */) {
     // Aqui você pode chamar sua função de login, ex: handleLocalLogin(values)
     // Se precisar de loading, adicione um estado local
     // handleLocalLogin(values.username, values.password)

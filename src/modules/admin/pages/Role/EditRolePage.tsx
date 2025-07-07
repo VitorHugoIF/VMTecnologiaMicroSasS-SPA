@@ -27,7 +27,7 @@ export function EditRolePage() {
     <div className="flex flex-col gap-3">
       <Card title={t('roles.edit.title')} description={t('roles.edit.description')}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             {error && (
               <ErrorAlert 
                 title={t('common.error')} 

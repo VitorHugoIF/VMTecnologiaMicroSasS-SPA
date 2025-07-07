@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
-import { Input, Button, Select } from '@/components'
+import { Input, Button, MultiSelect } from '@/components'
 import { ErrorAlert } from '../../../components'
 import { useEditUserPage } from './hooks/useEditUserPage'
 import { EditUserSkeleton } from './components/EditUserSkeleton'
@@ -79,18 +79,18 @@ export function EditUserPage() {
               <FormField
                 control={form.control}
                 name="roles"
-                render={({ field }) => (
+                render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel>{t('users.edit.form.roles')}</FormLabel>
                     <FormControl>
-                      <Select
+                      <MultiSelect
                         id="roles"
                         options={roleOptions}
                         value={field.value || []}
                         onValueChange={field.onChange}
-                        multiple
                         placeholder={t('users.edit.form.rolesPlaceholder')}
                         disabled={isLoading}
+                        error={fieldState.error?.message}
                       />
                     </FormControl>
                     <FormMessage />

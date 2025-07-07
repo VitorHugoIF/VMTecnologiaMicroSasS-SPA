@@ -10,7 +10,6 @@ import { LoadingSpinner } from './LoadingSpinner'
 import { useTranslation } from 'react-i18next'
 import React from 'react'
 import { Label } from './Label'
-import { cn } from '@/lib/utils'
 
 interface SelectOption {
   value: string
@@ -20,8 +19,8 @@ interface SelectOption {
 
 interface SelectProps {
   options: SelectOption[]
-  value?: string | string[]
-  onValueChange?: (value: string | string[]) => void
+  value?: string
+  onValueChange?: (value: string) => void
   placeholder?: string
   label?: string
   disabled?: boolean
@@ -32,7 +31,6 @@ interface SelectProps {
   required?: boolean
   name?: string
   id?: string
-  multiple?: boolean
 }
 
 export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
@@ -50,28 +48,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     required = false,
     name,
     id,
-    multiple = false,
     ...rest
   }, ref) => {
     const { t } = useTranslation()
     const isDisabled = disabled || loading
-
-    const isMulti = !!multiple
-    const selectedValues = isMulti ? (Array.isArray(value) ? value : []) : value
-
-    const handleChange = (optionValue: string) => {
-      if (!isMulti) {
-        onValueChange?.(optionValue)
-      } else {
-        let newValues = Array.isArray(selectedValues) ? [...selectedValues] : []
-        if (newValues.includes(optionValue)) {
-          newValues = newValues.filter(v => v !== optionValue)
-        } else {
-          newValues.push(optionValue)
-        }
-        onValueChange?.(newValues)
-      }
-    }
 
     return (
       <div className={`w-full ${className}`}>
@@ -85,8 +65,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           </Label>
         )}
         <ShadSelect
-          value={isMulti ? undefined : (selectedValues as string)}
-          onValueChange={isMulti ? undefined : onValueChange as (value: string) => void}
+          value={value}
+          onValueChange={onValueChange}
           disabled={isDisabled}
           name={name}
           {...rest}
@@ -104,15 +84,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                 <span className="text-muted-foreground">{t('common.loading')}</span>
               </div>
             ) : (
-              isMulti ? (
-                <span>
-                  {Array.isArray(selectedValues) && selectedValues.length > 0
-                    ? options.filter(opt => selectedValues.includes(opt.value)).map(opt => opt.label).join(', ')
-                    : placeholder}
-                </span>
-              ) : (
-                <SelectValue placeholder={placeholder} />
-              )
+              <SelectValue placeholder={placeholder} />
             )}
           </SelectTrigger>
           <SelectContent>
@@ -122,24 +94,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
-                  onClick={isMulti ? (e) => {
-                    e.preventDefault();
-                    handleChange(option.value);
-                  } : undefined}
                 >
-                  {isMulti ? (
-                    <span className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={Array.isArray(selectedValues) && selectedValues.includes(option.value)}
-                        readOnly
-                        className="accent-primary"
-                      />
-                      {option.label}
-                    </span>
-                  ) : (
-                    option.label
-                  )}
+                  {option.label}
                 </SelectItem>
               ))}
             </SelectGroup>

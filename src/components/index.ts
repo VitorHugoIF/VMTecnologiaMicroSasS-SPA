@@ -13,6 +13,7 @@ export * from './Table'
 export type { TableColumn } from './Table'
 export * from './Textarea'
 export * from './Select'
+export { MultiSelect } from './MultiSelect'
 
 //ShadCN
 export {

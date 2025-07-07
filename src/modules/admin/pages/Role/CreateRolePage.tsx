@@ -22,7 +22,7 @@ export function CreateRolePage() {
     <div className="flex flex-col gap-3">
       <Card title={t('roles.add.title')} description={t('roles.add.description')}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             {error && (
               <ErrorAlert 
                 title={t('common.error')} 

@@ -20,7 +20,11 @@ export function useEditUserPage() {
   const schema = z.object({
     name: z.string().min(1, t('users.edit.form.nameRequired')),
     password: z.string().min(6, t('users.edit.form.passwordRequired')),
-    roles: z.array(z.string().uuid()).min(1, t('users.edit.form.rolesRequired')),
+    roles: z.array(z.object({
+      label: z.string(),
+      value: z.string().uuid(),
+      disabled: z.boolean().optional()
+    })).min(1, t('users.edit.form.rolesRequired')),
     createdAt: z.string().optional(),
   })
 
@@ -37,7 +41,11 @@ export function useEditUserPage() {
       form.reset({
         name: mapped.name || '',
         password: '',
-        roles: mapped.roles?.map(role => role.id ?? '') || [],
+        roles: mapped.roles?.map(role => ({
+          label: role.name ?? '',
+          value: role.id ?? '',
+          disabled: false
+        })) || [],
         createdAt: mapped.createdAt || '',
       })
     }
@@ -45,7 +53,7 @@ export function useEditUserPage() {
 
   const onSubmit = async (formData: FormSchema) => {
     try {
-      await mutateAsync({ id: id!, data: formData })
+      await mutateAsync({ id: id!, data: { ...formData, roles: formData.roles.map(r => r.value) } })
       navigate(ADMINISTRATIVE_PANEL_ROUTES.users.list)
     } catch (err: unknown) {
       console.error(err)

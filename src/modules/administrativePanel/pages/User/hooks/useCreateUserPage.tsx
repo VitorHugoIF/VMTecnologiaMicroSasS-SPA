@@ -16,7 +16,11 @@ export function useCreateUserPage() {
   const schema = z.object({
     name: z.string().min(1, t('users.add.form.nameRequired')),
     password: z.string().min(6, t('users.add.form.passwordRequired')),
-    roles: z.array(z.string().uuid()).min(1, t('users.add.form.rolesRequired')),
+    roles: z.array(z.object({
+      label: z.string(),
+      value: z.string().uuid(),
+      disabled: z.boolean().optional()
+    })).min(1, t('users.add.form.rolesRequired')),
   })
 
   type FormSchema = z.infer<typeof schema>
@@ -28,7 +32,10 @@ export function useCreateUserPage() {
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      await mutateAsync(mapUserToCreateUserRequest(data as any))
+      await mutateAsync(mapUserToCreateUserRequest({
+        ...data,
+        roles: data.roles.map(r => r.value)
+      }))
       form.reset()
       navigate(ADMINISTRATIVE_PANEL_ROUTES.users.list)
     } catch (err: unknown) {
