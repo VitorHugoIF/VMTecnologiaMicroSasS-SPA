@@ -10,6 +10,7 @@ import { LoadingSpinner } from './LoadingSpinner'
 import { useTranslation } from 'react-i18next'
 import React from 'react'
 import { Label } from './Label'
+import { cn } from '@/lib/utils'
 
 interface SelectOption {
   value: string
@@ -93,8 +94,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           <SelectTrigger 
             id={id}
             size={size}
-            className={`w-full ${error ? 'border-red-500 focus-visible:ring-red-500/50' : ''}`}
+            className={`w-full`}
             ref={ref}
+            {...rest}
           >
             {loading ? (
               <div className="flex items-center gap-2">
