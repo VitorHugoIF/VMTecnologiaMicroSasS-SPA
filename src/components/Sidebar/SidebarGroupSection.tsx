@@ -22,12 +22,12 @@ export function SidebarGroupSection({
   const { t } = useTranslation()
   if (colapsable) {
     return (
-      <Collapsible open={open} onOpenChange={onOpenChange}>
+      <Collapsible defaultOpen open={open} onOpenChange={onOpenChange}>
         <SidebarGroup className="w-full">
           <SidebarGroupLabel className="px-4 text-xs text-muted-foreground mb-1 flex items-center w-full min-w-0">
-            <span className="flex-1 truncate min-w-0">{t(label)}</span>
-            <CollapsibleTrigger asChild>
-              <button className="ml-auto p-1 rounded hover:bg-muted/60">
+            <CollapsibleTrigger className='w-full flex justify-between items-center cursor-pointer rounded hover:text-primary'>
+              <span className="truncate min-w-0">{t(label)}</span>
+              <button className="ml-auto p-1">
                 {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
             </CollapsibleTrigger>
