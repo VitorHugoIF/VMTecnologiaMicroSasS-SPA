@@ -16,7 +16,7 @@ export function useListUsersPage() {
   const [sort, setSort] = useState<string | undefined>(undefined)
   const [searchInput, setSearchInput] = useState<string | undefined>(undefined)
   const [search, setSearch] = useState<string | undefined>(undefined)
-  const { data, isLoading } = useGetUsers(page, pageSize, order, sort, search)
+  const { data, isLoading, error } = useGetUsers(page, pageSize, order, sort, search)
   const { data: rolesData } = useGetActiveRoles()
 
   useEffect(() => {
@@ -81,5 +81,6 @@ export function useListUsersPage() {
     setSort,
     search: searchInput,
     setSearch: setSearchInput,
+    error,
   }
 } 

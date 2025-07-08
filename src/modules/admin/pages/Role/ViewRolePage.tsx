@@ -69,10 +69,10 @@ export function ViewRolePage() {
       </div>
       <Separator className='mt-6'/>
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" className='hover:bg-primary' onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('common.back')}
         </Button>
-        <Button variant="ghost" className='hover:bg-primary' onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
           {t('common.edit')}
         </Button>
         {role.active ? (

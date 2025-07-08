@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Check, ChevronsUpDown, X } from 'lucide-react';
 import { Command, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Button } from './Button';
-import { Label } from './Label';
+import { Button } from '../Button';
+import { Label } from '../Label';
 import { cn } from '@/lib/utils';
+import { LoadingSpinner } from '../LoadingSpinner';
+import './MultiSelect.css'
 
 export interface MultiSelectOption<T = string> {
   label: string;
@@ -74,24 +76,24 @@ export function MultiSelect<T = string>({
         <PopoverTrigger asChild>
           <Button
             type="button"
-            variant="outline"
             role="combobox"
             aria-expanded={open}
             disabled={disabled || loading}
             className={cn(
-              'w-full justify-between border rounded-md px-2 py-1 text-sm shadow-xs transition-colors outline-none',
+              'hover:bg-popover w-full justify-between border rounded-md px-2 py-1 text-sm shadow-xs transition-colors outline-none',
               'bg-popover text-popover-foreground',
-              error ? 'border-destructive' : 'border-input',
+              error ? 'border-destructive dark:border-white/10' : 'border-input dark:border-white/10',
               (disabled || loading) && 'opacity-50 cursor-not-allowed',
               'min-h-[2.25rem] h-auto focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring'
             )}
           >
             <div className="flex flex-wrap gap-1 items-center min-h-[1.5rem]">
+              {loading && <LoadingSpinner className="w-4 h-4 mr-2" />}
               {selectedOptions.length > 0 ? (
                 selectedOptions.map(opt => (
                   <span
                     key={String(opt.value)}
-                    className="flex items-center gap-1 bg-accent text-accent-foreground rounded-full px-1.5 py-1 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1 bg-primary text-primary-foreground rounded-full px-1.5 py-1 text-xs font-medium transition-colors"
                   >
                     {opt.label}
                     <button
@@ -123,14 +125,11 @@ export function MultiSelect<T = string>({
               className="h-9"
               disabled={disabled || loading}
             />
-            <CommandList className="max-h-48 overflow-y-auto gap-y-2 flex flex-col">
+            <CommandList className="max-h-48 overflow-y-auto gap-y-2 flex flex-col p-2">
               {loading ? (
-                <div className="p-2 text-sm text-muted-foreground flex items-center gap-2">
-                  <span className="animate-spin w-4 h-4 border-2 border-muted-foreground border-t-transparent rounded-full" />
-                  Carregando...
-                </div>
+                <LoadingSpinner className="w-4 h-4 mr-2" />
               ) : filteredOptions.length === 0 ? (
-                <div className="p-2 text-sm text-muted-foreground">Sem opções</div>
+                <div className="p-2 text-sm text-muted-foreground">...</div>
               ) : (
                 filteredOptions.map(option => (
                   <CommandItem
@@ -138,17 +137,14 @@ export function MultiSelect<T = string>({
                     onSelect={() => handleSelect(option)}
                     disabled={option.disabled}
                     className={cn(
-                      'flex items-center gap-2 px-2 py-1.5 cursor-pointer rounded-md transition-colors my-1',
-                      isSelected(option)
-                        ? 'bg-accent text-accent-foreground'
-                        : 'hover:bg-accent/50',
+                      'multiselect-primary',
                       option.disabled && 'opacity-50 cursor-not-allowed'
                     )}
                   >
                     <Check
                       className={cn(
                         'h-4 w-4',
-                        isSelected(option) ? 'opacity-100' : 'opacity-0'
+                        isSelected(option) ? 'text-inherit opacity-100' : 'opacity-0'
                       )}
                     />
                     <span>{option.label}</span>

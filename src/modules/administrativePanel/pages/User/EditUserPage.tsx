@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
+import { Card } from '@/components/Card'
 
 export function EditUserPage() {
   const { t } = useTranslation()
@@ -24,7 +25,7 @@ export function EditUserPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <Card title={t('users.edit.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
@@ -98,12 +99,12 @@ export function EditUserPage() {
             <Button type="submit" loading={isLoading} icon={<Check className="w-4 h-4" />}>
               {t('common.save')}
             </Button>
-            <Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading} icon={<X className="w-4 h-4" />}>
+            <Button type="button" variant="cancel" onClick={handleCancel} disabled={isLoading} icon={<X className="w-4 h-4" />}>
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Form>
-    </div>
+    </Card>
   )
 } 

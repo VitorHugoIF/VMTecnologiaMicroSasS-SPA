@@ -97,14 +97,13 @@ export function EditPlanPage() {
           </div>
           <div className="flex gap-2">
             <Button type="submit" loading={isLoading} icon={<Check className="w-4 h-4" />}>
-              {t('plans.edit.form.submit')}
+              {t('common.save')}
             </Button>
             <Button
               type="button"
-              variant="outline"
+              variant="cancel"
               onClick={() => navigate(ADMIN_ROUTES.plans.list)}
               icon={<X className="w-4 h-4" />}
-              className='bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400'
             >
               {t('common.cancel')}
             </Button>

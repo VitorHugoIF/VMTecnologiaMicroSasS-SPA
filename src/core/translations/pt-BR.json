@@ -273,8 +273,7 @@
         "statusRequired": "O status é obrigatório",
         "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
         "slugMinLength": "Slug deve ter pelo menos 2 caracteres",
-        "emailInvalid": "E-mail inválido",
-        "submit": "Criar Inquilino"
+        "emailInvalid": "E-mail inválido"
       }
     },
     "view": {
@@ -327,8 +326,7 @@
         "statusRequired": "O status é obrigatório",
         "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
         "slugMinLength": "Slug deve ter pelo menos 2 caracteres",
-        "emailInvalid": "E-mail inválido",
-        "submit": "Salvar Alterações"
+        "emailInvalid": "E-mail inválido"
       }
     },
     "status": {

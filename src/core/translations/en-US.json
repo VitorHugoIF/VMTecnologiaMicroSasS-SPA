@@ -183,8 +183,7 @@
         "pricePlaceholder": "Enter plan price",
         "nameRequired": "Name is required",
         "descriptionRequired": "Description is required",
-        "priceRequired": "Price is required",
-        "submit": "Create Plan"
+        "priceRequired": "Price is required"
       }
     },
     "view": {
@@ -224,8 +223,7 @@
         "pricePlaceholder": "Enter plan price",
         "nameRequired": "Name is required",
         "descriptionRequired": "Description is required",
-        "priceRequired": "Price is required",
-        "submit": "Save Changes"
+        "priceRequired": "Price is required"
       }
     }
   },
@@ -273,8 +271,7 @@
         "statusRequired": "Status is required",
         "nameMinLength": "Name must have at least 2 characters",
         "slugMinLength": "Slug must have at least 2 characters",
-        "emailInvalid": "Invalid email",
-        "submit": "Create Tenant"
+        "emailInvalid": "Invalid email"
       }
     },
     "view": {
@@ -327,8 +324,7 @@
         "statusRequired": "Status is required",
         "nameMinLength": "Name must have at least 2 characters",
         "slugMinLength": "Slug must have at least 2 characters",
-        "emailInvalid": "Invalid email",
-        "submit": "Save Changes"
+        "emailInvalid": "Invalid email"
       }
     },
     "status": {

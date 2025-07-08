@@ -82,50 +82,20 @@ export function ViewUserPage() {
       </div>
       <Separator className='mt-6'/>
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" className='hover:bg-primary' onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('common.back')}
         </Button>
-        <Button variant="ghost" className='hover:bg-primary' onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
           {t('common.edit')}
         </Button>
         {user.active ? (
-          <ConfirmDialog
-            trigger={
-              <Button
-                className="ml-auto"
-                variant="destructive"
-                loading={isDeleting}
-                icon={<Trash2 className="w-4 h-4" />}
-              >
-                {t('users.view.disable')}
-              </Button>
-            }
-            title={t('users.delete.title')}
-            description={t('users.delete.description')}
-            confirmText={t('users.view.disable')}
-            cancelText={t('common.cancel')}
-            onConfirm={() => handleToggleActive(false)}
-            variant="destructive"
-          />
+          <Button className="ml-auto" variant="destructive" onClick={() => handleToggleActive(false)} loading={isDeleting} icon={<Trash2 className="w-4 h-4" />}>
+            {t('users.view.disable')}
+          </Button>
         ) : (
-          <ConfirmDialog
-            trigger={
-              <Button
-                className="ml-auto"
-                variant="default"
-                loading={isDeleting}
-                icon={<Check className="w-4 h-4" />}
-              >
-                {t('users.view.enable')}
-              </Button>
-            }
-            title={t('common.enable')}
-            description={t('common.enable')}
-            confirmText={t('users.view.enable')}
-            cancelText={t('common.cancel')}
-            onConfirm={() => handleToggleActive(true)}
-            variant="default"
-          />
+          <Button className="ml-auto" onClick={() => handleToggleActive(true)} loading={isDeleting} icon={<Check className="w-4 h-4" />}>
+            {t('users.view.enable')}
+          </Button>
         )}
       </div>
     </Card>

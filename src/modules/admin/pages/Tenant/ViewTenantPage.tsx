@@ -70,10 +70,10 @@ export function ViewTenantPage() {
       )}
       <Separator className='mt-6'/>
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" className='hover:bg-primary' onClick={() => window.history.back()} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={() => window.history.back()} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('tenants.view.back')}
         </Button>
-        <Button variant="ghost" className='hover:bg-primary' onClick={() => navigate(`/app/admin/tenant/edit/${tenant.id}`)} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={() => navigate(`/app/admin/tenant/edit/${tenant.id}`)} icon={<Edit className="w-4 h-4" />}>
           {t('tenants.view.edit')}
         </Button>
         {tenant.status === 'active' ? (

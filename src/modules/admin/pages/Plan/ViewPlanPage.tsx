@@ -73,10 +73,10 @@ export function ViewPlanPage() {
       </div>
       <Separator className='mt-6'/>
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" className='hover:bg-primary' onClick={() => navigate(ADMIN_ROUTES.plans.list)} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={() => navigate(ADMIN_ROUTES.plans.list)} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('plans.view.back')}
         </Button>
-        <Button variant="ghost" className='hover:bg-primary' onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))} icon={<Edit className="w-4 h-4" />}>
           {t('plans.view.edit')}
         </Button>
         {plan.active ? (

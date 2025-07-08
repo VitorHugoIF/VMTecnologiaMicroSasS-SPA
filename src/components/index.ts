@@ -13,7 +13,7 @@ export * from './Table'
 export type { TableColumn } from './Table'
 export * from './Textarea'
 export * from './Select'
-export { MultiSelect } from './MultiSelect'
+export { MultiSelect } from './MultiSelect/MultiSelect'
 export * from './StatusBadge'
 export * from './Separator'
 

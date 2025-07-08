@@ -109,15 +109,14 @@ export function CreateTenantPage() {
           </div>
           <div className="flex gap-3 pt-4">
             <Button type="submit" loading={isLoading} icon={<Check className="w-4 h-4" />}>
-              {t('tenants.add.form.submit')}
+              {t('common.save')}
             </Button>
             <Button
               type="button"
-              variant="outline"
+              variant="cancel"
               onClick={handleCancel}
               disabled={isLoading}
               icon={<X className="w-4 h-4" />}
-              className='bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400'
             >
               {t('common.cancel')}
             </Button>

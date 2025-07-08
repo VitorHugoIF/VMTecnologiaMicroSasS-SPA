@@ -5,6 +5,9 @@ import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMINISTRATIVE_PANEL_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
+import { ErrorAlert } from '../../../components'
+import { ApiError } from '@/core/models/errorResponse'
+import { formatErrors } from '@/lib/utils'
 
 export function ListUsersPage() {
   const navigate = useNavigate()
@@ -22,6 +25,7 @@ export function ListUsersPage() {
     setSort,
     setOrder,
     setPage,
+    error,
   } = useListUsersPage()
 
   const handleSearchChange = (newSearch: string) => setSearch(newSearch)
@@ -31,6 +35,17 @@ export function ListUsersPage() {
     setPage(1)
   }
   const handlePageChange = (newPage: number) => setPage(newPage)
+
+  if (error) {
+    const errorMessage = error instanceof ApiError 
+      ? formatErrors(error.response.errors)
+      : error.message
+    return (
+      <div className="flex flex-col gap-3">
+        <ErrorAlert title={t('users.list.errorLoading')} description={errorMessage} />
+      </div>
+    )
+  }
 
   return (
     <Card>

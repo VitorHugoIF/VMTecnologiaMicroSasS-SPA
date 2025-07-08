@@ -1,0 +1,6 @@
+.multiselect-primary[data-selected="true"],
+.multiselect-primary:hover,
+.multiselect-primary:focus {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+} 

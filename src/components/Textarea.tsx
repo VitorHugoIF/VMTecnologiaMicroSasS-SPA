@@ -42,7 +42,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
         <ShadTextarea
           ref={ref}
           id={id}
-          className={cn('resize-none', className)}
+          className={cn('resize-none bg-inherit dark:border-white/10', className)}
           style={textareaStyle}
           required={required}
           {...props}
