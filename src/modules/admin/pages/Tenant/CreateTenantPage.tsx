@@ -13,13 +13,14 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
+import { Card } from '@/components/Card'
 
 export function CreateTenantPage() {
   const { t } = useTranslation()
   const { form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error } = useCreateTenantPage()
 
   return (
-    <div className="flex flex-col gap-3">
+    <Card title={t('tenants.add.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
@@ -116,12 +117,13 @@ export function CreateTenantPage() {
               onClick={handleCancel}
               disabled={isLoading}
               icon={<X className="w-4 h-4" />}
+              className='bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400'
             >
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Form>
-    </div>
+    </Card>
   )
 }

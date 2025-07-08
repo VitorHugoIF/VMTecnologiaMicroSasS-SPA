@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListPlansPage } from './hooks/useListPlansPage'
-import { TableHeaderActions, ErrorAlert } from '../../../components'
+import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
-import { Separator } from '@/components/ui/separator'
 
 export function ListPlansPage() {
   const navigate = useNavigate()
@@ -43,7 +42,6 @@ export function ListPlansPage() {
         addLabel={t('plans.list.add')}
         searchPlaceholder={t('plans.list.search.placeholder')}
       />
-      <Separator className='dark:bg-white/10'/>
       <TableComponent
         className="px-6 pb-2"
         data={paginatedPlans}

@@ -22,7 +22,7 @@ export function TableHeaderActions({
   children,
 }: TableHeaderActionsProps) {
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between w-full px-6 pb-4 pt-4">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between w-full p-6">
       <div className="font-semibold text-xl text-foreground mb-2 sm:mb-0">{title}</div>
       <div className="flex flex-col gap-2 sm:flex-row sm:gap-2 sm:items-center">
         <div className="relative w-full sm:w-auto">

@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { Button } from '@/components/Button'
 import { Badge } from '@/components/ui/badge'
 import { useViewPlanPage } from './hooks/useViewPlanPage.tsx'
 import { useTranslation } from 'react-i18next'
@@ -8,7 +7,8 @@ import { ViewPlanSkeleton } from './components/ViewPlanSkeleton'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
-import { Edit, ArrowLeft, Trash2, Check, X } from 'lucide-react'
+import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
+import { Button, Card, Separator } from '@/components'
 
 export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
@@ -24,9 +24,9 @@ export function ViewPlanPage() {
       : error.message
       
     return (
-      <div className="flex flex-col gap-3">
+      <Card title={t('plans.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert title={t('common.error')} description={errorMessage} />
-      </div>
+      </Card>
     )
   }
 
@@ -36,28 +36,28 @@ export function ViewPlanPage() {
 
   if (!plan) {
     return (
-      <div className="flex flex-col gap-3">
+      <Card title={t('plans.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert
           title={t('plans.view.notFound')}
           description={t('plans.view.notFoundDescription')}
         />
-      </div>
+      </Card>
     )
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <Card title={t('plans.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <h3 className="text-sm font-medium text-gray-500">{t('plans.view.form.name')}</h3>
-          <p className="text-lg">{plan.name}</p>
+          <h3 className="text-sm font-medium">{t('plans.view.form.name')}</h3>
+          <p className="text-sm text-gray-500">{plan.name}</p>
         </div>
         <div>
-          <h3 className="text-sm font-medium text-gray-500">{t('plans.view.form.price')}</h3>
-          <p className="text-lg">{plan.price ? `R$ ${plan.price.toFixed(2)}` : '-'}</p>
+          <h3 className="text-sm font-medium">{t('plans.view.form.price')}</h3>
+          <p className="text-sm text-gray-500">{plan.price ? `R$ ${plan.price.toFixed(2)}` : '-'}</p>
         </div>
         <div>
-          <h3 className="text-sm font-medium text-gray-500">{t('plans.view.form.status')}</h3>
+          <h3 className="text-sm font-medium">{t('plans.view.form.status')}</h3>
           <div className="mt-1">
             {plan.active ? (
               <Badge variant="default">{t('common.active')}</Badge>
@@ -66,18 +66,17 @@ export function ViewPlanPage() {
             )}
           </div>
         </div>
-        <div className="md:col-span-2">
-          <h3 className="text-sm font-medium text-gray-500">
-            {t('plans.view.form.description')}
-          </h3>
-          <p className="text-lg">{plan.description || t('plans.view.form.noDescription')}</p>
+        <div>
+          <h3 className="text-sm font-medium">{t('plans.view.form.description')}</h3>
+          <p className="text-sm text-gray-500">{plan.description || t('plans.view.form.noDescription')}</p>
         </div>
       </div>
-      <div className="flex gap-2 pt-4">
-        <Button variant="outline" onClick={() => navigate(ADMIN_ROUTES.plans.list)} icon={<ArrowLeft className="w-4 h-4" />}>
+      <Separator className='mt-6'/>
+      <div className="flex gap-3 pt-8">
+        <Button variant="ghost" className='hover:bg-primary' onClick={() => navigate(ADMIN_ROUTES.plans.list)} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('plans.view.back')}
         </Button>
-        <Button onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" className='hover:bg-primary' onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))} icon={<Edit className="w-4 h-4" />}>
           {t('plans.view.edit')}
         </Button>
         {plan.active ? (
@@ -96,6 +95,6 @@ export function ViewPlanPage() {
           </Button>
         )}
       </div>
-    </div>
+    </Card>
   )
 }

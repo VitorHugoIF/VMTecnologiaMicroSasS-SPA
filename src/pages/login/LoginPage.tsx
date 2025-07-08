@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '@/components'
 import { Eye, EyeOff } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +12,7 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Input } from '@/components/Input'
 import { useLogin } from './useLogin'
 
 const loginSchema = z.object({

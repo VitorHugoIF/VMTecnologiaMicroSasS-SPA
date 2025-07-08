@@ -9,14 +9,15 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Input } from '@/components/Input'
+import { Textarea } from '@/components/Textarea'
 import { useCreatePlanPage } from './hooks/useCreatePlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { Card } from '@/components/Card'
 
 export function CreatePlanPage() {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ export function CreatePlanPage() {
   const { form, isLoading, onSubmit, error } = useCreatePlanPage()
 
   return (
-    <div className="flex flex-col gap-3">
+    <Card title={t('plans.add.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
@@ -97,12 +98,13 @@ export function CreatePlanPage() {
               variant="outline"
               onClick={() => navigate(ADMIN_ROUTES.plans.list)}
               icon={<X className="w-4 h-4" />}
+              className='bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400'
             >
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Form>
-    </div>
+    </Card>
   )
 }

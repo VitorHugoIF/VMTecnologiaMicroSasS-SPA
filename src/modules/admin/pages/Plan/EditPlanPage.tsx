@@ -9,8 +9,8 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Input } from '@/components/Input'
+import { Textarea } from '@/components/Textarea'
 import { useEditPlanPage } from './hooks/useEditPlanPage'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
@@ -18,6 +18,7 @@ import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { EditPlanSkeleton } from './components/EditPlanSkeleton'
+import { Card } from '@/components/Card'
 
 export function EditPlanPage() {
   const { id } = useParams<{ id: string }>()
@@ -30,7 +31,7 @@ export function EditPlanPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <Card title={t('plans.edit.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
@@ -103,12 +104,13 @@ export function EditPlanPage() {
               variant="outline"
               onClick={() => navigate(ADMIN_ROUTES.plans.list)}
               icon={<X className="w-4 h-4" />}
+              className='bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400'
             >
               {t('common.cancel')}
             </Button>
           </div>
         </form>
       </Form>
-    </div>
+    </Card>
   )
 }

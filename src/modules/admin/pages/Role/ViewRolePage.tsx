@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { Button, ConfirmDialog } from '@/components'
+import { Button, ConfirmDialog, Separator } from '@/components'
 import { useViewRolePage } from './hooks/useViewRolePage'
 import { ErrorAlert } from '../../../components'
-import { Badge } from '@/components/ui/badge'
-import { Edit, ArrowLeft, Trash2, Check, X } from 'lucide-react'
+import { StatusBadge } from '@/components/StatusBadge'
+import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
 import { ViewRoleSkeleton } from './components/ViewRoleSkeleton'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { Card } from '@/components/Card'
 
 export function ViewRolePage() {
   const { t } = useTranslation()
@@ -19,9 +20,9 @@ export function ViewRolePage() {
       : error.message
       
     return (
-      <div className="flex flex-col gap-3">
+      <Card title={t('roles.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert title={t('common.error')} description={errorMessage} />
-      </div>
+      </Card>
     )
   }
 
@@ -31,50 +32,47 @@ export function ViewRolePage() {
 
   if (!role) {
     return (
-      <div className="flex flex-col gap-3">
+      <Card title={t('roles.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert
           title={t('roles.view.notFound')}
           description={t('roles.view.notFoundDescription')}
         />
-      </div>
+      </Card>
     )
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.code')}</h3>
-            <p className="text-lg">{role.code || '-'}</p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.name')}</h3>
-            <p className="text-lg">{role.name || '-'}</p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-500">{t('roles.view.form.status')}</h3>
-            <div className="mt-1">
-              {role.active ? (
-                <Badge variant="default">{t('roles.list.table.column_active_true')}</Badge>
-              ) : (
-                <Badge variant="default">{t('roles.list.table.column_active_false')}</Badge>
-              )}
-            </div>
+    <Card title={t('roles.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 className="text-sm font-medium">{t('roles.view.form.code')}</h3>
+          <p className="text-sm text-gray-500">{role.code || '-'}</p>
+        </div>
+        <div>
+          <h3 className="text-sm font-medium">{t('roles.view.form.name')}</h3>
+          <p className="text-sm text-gray-500">{role.name || '-'}</p>
+        </div>
+        <div>
+          <h3 className="text-sm font-medium">{t('roles.view.form.status')}</h3>
+          <div className="mt-1">
+            {role.active ? (
+              <StatusBadge status="success">{t('roles.list.table.column_active_true')}</StatusBadge>
+            ) : (
+              <StatusBadge status="canceled">{t('roles.list.table.column_active_false')}</StatusBadge>
+            )}
           </div>
         </div>
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium text-gray-500">
-            {t('roles.view.form.description')}
-          </h3>
-          <p className="text-lg">{role.description || t('roles.view.form.noDescription')}</p>
+        <div>
+          <h3 className="text-sm font-medium">{t('roles.view.form.description')}</h3>
+          <p className="text-sm text-gray-500">{role.description || t('roles.view.form.noDescription')}</p>
         </div>
       </div>
-      <div className="flex gap-2 mt-4">
-        <Button variant="outline" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
+      <Separator className='mt-6'/>
+      <div className="flex gap-3 pt-8">
+        <Button variant="ghost" className='hover:bg-primary' onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('common.back')}
         </Button>
-        <Button onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
+        <Button variant="ghost" className='hover:bg-primary' onClick={handleEdit} icon={<Edit className="w-4 h-4" />}>
           {t('common.edit')}
         </Button>
         {role.active ? (
@@ -117,6 +115,6 @@ export function ViewRolePage() {
           />
         )}
       </div>
-    </div>
+    </Card>
   )
 }

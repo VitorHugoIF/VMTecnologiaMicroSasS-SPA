@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
-import { TableHeaderActions, ErrorAlert } from '../../../components'
+import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
-import { Separator } from '@/components/ui/separator'
 
 export function ListRolesPage() {
   const navigate = useNavigate()
@@ -43,7 +42,6 @@ export function ListRolesPage() {
         addLabel={t('roles.list.add')}
         searchPlaceholder={t('roles.list.search.placeholder')}
       />
-      <Separator className='dark:bg-white/10'/>
       <TableComponent
         className="px-6 pb-2"
         data={paginatedRoles}

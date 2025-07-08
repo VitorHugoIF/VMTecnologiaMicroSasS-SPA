@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListUsersPage } from './hooks/useListUsersPage'
-import { TableHeaderActions, ErrorAlert } from '../../../components'
+import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMINISTRATIVE_PANEL_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
-import { Separator } from '@/components/ui/separator'
 
 export function ListUsersPage() {
   const navigate = useNavigate()
@@ -43,7 +42,6 @@ export function ListUsersPage() {
         addLabel={t('users.list.add')}
         searchPlaceholder={t('users.list.search.placeholder')}
       />
-      <Separator className='dark:bg-white/10'/>
       <TableComponent
         className="px-6 pb-2"
         data={paginatedUsers}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useGetPlans } from '../../../hooks'
 import type { PlanTableColumn } from '../../../types'
-import { Badge } from '@/components/ui/badge'
+import { StatusBadge } from '@/components/StatusBadge'
 import { useTranslation } from 'react-i18next'
 import { mapPagedPlanResponseToPlans } from '../../../mappers/planMappers'
 
@@ -39,9 +39,9 @@ export function useListPlansPage() {
       accessor: 'active',
       render: (plan) =>
         plan.active ? (
-          <Badge variant="default">{t('plans.list.table.column_active_true')}</Badge>
+          <StatusBadge status="success">{t('plans.list.table.column_active_true')}</StatusBadge>
         ) : (
-          <Badge variant="default">{t('plans.list.table.column_active_false')}</Badge>
+          <StatusBadge status="canceled">{t('plans.list.table.column_active_false')}</StatusBadge>
         ),
     },
   ]

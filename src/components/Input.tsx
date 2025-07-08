@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import { Input as ShadInput } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 
 interface InputProps extends React.ComponentProps<typeof ShadInput> {
   label?: string
@@ -21,7 +22,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {required && <span className="text-red-500 ml-1">*</span>}
           </Label>
         )}
-        <ShadInput ref={ref} id={id} required={required} className={className} {...props} />
+        <ShadInput ref={ref} id={id} required={required} className={cn('dark:border-white/10', className)} {...props} />
         {error && (
           <p className="mt-1 text-sm text-red-500">{error}</p>
         )}

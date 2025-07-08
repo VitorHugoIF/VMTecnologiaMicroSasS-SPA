@@ -8,7 +8,6 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { Card } from '@/components/Card'
-import { Separator } from '@/components/ui/separator'
 
 export function ListTenantsPage() {
   const navigate = useNavigate()
@@ -51,7 +50,6 @@ export function ListTenantsPage() {
         addLabel={t('tenants.list.add')}
         searchPlaceholder={t('tenants.list.search.placeholder')}
       />
-      <Separator className='dark:bg-white/10'/>
       <TableComponent
         className="px-6 pb-2"
         data={tenants}

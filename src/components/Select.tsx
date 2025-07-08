@@ -10,6 +10,7 @@ import { LoadingSpinner } from './LoadingSpinner'
 import { useTranslation } from 'react-i18next'
 import React from 'react'
 import { Label } from './Label'
+import { cn } from '@/lib/utils'
 
 interface SelectOption {
   value: string
@@ -31,6 +32,7 @@ interface SelectProps {
   required?: boolean
   name?: string
   id?: string
+  triggerClassName?: string
 }
 
 export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
@@ -48,13 +50,14 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     required = false,
     name,
     id,
+    triggerClassName = '',
     ...rest
   }, ref) => {
     const { t } = useTranslation()
     const isDisabled = disabled || loading
 
     return (
-      <div className={`w-full ${className}`}>
+      <div className={cn(`w-full`, className)}>
         {label && (
           <Label 
             htmlFor={id} 
@@ -74,7 +77,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           <SelectTrigger 
             id={id}
             size={size}
-            className={`w-full`}
+            className={cn(`w-full dark:border-white/10`, triggerClassName)}
             ref={ref}
             {...rest}
           >

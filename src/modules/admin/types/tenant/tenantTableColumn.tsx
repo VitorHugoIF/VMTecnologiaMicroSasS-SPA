@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import type { TableColumn } from '@/components/Table'
 import type { Tenant } from './tenant'
 import { StatusBadge } from '@/components/StatusBadge'
-import { TenantStatusLabels } from './tenantStatus'
 
 export function useTenantTableColumns(): TableColumn<Tenant>[] {
   const { t } = useTranslation()
@@ -28,18 +27,10 @@ export function useTenantTableColumns(): TableColumn<Tenant>[] {
       accessor: 'status',
       header: t('tenants.list.table.column_status'),
       render: (tenant: Tenant) => {
-        let statusLabel: string = 'unknown';
-
-        if (tenant.status in TenantStatusLabels) {
-          statusLabel = TenantStatusLabels[tenant.status as keyof typeof TenantStatusLabels];
-        } else if (Object.values(TenantStatusLabels).includes(tenant.status as any)) {
-          statusLabel = tenant.status as string;
-        }
-
         let badgeStatus: 'success' | 'canceled' | 'default' = 'default';
-        if (statusLabel === 'active') badgeStatus = 'success';
-        else if (statusLabel === 'inactive') badgeStatus = 'canceled';
-        return <StatusBadge status={badgeStatus}>{t(`tenants.status.${statusLabel}`)}</StatusBadge>;
+        if (tenant.status === 'active') badgeStatus = 'success';
+        else if (tenant.status === 'inactive') badgeStatus = 'canceled';
+        return <StatusBadge status={badgeStatus}>{t(`tenants.status.${tenant.status}`)}</StatusBadge>;
       },
     },
   ]

@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { useGetUsers } from '../../../hooks'
 import { mapUserListResponseToUser } from '../../../mappers'
 import type { User } from '../../../types'
-import { Badge } from '@/components/ui/badge'
+import { StatusBadge } from '@/components/StatusBadge'
 import { useTranslation } from 'react-i18next'
 import type { TableColumn } from '@/components/Table'
 import { useGetActiveRoles } from '../../../hooks/role/useGetActiveRoles'
+import { Badge } from '@/components/ui/badge'
 
 export function useListUsersPage() {
   const { t } = useTranslation()
@@ -44,9 +45,9 @@ export function useListUsersPage() {
       accessor: 'active',
       render: (user) =>
         user.active ? (
-          <Badge variant="default">{t('users.list.table.column_active_true')}</Badge>
+          <StatusBadge status="success">{t('users.list.table.column_active_true')}</StatusBadge>
         ) : (
-          <Badge variant="default">{t('users.list.table.column_active_false')}</Badge>
+          <StatusBadge status="canceled">{t('users.list.table.column_active_false')}</StatusBadge>
         ),
     },
     {

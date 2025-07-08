@@ -2,43 +2,37 @@ import { forwardRef } from 'react'
 import { Textarea as ShadTextarea } from '@/components/ui/textarea'
 import type { TextareaProps } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 
 interface CustomTextareaProps extends TextareaProps {
-  minHeight?: string
-  maxHeight?: string
-  resizable?: boolean
   label?: string
   required?: boolean
   error?: string
   id?: string
   className?: string
+  minHeight?: string | number
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
   (
     {
       className = '',
-      minHeight = '120px',
-      maxHeight = '300px',
-      resizable = false,
       style,
       label,
       required,
       error,
       id,
+      minHeight = 120,
       ...props
     },
     ref,
   ) => {
     const textareaStyle = {
-      minHeight,
-      maxHeight,
-      resize: resizable ? ('vertical' as const) : ('none' as const),
+      ...(minHeight ? { minHeight } : {}),
       ...style,
     }
-
     return (
-      <div className={`w-full ${className}`}>
+      <div className="w-full">
         {label && (
           <Label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             {label}
@@ -48,7 +42,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
         <ShadTextarea
           ref={ref}
           id={id}
-          className="bg-transparent dark:bg-input/30 transition-[color,box-shadow]"
+          className={cn('resize-none', className)}
           style={textareaStyle}
           required={required}
           {...props}

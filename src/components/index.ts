@@ -15,6 +15,7 @@ export * from './Textarea'
 export * from './Select'
 export { MultiSelect } from './MultiSelect'
 export * from './StatusBadge'
+export * from './Separator'
 
 //ShadCN
 export {
