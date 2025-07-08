@@ -47,20 +47,23 @@ export function ViewTenantPage() {
         </div>
       </div>
       {tenant.plan && (
-        <div className="mt-6 border-t pt-4">
-          <h3 className="text-md font-semibold mb-3">{t('tenants.view.planInfo.title')}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <h4 className="text-sm font-medium">{t('tenants.view.planInfo.name')}</h4>
-              <p className="text-sm text-gray-500">{tenant.plan.name}</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium">{t('tenants.view.planInfo.description')}</h4>
-              <p className="text-sm text-gray-500">{tenant.plan.description}</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium">{t('tenants.view.planInfo.price')}</h4>
-              <p className="text-sm text-gray-500">R$ {tenant.plan.price.toFixed(2)}</p>
+        <div className="mt-6">
+          <Separator />
+          <div className="pt-4">
+            <h3 className="text-md font-semibold mb-3">{t('tenants.view.planInfo.title')}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <h4 className="text-sm font-medium">{t('tenants.view.planInfo.name')}</h4>
+                <p className="text-sm text-gray-500">{tenant.plan.name}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium">{t('tenants.view.planInfo.description')}</h4>
+                <p className="text-sm text-gray-500">{tenant.plan.description}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium">{t('tenants.view.planInfo.price')}</h4>
+                <p className="text-sm text-gray-500">R$ {tenant.plan.price.toFixed(2)}</p>
+              </div>
             </div>
           </div>
         </div>
