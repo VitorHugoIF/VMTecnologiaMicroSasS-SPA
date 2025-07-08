@@ -2,6 +2,6 @@ export const TenantStatusLabels = {
   '1': 'active',
   '2': 'inactive',
   '3': 'expired',
-} as const;
+} as const
 
-export type TenantStatus = keyof typeof TenantStatusLabels; 
+export type TenantStatus = keyof typeof TenantStatusLabels

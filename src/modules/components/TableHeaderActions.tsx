@@ -38,7 +38,9 @@ export function TableHeaderActions({
           </span>
         </div>
         {children}
-        <Button className='bg-primary hover:bg-primary/70' onClick={onAdd}>{addLabel}</Button>
+        <Button className="bg-primary hover:bg-primary/70" onClick={onAdd}>
+          {addLabel}
+        </Button>
       </div>
     </div>
   )

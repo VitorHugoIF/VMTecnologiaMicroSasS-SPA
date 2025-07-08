@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Button, ConfirmDialog, Card, Separator } from '@/components'
+import { Button, Card, Separator } from '@/components'
 import { useViewUserPage } from './hooks/useViewUserPage'
 import { ErrorAlert } from '../../../components'
 import { Badge } from '@/components/ui/badge'
@@ -14,10 +14,9 @@ export function ViewUserPage() {
     useViewUserPage()
 
   if (error) {
-    const errorMessage = error instanceof ApiError 
-      ? formatErrors(error.response.errors)
-      : error.message
-      
+    const errorMessage =
+      error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+
     return (
       <div className="flex flex-col gap-3">
         <ErrorAlert title={t('common.error')} description={errorMessage} />
@@ -80,7 +79,7 @@ export function ViewUserPage() {
           </p>
         </div>
       </div>
-      <Separator className='mt-6'/>
+      <Separator className="mt-6" />
       <div className="flex gap-3 pt-8">
         <Button variant="ghost" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('common.back')}
@@ -89,15 +88,26 @@ export function ViewUserPage() {
           {t('common.edit')}
         </Button>
         {user.active ? (
-          <Button className="ml-auto" variant="destructive" onClick={() => handleToggleActive(false)} loading={isDeleting} icon={<Trash2 className="w-4 h-4" />}>
+          <Button
+            className="ml-auto"
+            variant="destructive"
+            onClick={() => handleToggleActive(false)}
+            loading={isDeleting}
+            icon={<Trash2 className="w-4 h-4" />}
+          >
             {t('users.view.disable')}
           </Button>
         ) : (
-          <Button className="ml-auto" onClick={() => handleToggleActive(true)} loading={isDeleting} icon={<Check className="w-4 h-4" />}>
+          <Button
+            className="ml-auto"
+            onClick={() => handleToggleActive(true)}
+            loading={isDeleting}
+            icon={<Check className="w-4 h-4" />}
+          >
             {t('users.view.enable')}
           </Button>
         )}
       </div>
     </Card>
   )
-} 
+}

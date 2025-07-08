@@ -31,7 +31,7 @@ export async function getActivePlans() {
   const params = new URLSearchParams({
     page: String(1),
     pageSize: String(1000),
-    active: String(true)
+    active: String(true),
   })
 
   const { data } = await http.get<PagedResponse<PlanResponse>>(`${prefix}?${params.toString()}`)

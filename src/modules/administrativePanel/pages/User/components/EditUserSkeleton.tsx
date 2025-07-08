@@ -22,4 +22,4 @@ export function EditUserSkeleton() {
       </Card>
     </div>
   )
-} 
+}

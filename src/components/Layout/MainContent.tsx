@@ -10,10 +10,7 @@ export function MainContent({ children }: { children: ReactNode; bg?: string }) 
     ? { width: '100vw', maxWidth: '100vw' }
     : { maxWidth: `calc(100vw - ${sidebarWidth}px)` }
   return (
-    <main
-      className="flex-1 w-full flex flex-col relative h-screen bg-background"
-      style={style}
-    >
+    <main className="flex-1 w-full flex flex-col relative h-screen bg-background" style={style}>
       <div className="sticky top-0 z-20">
         <MainHeader />
       </div>

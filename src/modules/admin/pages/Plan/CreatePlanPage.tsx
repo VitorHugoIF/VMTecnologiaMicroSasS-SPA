@@ -29,9 +29,11 @@ export function CreatePlanPage() {
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            <ErrorAlert
+              title={t('common.error')}
+              description={
+                error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+              }
             />
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -42,11 +44,7 @@ export function CreatePlanPage() {
                 <FormItem>
                   <FormLabel>{t('plans.add.form.name')}</FormLabel>
                   <FormControl>
-                    <Input
-                      id="name"
-                      placeholder={t('plans.add.form.namePlaceholder')}
-                      {...field}
-                    />
+                    <Input id="name" placeholder={t('plans.add.form.namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

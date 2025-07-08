@@ -1,1 +1,1 @@
-export * from './useGetActiveRoles' 
+export * from './useGetActiveRoles'

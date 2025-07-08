@@ -14,19 +14,7 @@ interface CustomTextareaProps extends TextareaProps {
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
-  (
-    {
-      className = '',
-      style,
-      label,
-      required,
-      error,
-      id,
-      minHeight = 120,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ className = '', style, label, required, error, id, minHeight = 120, ...props }, ref) => {
     const textareaStyle = {
       ...(minHeight ? { minHeight } : {}),
       ...style,
@@ -34,7 +22,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, CustomTextareaProps>(
     return (
       <div className="w-full">
         {label && (
-          <Label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <Label
+            htmlFor={id}
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
           </Label>

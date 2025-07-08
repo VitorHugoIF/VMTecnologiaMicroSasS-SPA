@@ -4,7 +4,13 @@ import { PREFIX_ROUTE } from '@/routes/routeRoles'
 import { ProgressBar } from '@/components'
 import type { ReactNode } from 'react'
 
-export function RoleGuard({ requiredRoles, children }: { requiredRoles: string[], children: ReactNode }) {
+export function RoleGuard({
+  requiredRoles,
+  children,
+}: {
+  requiredRoles: string[]
+  children: ReactNode
+}) {
   const { user, isLoading, isAuthenticated } = useAuth()
 
   if (isLoading) return <ProgressBar />
@@ -16,4 +22,4 @@ export function RoleGuard({ requiredRoles, children }: { requiredRoles: string[]
   }
 
   return <>{children}</>
-} 
+}

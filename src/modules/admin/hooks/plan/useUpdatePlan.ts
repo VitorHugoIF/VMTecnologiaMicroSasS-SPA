@@ -8,7 +8,8 @@ export function useUpdatePlan() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdatePlanRequest }) => PlanHttpService.updatePlan(id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdatePlanRequest }) =>
+      PlanHttpService.updatePlan(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries()
     },

@@ -9,4 +9,4 @@ export function useGetUser(id: string) {
     enabled: !!id,
     staleTime: QueryTimeConfig.users.staleTime,
   })
-} 
+}

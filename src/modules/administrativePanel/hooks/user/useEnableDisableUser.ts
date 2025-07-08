@@ -24,4 +24,4 @@ export function useEnableDisableUser() {
     isEnabling: enableMutation.isPending,
     isDisabling: disableMutation.isPending,
   }
-} 
+}

@@ -11,6 +11,6 @@ export function useGetActiveRoles() {
       const response = await RoleHttpService.getActiveRoles()
       return mapPagedRoleResponseToActiveRoles(response)
     },
-    staleTime: QueryTimeConfig.roles.staleTime
+    staleTime: QueryTimeConfig.roles.staleTime,
   })
-} 
+}

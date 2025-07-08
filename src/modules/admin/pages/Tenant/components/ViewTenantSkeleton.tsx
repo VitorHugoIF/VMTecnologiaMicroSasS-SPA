@@ -23,7 +23,7 @@ export function ViewTenantSkeleton() {
             <Skeleton className="h-6 w-20" />
           </div>
         </div>
-        
+
         <div className="mt-6 border-t pt-4">
           <Skeleton className="h-6 w-48 mb-3" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -41,7 +41,7 @@ export function ViewTenantSkeleton() {
             </div>
           </div>
         </div>
-        
+
         <div className="flex gap-2 pt-4">
           <Skeleton className="h-10 w-20" />
           <Skeleton className="h-10 w-20" />

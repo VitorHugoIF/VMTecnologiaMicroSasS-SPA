@@ -12,4 +12,4 @@ export type Role = {
   description?: string
   active?: boolean
   code?: string
-} 
+}

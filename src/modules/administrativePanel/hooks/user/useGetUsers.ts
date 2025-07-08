@@ -14,4 +14,4 @@ export function useGetUsers(
     queryFn: async () => UserHttpService.getUsers(page, pageSize, order, sort, search),
     staleTime: QueryTimeConfig.users.staleTime,
   })
-} 
+}

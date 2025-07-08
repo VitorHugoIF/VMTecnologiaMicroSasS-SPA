@@ -16,5 +16,5 @@ export function EditPlanSkeleton() {
         </div>
       </div>
     </div>
-  );
-} 
+  )
+}

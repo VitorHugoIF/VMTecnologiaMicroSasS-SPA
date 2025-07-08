@@ -29,7 +29,11 @@ export const sidebarMenuConfig: SidebarMenuGroupConfig[] = [
     label: 'sidebar.administrativePanel.title',
     colapsable: true,
     items: [
-      { label: 'sidebar.administrativePanel.users', href: PREFIX_ROUTE + '/administrative-panel/user', icon: Users },
+      {
+        label: 'sidebar.administrativePanel.users',
+        href: PREFIX_ROUTE + '/administrative-panel/user',
+        icon: Users,
+      },
     ],
   },
 ]

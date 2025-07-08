@@ -3,4 +3,4 @@ export type UpdateUserRequest = {
   name?: string
   password?: string
   roles?: string[]
-} 
+}

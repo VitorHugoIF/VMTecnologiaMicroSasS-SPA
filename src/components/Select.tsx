@@ -36,31 +36,34 @@ interface SelectProps {
 }
 
 export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
-  ({
-    options,
-    value,
-    onValueChange,
-    placeholder = 'Selecione uma opção',
-    label,
-    disabled = false,
-    loading = false,
-    error,
-    className = '',
-    size = 'default',
-    required = false,
-    name,
-    id,
-    triggerClassName = '',
-    ...rest
-  }, ref) => {
+  (
+    {
+      options,
+      value,
+      onValueChange,
+      placeholder = 'Selecione uma opção',
+      label,
+      disabled = false,
+      loading = false,
+      error,
+      className = '',
+      size = 'default',
+      required = false,
+      name,
+      id,
+      triggerClassName = '',
+      ...rest
+    },
+    ref,
+  ) => {
     const { t } = useTranslation()
     const isDisabled = disabled || loading
 
     return (
       <div className={cn(`w-full`, className)}>
         {label && (
-          <Label 
-            htmlFor={id} 
+          <Label
+            htmlFor={id}
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
           >
             {label}
@@ -74,7 +77,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           name={name}
           {...rest}
         >
-          <SelectTrigger 
+          <SelectTrigger
             id={id}
             size={size}
             className={cn(`w-full dark:border-white/10`, triggerClassName)}
@@ -93,23 +96,17 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           <SelectContent>
             <SelectGroup>
               {options.map((option) => (
-                <SelectItem
-                  key={option.value}
-                  value={option.value}
-                  disabled={option.disabled}
-                >
+                <SelectItem key={option.value} value={option.value} disabled={option.disabled}>
                   {option.label}
                 </SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </ShadSelect>
-        {error && (
-          <p className="mt-1 text-sm text-red-500">{error}</p>
-        )}
+        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
     )
-  }
+  },
 )
 
-Select.displayName = 'Select' 
+Select.displayName = 'Select'

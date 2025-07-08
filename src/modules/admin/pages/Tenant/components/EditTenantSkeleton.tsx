@@ -12,5 +12,5 @@ export function EditTenantSkeleton() {
         </div>
       </div>
     </div>
-  );
-} 
+  )
+}

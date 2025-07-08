@@ -1,31 +1,31 @@
-import * as React from 'react';
-import { Check, ChevronsUpDown, X } from 'lucide-react';
-import { Command, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Button } from '../Button';
-import { Label } from '../Label';
-import { cn } from '@/lib/utils';
-import { LoadingSpinner } from '../LoadingSpinner';
+import * as React from 'react'
+import { Check, ChevronsUpDown, X } from 'lucide-react'
+import { Command, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Button } from '../Button'
+import { Label } from '../Label'
+import { cn } from '@/lib/utils'
+import { LoadingSpinner } from '../LoadingSpinner'
 import './MultiSelect.css'
 
 export interface MultiSelectOption<T = string> {
-  label: string;
-  value: T;
-  disabled?: boolean;
+  label: string
+  value: T
+  disabled?: boolean
 }
 
 interface MultiSelectProps<T = string> {
-  options: MultiSelectOption<T>[];
-  value: MultiSelectOption<T>[];
-  onValueChange: (value: MultiSelectOption<T>[]) => void;
-  label?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  error?: string;
-  required?: boolean;
-  className?: string;
-  id?: string;
-  loading?: boolean;
+  options: MultiSelectOption<T>[]
+  value: MultiSelectOption<T>[]
+  onValueChange: (value: MultiSelectOption<T>[]) => void
+  label?: string
+  placeholder?: string
+  disabled?: boolean
+  error?: string
+  required?: boolean
+  className?: string
+  id?: string
+  loading?: boolean
 }
 
 export function MultiSelect<T = string>({
@@ -41,33 +41,35 @@ export function MultiSelect<T = string>({
   id,
   loading = false,
 }: MultiSelectProps<T>) {
-  const [open, setOpen] = React.useState(false);
-  const [search, setSearch] = React.useState('');
+  const [open, setOpen] = React.useState(false)
+  const [search, setSearch] = React.useState('')
 
-  const isSelected = (option: MultiSelectOption<T>) =>
-    value.some((v) => v.value === option.value);
+  const isSelected = (option: MultiSelectOption<T>) => value.some((v) => v.value === option.value)
 
-  const selectedOptions = value;
-  const filteredOptions = options.filter(opt =>
-    opt.label.toLowerCase().includes(search.toLowerCase())
-  );
+  const selectedOptions = value
+  const filteredOptions = options.filter((opt) =>
+    opt.label.toLowerCase().includes(search.toLowerCase()),
+  )
 
   const handleSelect = (option: MultiSelectOption<T>) => {
     if (isSelected(option)) {
-      onValueChange(value.filter(v => v.value !== option.value));
+      onValueChange(value.filter((v) => v.value !== option.value))
     } else {
-      onValueChange([...value, option]);
+      onValueChange([...value, option])
     }
-  };
+  }
 
   const handleRemove = (option: MultiSelectOption<T>) => {
-    onValueChange(value.filter(v => v.value !== option.value));
-  };
+    onValueChange(value.filter((v) => v.value !== option.value))
+  }
 
   return (
     <div className={cn('w-full', className)}>
       {label && (
-        <Label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <Label
+          htmlFor={id}
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </Label>
@@ -82,15 +84,17 @@ export function MultiSelect<T = string>({
             className={cn(
               'hover:bg-popover w-full justify-between border rounded-md px-2 py-1 text-sm shadow-xs transition-colors outline-none',
               'bg-popover text-popover-foreground',
-              error ? 'border-destructive dark:border-white/10' : 'border-input dark:border-white/10',
+              error
+                ? 'border-destructive dark:border-white/10'
+                : 'border-input dark:border-white/10',
               (disabled || loading) && 'opacity-50 cursor-not-allowed',
-              'min-h-[2.25rem] h-auto focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring'
+              'min-h-[2.25rem] h-auto focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring',
             )}
           >
             <div className="flex flex-wrap gap-1 items-center min-h-[1.5rem]">
               {loading && <LoadingSpinner className="w-4 h-4 mr-2" />}
               {selectedOptions.length > 0 ? (
-                selectedOptions.map(opt => (
+                selectedOptions.map((opt) => (
                   <span
                     key={String(opt.value)}
                     className="flex items-center gap-1 bg-primary text-primary-foreground rounded-full px-1.5 py-1 text-xs font-medium transition-colors"
@@ -99,9 +103,9 @@ export function MultiSelect<T = string>({
                     <button
                       type="button"
                       className="ml-1 hover:text-destructive"
-                      onClick={e => {
-                        e.stopPropagation();
-                        handleRemove(opt);
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleRemove(opt)
                       }}
                       tabIndex={-1}
                     >
@@ -131,20 +135,20 @@ export function MultiSelect<T = string>({
               ) : filteredOptions.length === 0 ? (
                 <div className="p-2 text-sm text-muted-foreground">...</div>
               ) : (
-                filteredOptions.map(option => (
+                filteredOptions.map((option) => (
                   <CommandItem
                     key={String(option.value)}
                     onSelect={() => handleSelect(option)}
                     disabled={option.disabled}
                     className={cn(
                       'multiselect-primary',
-                      option.disabled && 'opacity-50 cursor-not-allowed'
+                      option.disabled && 'opacity-50 cursor-not-allowed',
                     )}
                   >
                     <Check
                       className={cn(
                         'h-4 w-4',
-                        isSelected(option) ? 'text-inherit opacity-100' : 'opacity-0'
+                        isSelected(option) ? 'text-inherit opacity-100' : 'opacity-0',
                       )}
                     />
                     <span>{option.label}</span>
@@ -156,5 +160,5 @@ export function MultiSelect<T = string>({
         </PopoverContent>
       </Popover>
     </div>
-  );
-} 
+  )
+}

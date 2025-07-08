@@ -69,7 +69,10 @@ export function SidebarUserFooter({ user, open }: SidebarUserFooterProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" side="right" sideOffset={24} className={`w-64`}>
-        <DropdownMenuItem className="w-full justify-center cursor-pointer hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground" onClick={logout}>
+        <DropdownMenuItem
+          className="w-full justify-center cursor-pointer hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground"
+          onClick={logout}
+        >
           {t('logout')}
         </DropdownMenuItem>
         <DropdownMenuSeparator />

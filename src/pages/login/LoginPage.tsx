@@ -22,12 +22,7 @@ const loginSchema = z.object({
 
 export function LoginPage() {
   const { t } = useTranslation()
-  const {
-    loadingLogin,
-    showPassword,
-    setShowPassword,
-    handleAuth0Login,
-  } = useLogin();
+  const { loadingLogin, showPassword, setShowPassword, handleAuth0Login } = useLogin()
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -66,7 +61,11 @@ export function LoginPage() {
                       <FormItem>
                         <FormLabel>{t('login.username')}</FormLabel>
                         <FormControl>
-                          <Input className='dark:border-white/10' placeholder={t('login.username')} {...field} />
+                          <Input
+                            className="dark:border-white/10"
+                            placeholder={t('login.username')}
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -92,7 +91,11 @@ export function LoginPage() {
                               className="absolute right-2 top-2 text-primary focus:outline-none p-1"
                               tabIndex={-1}
                             >
-                              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                              {showPassword ? (
+                                <EyeOff className="w-4 h-4" />
+                              ) : (
+                                <Eye className="w-4 h-4" />
+                              )}
                             </button>
                           </div>
                         </FormControl>
@@ -112,7 +115,7 @@ export function LoginPage() {
                   onClick={handleAuth0Login}
                   loading={loadingLogin}
                   variant="link"
-                  className="w-full" 
+                  className="w-full"
                 >
                   {t('login.auth0')}
                 </Button>

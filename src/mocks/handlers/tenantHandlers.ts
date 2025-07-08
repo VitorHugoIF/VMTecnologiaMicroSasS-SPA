@@ -1,15 +1,15 @@
-import { http, HttpResponse } from 'msw';
-import type { TenantResponse } from '../../modules/admin/models/response/tenantResponse';
-import type { PagedResponse } from '../../core/models/pagedResponse';
+import { http, HttpResponse } from 'msw'
+import type { TenantResponse } from '../../modules/admin/models/response/tenantResponse'
+import type { PagedResponse } from '../../core/models/pagedResponse'
 
-const base = '/api/admin/tenant';
+const base = '/api/admin/tenant'
 
 export const tenantHandlers = [
   http.get(base, ({ request }) => {
-    const url = new URL(request.url, window.location.origin);
-    const page = Number(url.searchParams.get('page') ?? 1);
-    const pageSize = Number(url.searchParams.get('pageSize') ?? 10);
-    const search = url.searchParams.get('search')?.toLowerCase() || '';
+    const url = new URL(request.url, window.location.origin)
+    const page = Number(url.searchParams.get('page') ?? 1)
+    const pageSize = Number(url.searchParams.get('pageSize') ?? 10)
+    const search = url.searchParams.get('search')?.toLowerCase() || ''
     let items = [
       {
         id: '1',
@@ -41,16 +41,17 @@ export const tenantHandlers = [
           active: false,
         },
       },
-    ];
+    ]
     if (search) {
-      items = items.filter(item =>
-        item.name.toLowerCase().includes(search) ||
-        item.email.toLowerCase().includes(search) ||
-        item.slug.toLowerCase().includes(search)
-      );
+      items = items.filter(
+        (item) =>
+          item.name.toLowerCase().includes(search) ||
+          item.email.toLowerCase().includes(search) ||
+          item.slug.toLowerCase().includes(search),
+      )
     }
-    const totalCount = items.length;
-    const pagedItems = items.slice((page - 1) * pageSize, page * pageSize);
+    const totalCount = items.length
+    const pagedItems = items.slice((page - 1) * pageSize, page * pageSize)
     const response: PagedResponse<TenantResponse> = {
       success: true,
       data: {
@@ -61,11 +62,11 @@ export const tenantHandlers = [
       },
       errors: [],
       message: '',
-    };
-    return HttpResponse.json<PagedResponse<TenantResponse>>(response);
+    }
+    return HttpResponse.json<PagedResponse<TenantResponse>>(response)
   }),
   http.get(`${base}/:id`, ({ params }) => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
+    const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
     const response = {
       data: {
         id,
@@ -81,12 +82,12 @@ export const tenantHandlers = [
           price: 99.99,
           active: true,
         },
-      }
-    };
-    return HttpResponse.json(response);
+      },
+    }
+    return HttpResponse.json(response)
   }),
   http.post(base, async ({ request }) => {
-    const body = await request.json() as Omit<TenantResponse, 'id'>;
+    const body = (await request.json()) as Omit<TenantResponse, 'id'>
     const response: TenantResponse = {
       id: '999',
       ...body,
@@ -95,12 +96,12 @@ export const tenantHandlers = [
       planId: body.planId ?? '1',
       status: body.status ?? 'active',
       name: body.name ?? 'Tenant 999',
-    };
-    return HttpResponse.json<TenantResponse>(response, { status: 201 });
+    }
+    return HttpResponse.json<TenantResponse>(response, { status: 201 })
   }),
   http.put(`${base}/:id`, async ({ params, request }) => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
-    const body = await request.json() as Omit<TenantResponse, 'id'>;
+    const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
+    const body = (await request.json()) as Omit<TenantResponse, 'id'>
     const response: TenantResponse = {
       id,
       ...body,
@@ -109,11 +110,11 @@ export const tenantHandlers = [
       planId: body.planId ?? '1',
       status: body.status ?? 'active',
       name: body.name ?? `Tenant ${id}`,
-    };
-    return HttpResponse.json<TenantResponse>(response);
+    }
+    return HttpResponse.json<TenantResponse>(response)
   }),
   http.patch(`${base}/:id/enable`, ({ params }) => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
+    const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
     const response: TenantResponse = {
       id,
       name: 'Tenant Mock',
@@ -121,11 +122,11 @@ export const tenantHandlers = [
       email: 'tenant@email.com',
       planId: '1',
       status: 'active',
-    };
-    return HttpResponse.json<TenantResponse>(response);
+    }
+    return HttpResponse.json<TenantResponse>(response)
   }),
   http.patch(`${base}/:id/disable`, ({ params }) => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id ?? '';
+    const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
     const response: TenantResponse = {
       id,
       name: 'Tenant Mock',
@@ -133,7 +134,7 @@ export const tenantHandlers = [
       email: 'tenant@email.com',
       planId: '1',
       status: 'inactive',
-    };
-    return HttpResponse.json<TenantResponse>(response);
+    }
+    return HttpResponse.json<TenantResponse>(response)
   }),
-]; 
+]

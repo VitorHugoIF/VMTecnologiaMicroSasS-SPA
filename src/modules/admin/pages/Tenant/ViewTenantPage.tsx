@@ -68,20 +68,39 @@ export function ViewTenantPage() {
           </div>
         </div>
       )}
-      <Separator className='mt-6'/>
+      <Separator className="mt-6" />
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" onClick={() => window.history.back()} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button
+          variant="ghost"
+          onClick={() => window.history.back()}
+          icon={<ArrowLeft className="w-4 h-4" />}
+        >
           {t('tenants.view.back')}
         </Button>
-        <Button variant="ghost" onClick={() => navigate(`/app/admin/tenant/edit/${tenant.id}`)} icon={<Edit className="w-4 h-4" />}>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(`/app/admin/tenant/edit/${tenant.id}`)}
+          icon={<Edit className="w-4 h-4" />}
+        >
           {t('tenants.view.edit')}
         </Button>
         {tenant.status === 'active' ? (
-          <Button className="ml-auto" variant="destructive" onClick={handleDisable} loading={isDisabling} icon={<Trash2 className="w-4 h-4" />}>
+          <Button
+            className="ml-auto"
+            variant="destructive"
+            onClick={handleDisable}
+            loading={isDisabling}
+            icon={<Trash2 className="w-4 h-4" />}
+          >
             {t('tenants.view.disable')}
           </Button>
         ) : (
-          <Button className="ml-auto" onClick={handleEnable} loading={isEnabling} icon={<Check className="w-4 h-4" />}>
+          <Button
+            className="ml-auto"
+            onClick={handleEnable}
+            loading={isEnabling}
+            icon={<Check className="w-4 h-4" />}
+          >
             {t('tenants.view.enable')}
           </Button>
         )}

@@ -19,4 +19,4 @@ export type RoleResponse = {
   description?: string
   active?: boolean
   code?: string
-} 
+}

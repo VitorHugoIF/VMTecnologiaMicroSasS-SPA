@@ -9,7 +9,7 @@ import { useGetActivePlans } from '../../../hooks/plan/useGetActivePlans'
 import { TenantStatusLabels } from '@/modules/admin/types/tenant/tenantStatus'
 
 function getStatusCodeFromLabel(label: string) {
-  return Object.entries(TenantStatusLabels).find(([, v]) => v === label)?.[0] ?? '';
+  return Object.entries(TenantStatusLabels).find(([, v]) => v === label)?.[0] ?? ''
 }
 
 export function useEditTenantPage() {
@@ -21,13 +21,16 @@ export function useEditTenantPage() {
   const { data: activePlans, isLoading: isLoadingPlans } = useGetActivePlans()
 
   const updateTenantSchema = z.object({
-    name: z.string()
+    name: z
+      .string()
       .min(1, t('tenants.edit.form.nameRequired'))
       .min(2, t('tenants.edit.form.nameMinLength')),
-    slug: z.string()
+    slug: z
+      .string()
       .min(1, t('tenants.edit.form.slugRequired'))
       .min(2, t('tenants.edit.form.slugMinLength')),
-    email: z.string()
+    email: z
+      .string()
       .min(1, t('tenants.edit.form.emailRequired'))
       .email(t('tenants.edit.form.emailInvalid')),
     planId: z.string().min(1, t('tenants.edit.form.planRequired')),
@@ -60,11 +63,11 @@ export function useEditTenantPage() {
   }, [tenant, form])
 
   useEffect(() => {
-    if(!isLoadingPlans && !isLoadingTenant) {
+    if (!isLoadingPlans && !isLoadingTenant) {
       setTimeout(() => {
         form.setValue('planId', tenant?.planId ?? '')
         form.setValue('status', getStatusCodeFromLabel(tenant?.status ?? ''))
-      }, 100);
+      }, 100)
     }
   }, [isLoadingPlans, isLoadingTenant, tenant])
 
@@ -83,13 +86,17 @@ export function useEditTenantPage() {
     navigate('/app/admin/tenant')
   }
 
-  const planOptions = activePlans?.map(plan => ({
-    value: plan.id || '',
-    label: plan.name || '',
-    disabled: false
-  })) || []
+  const planOptions =
+    activePlans?.map((plan) => ({
+      value: plan.id || '',
+      label: plan.name || '',
+      disabled: false,
+    })) || []
 
-  const optionsStatus = Object.entries(TenantStatusLabels).map(([value, label]) => ({ value, label: t(`tenants.status.${label}`) }));
+  const optionsStatus = Object.entries(TenantStatusLabels).map(([value, label]) => ({
+    value,
+    label: t(`tenants.status.${label}`),
+  }))
 
   return {
     tenant,

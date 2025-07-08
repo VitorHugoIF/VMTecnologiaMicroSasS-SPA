@@ -12,4 +12,4 @@ export function UserRoutes() {
       <Route path="*" element={<Navigate to={NOT_FOUND_ROUTE} />} />
     </Routes>
   )
-} 
+}

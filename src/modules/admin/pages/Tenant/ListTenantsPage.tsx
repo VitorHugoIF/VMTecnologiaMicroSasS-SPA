@@ -29,10 +29,9 @@ export function ListTenantsPage() {
   const columns = useTenantTableColumns()
 
   if (error) {
-    const errorMessage = error instanceof ApiError 
-      ? formatErrors(error.response.errors)
-      : error.message
-      
+    const errorMessage =
+      error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+
     return (
       <div className="flex flex-col gap-3">
         <ErrorAlert title={t('tenants.list.errorLoading')} description={errorMessage} />
@@ -72,11 +71,7 @@ export function ListTenantsPage() {
           }
         }}
       />
-      <TablePagination
-        page={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <TablePagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
     </Card>
   )
 }

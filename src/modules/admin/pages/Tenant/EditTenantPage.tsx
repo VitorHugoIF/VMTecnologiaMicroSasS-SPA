@@ -18,7 +18,17 @@ import { Card } from '@/components/Card'
 
 export function EditTenantPage() {
   const { t } = useTranslation()
-  const { tenant, form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error, optionsStatus } = useEditTenantPage()
+  const {
+    tenant,
+    form,
+    onSubmit,
+    handleCancel,
+    isLoading,
+    isLoadingPlans,
+    planOptions,
+    error,
+    optionsStatus,
+  } = useEditTenantPage()
 
   if (isLoading && !tenant) {
     return <EditTenantSkeleton />
@@ -29,9 +39,11 @@ export function EditTenantPage() {
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <ErrorAlert 
-              title={t('tenants.edit.errorLoading')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            <ErrorAlert
+              title={t('tenants.edit.errorLoading')}
+              description={
+                error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+              }
             />
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

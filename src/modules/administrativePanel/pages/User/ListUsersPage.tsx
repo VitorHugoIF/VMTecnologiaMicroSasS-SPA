@@ -37,9 +37,8 @@ export function ListUsersPage() {
   const handlePageChange = (newPage: number) => setPage(newPage)
 
   if (error) {
-    const errorMessage = error instanceof ApiError 
-      ? formatErrors(error.response.errors)
-      : error.message
+    const errorMessage =
+      error instanceof ApiError ? formatErrors(error.response.errors) : error.message
     return (
       <div className="flex flex-col gap-3">
         <ErrorAlert title={t('users.list.errorLoading')} description={errorMessage} />
@@ -79,11 +78,7 @@ export function ListUsersPage() {
           }
         }}
       />
-      <TablePagination
-        page={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <TablePagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
     </Card>
   )
-} 
+}

@@ -23,14 +23,16 @@ export function mapPagedRoleResponseToRoles(paged?: PagedResponse<RoleResponse>)
   }
 }
 
-export function mapPagedRoleResponseToActiveRoles(paged?: PagedResponse<RoleResponse>): ActiveRoleResponse[] {
+export function mapPagedRoleResponseToActiveRoles(
+  paged?: PagedResponse<RoleResponse>,
+): ActiveRoleResponse[] {
   if (!paged?.data?.items || !Array.isArray(paged.data.items)) {
     return []
   }
-  
+
   return paged.data.items
-    .filter(role => role.active === true)
-    .map(role => ({
+    .filter((role) => role.active === true)
+    .map((role) => ({
       id: role.id,
       name: role.name,
       description: role.description,

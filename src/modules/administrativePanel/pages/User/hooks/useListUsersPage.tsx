@@ -56,9 +56,9 @@ export function useListUsersPage() {
       render: (user) =>
         user.roles && user.roles.length > 0 ? (
           <div className="flex flex-wrap gap-1">
-            {user.roles.map((role: { id?: string, name?: string }, index: number) => (
+            {user.roles.map((role: { id?: string; name?: string }, index: number) => (
               <Badge key={index} variant="outline">
-                {rolesData?.find(r => r.id === role.id)?.name || role.id}
+                {rolesData?.find((r) => r.id === role.id)?.name || role.id}
               </Badge>
             ))}
           </div>
@@ -83,4 +83,4 @@ export function useListUsersPage() {
     setSearch: setSearchInput,
     error,
   }
-} 
+}

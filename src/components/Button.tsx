@@ -3,13 +3,15 @@ import { Button as ShadcnButton, buttonVariants } from '@/components/ui/button'
 import type { VariantProps } from 'class-variance-authority'
 import { LoadingSpinner } from './LoadingSpinner'
 
+type VariantWithCancel = VariantProps<typeof buttonVariants>['variant'] | 'cancel'
+
 interface ButtonProps
   extends Omit<React.ComponentProps<typeof ShadcnButton>, 'variant'>,
     Omit<VariantProps<typeof buttonVariants>, 'variant'> {
   children: ReactNode
   icon?: ReactNode
   loading?: boolean
-  variant?: VariantProps<typeof buttonVariants>["variant"] | 'cancel'
+  variant?: VariantWithCancel
 }
 
 export function Button({
@@ -22,11 +24,12 @@ export function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const cancelClass = variant === 'cancel' ? 'bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400' : '';
-  const ghostClass = variant === 'ghost' ? 'hover:bg-primary dark:hover:bg-primary' : '';
+  const cancelClass =
+    variant === 'cancel' ? 'bg-sidebar hover:bg-gray-400 dark:hover:bg-gray-400' : ''
+  const ghostClass = variant === 'ghost' ? 'hover:bg-primary dark:hover:bg-primary' : ''
   return (
     <ShadcnButton
-      variant={variant as any}
+      variant={variant === 'cancel' ? 'outline' : variant}
       size={size}
       disabled={loading || disabled}
       className={`cursor-pointer ${cancelClass} ${ghostClass} ${className}`}

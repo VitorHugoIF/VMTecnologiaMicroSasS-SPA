@@ -11,6 +11,6 @@ export function useGetActivePlans() {
       const response = await PlanHttpService.getActivePlans()
       return mapPagedPlanResponseToActivePlans(response)
     },
-    staleTime: QueryTimeConfig.plans.staleTime
+    staleTime: QueryTimeConfig.plans.staleTime,
   })
-} 
+}

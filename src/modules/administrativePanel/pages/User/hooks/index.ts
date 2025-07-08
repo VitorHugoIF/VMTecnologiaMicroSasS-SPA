@@ -1,4 +1,4 @@
 export * from './useListUsersPage'
 export * from './useCreateUserPage'
 export * from './useViewUserPage'
-export * from './useEditUserPage' 
+export * from './useEditUserPage'

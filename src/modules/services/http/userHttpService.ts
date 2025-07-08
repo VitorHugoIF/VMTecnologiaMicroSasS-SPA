@@ -50,4 +50,4 @@ export async function disableUser(id: string) {
 export async function updateUser(id: string, dto: UpdateUserRequest) {
   const { data } = await http.put<ApiResponse<UserResponse>>(`${prefix}/${id}`, dto)
   return data
-} 
+}

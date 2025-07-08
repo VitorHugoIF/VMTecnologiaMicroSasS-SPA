@@ -17,16 +17,19 @@ import { Card } from '@/components/Card'
 
 export function CreateTenantPage() {
   const { t } = useTranslation()
-  const { form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error } = useCreateTenantPage()
+  const { form, onSubmit, handleCancel, isLoading, isLoadingPlans, planOptions, error } =
+    useCreateTenantPage()
 
   return (
     <Card title={t('tenants.add.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            <ErrorAlert
+              title={t('common.error')}
+              description={
+                error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+              }
             />
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

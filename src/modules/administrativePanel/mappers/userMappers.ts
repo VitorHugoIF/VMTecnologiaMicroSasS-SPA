@@ -9,7 +9,7 @@ export function mapUserResponseToUser(response: UserResponse): User {
     id: response.id,
     name: response.name,
     active: response.active,
-    roles: response.roles?.map(role => ({
+    roles: response.roles?.map((role) => ({
       id: role.id,
       name: role.name,
       description: role.description,
@@ -25,14 +25,18 @@ export function mapUserListResponseToUser(response: UserListResponse): User {
     id: response.id,
     name: response.name,
     active: response.active,
-    roles: response.roles?.map(roleId => ({
+    roles: response.roles?.map((roleId) => ({
       id: roleId,
       name: roleId,
     })),
   }
 }
 
-export function mapUserToCreateUserRequest(user: { name: string; password: string; roles: string[] }): CreateUserRequest {
+export function mapUserToCreateUserRequest(user: {
+  name: string
+  password: string
+  roles: string[]
+}): CreateUserRequest {
   return {
     name: user.name,
     password: user.password,
@@ -40,7 +44,12 @@ export function mapUserToCreateUserRequest(user: { name: string; password: strin
   }
 }
 
-export function mapUserToUpdateUserRequest(user: { id?: string; name: string; password: string; roles: string[] }): UpdateUserRequest {
+export function mapUserToUpdateUserRequest(user: {
+  id?: string
+  name: string
+  password: string
+  roles: string[]
+}): UpdateUserRequest {
   return {
     id: user.id,
     name: user.name,
@@ -56,4 +65,4 @@ export function mapPagedUserListResponseToUsers(paged?: PagedResponse<UserListRe
       : [],
     totalCount: paged?.data?.totalCount ?? 0,
   }
-} 
+}

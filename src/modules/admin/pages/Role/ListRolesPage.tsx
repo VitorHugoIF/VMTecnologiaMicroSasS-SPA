@@ -64,11 +64,7 @@ export function ListRolesPage() {
           }
         }}
       />
-      <TablePagination
-        page={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <TablePagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
     </Card>
   )
 }

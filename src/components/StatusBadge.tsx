@@ -8,7 +8,14 @@ interface StatusBadgeProps {
   children?: React.ReactNode
 }
 
-const statusMap: Record<Status, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline'; className?: string }> = {
+const statusMap: Record<
+  Status,
+  {
+    label: string
+    variant: 'default' | 'secondary' | 'destructive' | 'outline'
+    className?: string
+  }
+> = {
   success: {
     label: 'Successful',
     variant: 'default',
@@ -38,4 +45,4 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, children }) =>
       {children || label}
     </Badge>
   )
-} 
+}

@@ -35,9 +35,11 @@ export function EditPlanPage() {
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            <ErrorAlert
+              title={t('common.error')}
+              description={
+                error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+              }
             />
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

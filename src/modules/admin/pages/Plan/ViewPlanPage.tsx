@@ -14,15 +14,13 @@ export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable, error } = useViewPlanPage(
-    id!,
-  )
+  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable, error } =
+    useViewPlanPage(id!)
 
   if (error) {
-    const errorMessage = error instanceof ApiError 
-      ? formatErrors(error.response.errors)
-      : error.message
-      
+    const errorMessage =
+      error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+
     return (
       <Card title={t('plans.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert title={t('common.error')} description={errorMessage} />
@@ -54,7 +52,9 @@ export function ViewPlanPage() {
         </div>
         <div>
           <h3 className="text-sm font-medium">{t('plans.view.form.price')}</h3>
-          <p className="text-sm text-gray-500">{plan.price ? `R$ ${plan.price.toFixed(2)}` : '-'}</p>
+          <p className="text-sm text-gray-500">
+            {plan.price ? `R$ ${plan.price.toFixed(2)}` : '-'}
+          </p>
         </div>
         <div>
           <h3 className="text-sm font-medium">{t('plans.view.form.status')}</h3>
@@ -68,15 +68,25 @@ export function ViewPlanPage() {
         </div>
         <div>
           <h3 className="text-sm font-medium">{t('plans.view.form.description')}</h3>
-          <p className="text-sm text-gray-500">{plan.description || t('plans.view.form.noDescription')}</p>
+          <p className="text-sm text-gray-500">
+            {plan.description || t('plans.view.form.noDescription')}
+          </p>
         </div>
       </div>
-      <Separator className='mt-6'/>
+      <Separator className="mt-6" />
       <div className="flex gap-3 pt-8">
-        <Button variant="ghost" onClick={() => navigate(ADMIN_ROUTES.plans.list)} icon={<ArrowLeft className="w-4 h-4" />}>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(ADMIN_ROUTES.plans.list)}
+          icon={<ArrowLeft className="w-4 h-4" />}
+        >
           {t('plans.view.back')}
         </Button>
-        <Button variant="ghost" onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))} icon={<Edit className="w-4 h-4" />}>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(ADMIN_ROUTES.plans.edit(plan.id!))}
+          icon={<Edit className="w-4 h-4" />}
+        >
           {t('plans.view.edit')}
         </Button>
         {plan.active ? (
@@ -90,7 +100,13 @@ export function ViewPlanPage() {
             {t('plans.view.disable')}
           </Button>
         ) : (
-          <Button className="ml-auto" variant="default" onClick={() => handleEnable(plan.id!)} loading={isEnabling} icon={<Check className="w-4 h-4" />}>
+          <Button
+            className="ml-auto"
+            variant="default"
+            onClick={() => handleEnable(plan.id!)}
+            loading={isEnabling}
+            icon={<Check className="w-4 h-4" />}
+          >
             {t('plans.view.enable')}
           </Button>
         )}

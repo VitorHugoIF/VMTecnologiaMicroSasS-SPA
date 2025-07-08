@@ -109,7 +109,11 @@ export function Table<T>({
                         : null}
                   </TableCell>
                 ))}
-                {actions && <TableCell className="px-4 py-2 text-gray-600 dark:text-gray-400">{actions(row)}</TableCell>}
+                {actions && (
+                  <TableCell className="px-4 py-2 text-gray-600 dark:text-gray-400">
+                    {actions(row)}
+                  </TableCell>
+                )}
               </TableRow>
             ))
           )}

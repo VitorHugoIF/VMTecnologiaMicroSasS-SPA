@@ -28,12 +28,18 @@ export function TableActions<T>({ row, onView, onEdit }: TableActionsProps<T>) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-popover text-foreground">
         {onView && (
-          <DropdownMenuItem onClick={() => onView(row)} className="hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground">
+          <DropdownMenuItem
+            onClick={() => onView(row)}
+            className="hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground"
+          >
             <Eye className="size-4 mr-2 text-inherit" /> {t('table.table_tooltip_view')}
           </DropdownMenuItem>
         )}
         {onEdit && (
-          <DropdownMenuItem onClick={() => onEdit(row)} className="hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground">
+          <DropdownMenuItem
+            onClick={() => onEdit(row)}
+            className="hover:!bg-primary hover:!text-primary-foreground focus:!bg-primary focus:!text-primary-foreground"
+          >
             <Pencil className="size-4 mr-2 text-inherit" /> {t('table.table_tooltip_edit')}
           </DropdownMenuItem>
         )}

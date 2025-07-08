@@ -12,4 +12,4 @@ export function useUpdateUser() {
       queryClient.invalidateQueries()
     },
   })
-} 
+}

@@ -27,10 +27,12 @@ export function useTenantTableColumns(): TableColumn<Tenant>[] {
       accessor: 'status',
       header: t('tenants.list.table.column_status'),
       render: (tenant: Tenant) => {
-        let badgeStatus: 'success' | 'canceled' | 'default' = 'default';
-        if (tenant.status === 'active') badgeStatus = 'success';
-        else if (tenant.status === 'inactive') badgeStatus = 'canceled';
-        return <StatusBadge status={badgeStatus}>{t(`tenants.status.${tenant.status}`)}</StatusBadge>;
+        let badgeStatus: 'success' | 'canceled' | 'default' = 'default'
+        if (tenant.status === 'active') badgeStatus = 'success'
+        else if (tenant.status === 'inactive') badgeStatus = 'canceled'
+        return (
+          <StatusBadge status={badgeStatus}>{t(`tenants.status.${tenant.status}`)}</StatusBadge>
+        )
       },
     },
   ]

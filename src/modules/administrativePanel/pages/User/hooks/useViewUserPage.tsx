@@ -54,4 +54,4 @@ export function useViewUserPage() {
     handleToggleActive,
     error,
   }
-} 
+}

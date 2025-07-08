@@ -33,7 +33,9 @@ function RootRedirect() {
 const queryClient = new QueryClient()
 
 const AdminModule = lazy(() => import('@/modules').then((m) => ({ default: m.AdminModule })))
-const AdministrativePanelModule = lazy(() => import('@/modules').then((m) => ({ default: m.AdministrativePanelModule })))
+const AdministrativePanelModule = lazy(() =>
+  import('@/modules').then((m) => ({ default: m.AdministrativePanelModule })),
+)
 
 export function AppRouter() {
   const { user } = useAuth()

@@ -14,4 +14,4 @@ export function AdministrativePanelModule() {
       <Route path="*" element={<Navigate to={NOT_FOUND_ROUTE} />} />
     </Routes>
   )
-} 
+}

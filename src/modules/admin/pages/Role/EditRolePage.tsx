@@ -29,9 +29,11 @@ export function EditRolePage() {
       <Form {...form}>
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <ErrorAlert 
-              title={t('common.error')} 
-              description={error instanceof ApiError ? formatErrors(error.response.errors) : error.message} 
+            <ErrorAlert
+              title={t('common.error')}
+              description={
+                error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+              }
             />
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -78,7 +80,13 @@ export function EditRolePage() {
             <Button type="submit" loading={isLoading} icon={<Check className="w-4 h-4" />}>
               {t('common.save')}
             </Button>
-            <Button type="button" variant="cancel" onClick={handleCancel} disabled={isLoading} icon={<X className="w-4 h-4" />}>
+            <Button
+              type="button"
+              variant="cancel"
+              onClick={handleCancel}
+              disabled={isLoading}
+              icon={<X className="w-4 h-4" />}
+            >
               {t('common.cancel')}
             </Button>
           </div>

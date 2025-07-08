@@ -15,10 +15,9 @@ export function ViewRolePage() {
     useViewRolePage()
 
   if (error) {
-    const errorMessage = error instanceof ApiError 
-      ? formatErrors(error.response.errors)
-      : error.message
-      
+    const errorMessage =
+      error instanceof ApiError ? formatErrors(error.response.errors) : error.message
+
     return (
       <Card title={t('roles.view.title')} className="py-6 min-h-0" contentClassName="p-0 px-6">
         <ErrorAlert title={t('common.error')} description={errorMessage} />
@@ -58,16 +57,20 @@ export function ViewRolePage() {
             {role.active ? (
               <StatusBadge status="success">{t('roles.list.table.column_active_true')}</StatusBadge>
             ) : (
-              <StatusBadge status="canceled">{t('roles.list.table.column_active_false')}</StatusBadge>
+              <StatusBadge status="canceled">
+                {t('roles.list.table.column_active_false')}
+              </StatusBadge>
             )}
           </div>
         </div>
         <div>
           <h3 className="text-sm font-medium">{t('roles.view.form.description')}</h3>
-          <p className="text-sm text-gray-500">{role.description || t('roles.view.form.noDescription')}</p>
+          <p className="text-sm text-gray-500">
+            {role.description || t('roles.view.form.noDescription')}
+          </p>
         </div>
       </div>
-      <Separator className='mt-6'/>
+      <Separator className="mt-6" />
       <div className="flex gap-3 pt-8">
         <Button variant="ghost" onClick={handleBack} icon={<ArrowLeft className="w-4 h-4" />}>
           {t('common.back')}
