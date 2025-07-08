@@ -11,7 +11,7 @@ interface InputProps extends React.ComponentProps<typeof ShadInput> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, required, id, className = '', error, ...props }, ref) => {
     return (
-      <div className={`w-full ${className}`}>
+      <div className="w-full">
         {label && (
           <Label
             htmlFor={id}
@@ -21,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {required && <span className="text-red-500 ml-1">*</span>}
           </Label>
         )}
-        <ShadInput ref={ref} id={id} required={required} {...props} />
+        <ShadInput ref={ref} id={id} required={required} className={className} {...props} />
         {error && (
           <p className="mt-1 text-sm text-red-500">{error}</p>
         )}

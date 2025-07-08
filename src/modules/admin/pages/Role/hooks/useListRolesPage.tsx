@@ -36,7 +36,7 @@ export function useListRolesPage() {
         role.active ? (
           <Badge variant="default">{t('roles.list.table.column_active_true')}</Badge>
         ) : (
-          <Badge variant="secondary">{t('roles.list.table.column_active_false')}</Badge>
+          <Badge variant="default">{t('roles.list.table.column_active_false')}</Badge>
         ),
     },
   ]

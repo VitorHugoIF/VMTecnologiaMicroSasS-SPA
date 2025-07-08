@@ -76,9 +76,9 @@
   },
   "roles": {
     "list": {
-      "title": "Funções",
+      "title": "Papéis",
       "add": "Adicionar",
-      "errorLoading": "Erro ao carregar funções",
+      "errorLoading": "Erro ao carregar papéis",
       "search": {
         "placeholder": "Buscar..."
       },
@@ -355,7 +355,7 @@
         "column_active": "Ativo",
         "column_active_true": "Ativo",
         "column_active_false": "Inativo",
-        "column_roles": "Papeis",
+        "column_roles": "Papéis",
         "column_created_at": "Criado em",
         "column_actions": "Ações"
       }
@@ -366,10 +366,10 @@
       "form": {
         "name": "Nome",
         "password": "Senha",
-        "roles": "Papeis",
+        "roles": "Papéis",
         "namePlaceholder": "Digite o nome do usuário",
         "passwordPlaceholder": "Digite a senha do usuário",
-        "rolesPlaceholder": "Selecione os papeis do usuário",
+        "rolesPlaceholder": "Selecione os papéis do usuário",
         "nameRequired": "O nome é obrigatório",
         "passwordRequired": "A senha deve ter pelo menos 6 caracteres",
         "rolesRequired": "Pelo menos um papel é obrigatório",
@@ -387,7 +387,7 @@
       "form": {
         "name": "Nome",
         "status": "Status",
-        "roles": "Papeis",
+        "roles": "Papéis",
         "createdAt": "Criado em",
         "noRoles": "Nenhum papel atribuído"
       },
@@ -407,8 +407,8 @@
       "form": {
         "name": "Nome",
         "password": "Senha",
-        "roles": "Papeis",
-        "rolesPlaceholder": "Selecione os papeis do usuário",
+        "roles": "Papéis",
+        "rolesPlaceholder": "Selecione os papéis do usuário",
         "rolesRequired": "Pelo menos um papel é obrigatório",
         "namePlaceholder": "Digite o nome do usuário",
         "passwordPlaceholder": "Digite a nova senha do usuário",

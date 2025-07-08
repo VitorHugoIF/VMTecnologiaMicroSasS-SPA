@@ -43,14 +43,14 @@ export function SidebarUserFooter({ user, open }: SidebarUserFooterProps) {
               <img
                 src={user.avatar}
                 alt={user.name || 'Usuário'}
-                className={`${open ? 'w-10 h-10' : 'w-8 h-8'} rounded-full border border-muted object-cover`}
+                className={`${open ? 'w-10 h-10' : 'w-8 h-8'} rounded-full object-cover`}
               />
             ) : (
               (() => {
                 const { letter, color } = getAvatarProps(user.name, user.email)
                 return (
                   <div
-                    className={`flex items-center justify-center font-bold uppercase rounded-full border border-muted ${open ? 'w-10 h-10 text-lg' : 'w-8 h-8 text-base'}`}
+                    className={`flex items-center justify-center font-bold uppercase rounded-full ${open ? 'w-10 h-10 text-lg' : 'w-8 h-8 text-base'}`}
                     style={{ userSelect: 'none', background: color, color: '#fff' }}
                   >
                     {letter}

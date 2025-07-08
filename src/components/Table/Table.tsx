@@ -41,14 +41,14 @@ export function Table<T>({
   const { t } = useTranslation()
 
   return (
-    <div className={`bg-card border border-border rounded-md overflow-hidden ${className ?? ''}`}>
+    <div className={`overflow-hidden ${className ?? ''}`}>
       <UITable className="min-w-full">
         <TableHeader>
-          <TableRow className="bg-muted/40 sticky top-0 z-10 border-b border-border">
+          <TableRow className="sticky top-0 z-10 hover:bg-transparent dark:border-white/10">
             {columns.map((col, idx) => (
               <TableHead
                 key={idx}
-                className={`px-4 py-2 font-semibold text-xs text-foreground uppercase tracking-wider bg-muted/40 ${col.className ?? ''}`}
+                className={`px-4 py-2 font-semibold text-xs text-foreground uppercase tracking-wider ${col.className ?? ''}`}
                 style={col.accessor ? { cursor: 'pointer', userSelect: 'none' } : {}}
                 onClick={col.accessor && onSort ? () => onSort(col.accessor as string) : undefined}
               >
@@ -63,7 +63,7 @@ export function Table<T>({
               </TableHead>
             ))}
             {actions && (
-              <TableHead className="px-4 py-2 font-semibold text-xs text-foreground uppercase tracking-wider bg-muted/40">
+              <TableHead className="px-4 py-2 font-semibold text-xs text-foreground uppercase tracking-wider">
                 {t('table.table_column_actions')}
               </TableHead>
             )}
@@ -72,7 +72,7 @@ export function Table<T>({
         <TableBody>
           {isLoading ? (
             Array.from({ length: 5 }).map((_, i) => (
-              <TableRow key={i} className="border-b border-border">
+              <TableRow key={i}>
                 {columns.map((_col, idx) => (
                   <TableCell key={idx} className={`px-4 py-2`}>
                     <Skeleton className="h-4 w-full" />
@@ -96,7 +96,7 @@ export function Table<T>({
             </TableRow>
           ) : (
             data.map((row, i) => (
-              <TableRow key={i} className="hover:bg-muted/30 transition border-b border-border">
+              <TableRow key={i} className="transition hover:bg-transparent dark:border-white/10">
                 {columns.map((col, idx) => (
                   <TableCell
                     key={idx}

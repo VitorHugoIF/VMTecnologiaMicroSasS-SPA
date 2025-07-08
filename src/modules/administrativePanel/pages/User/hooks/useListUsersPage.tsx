@@ -46,7 +46,7 @@ export function useListUsersPage() {
         user.active ? (
           <Badge variant="default">{t('users.list.table.column_active_true')}</Badge>
         ) : (
-          <Badge variant="secondary">{t('users.list.table.column_active_false')}</Badge>
+          <Badge variant="default">{t('users.list.table.column_active_false')}</Badge>
         ),
     },
     {

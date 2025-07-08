@@ -41,7 +41,7 @@ export function useListPlansPage() {
         plan.active ? (
           <Badge variant="default">{t('plans.list.table.column_active_true')}</Badge>
         ) : (
-          <Badge variant="secondary">{t('plans.list.table.column_active_false')}</Badge>
+          <Badge variant="default">{t('plans.list.table.column_active_false')}</Badge>
         ),
     },
   ]

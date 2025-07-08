@@ -14,6 +14,7 @@ export type { TableColumn } from './Table'
 export * from './Textarea'
 export * from './Select'
 export { MultiSelect } from './MultiSelect'
+export * from './StatusBadge'
 
 //ShadCN
 export {

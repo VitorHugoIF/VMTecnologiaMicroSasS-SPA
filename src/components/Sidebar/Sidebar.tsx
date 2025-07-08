@@ -22,7 +22,7 @@ export function Sidebar() {
         <div className="fixed inset-0 z-40 bg-black/40" onClick={() => setOpen(false)} />
       )}
       <ShadcnSidebar
-        className={`z-50 h-screen border-r shadow-lg flex flex-col items-center justify-between py-0 transition-all duration-300
+        className={`z-50 h-screen border-none shadow-lg flex flex-col items-center justify-between py-0 transition-all duration-300
           ${
             isMobile
               ? `fixed top-0 left-0 w-64 ${open ? 'translate-x-0' : '-translate-x-full'}`

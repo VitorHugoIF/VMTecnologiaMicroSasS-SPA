@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { Card } from '@/components/Card'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListTenantsPage } from './hooks/useListTenantsPage'
 import { TableHeaderActions, ErrorAlert } from '../../../components'
@@ -8,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
+import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 export function ListTenantsPage() {
   const navigate = useNavigate()
@@ -41,8 +42,8 @@ export function ListTenantsPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <Card className="w-full">
+    <Card className='p-0 border-none shadow-lg overflow-hidden'>
+      <CardContent className="flex flex-col gap-3 px-0">
         <TableHeaderActions
           title={t('tenants.list.title')}
           search={search || ''}
@@ -51,8 +52,9 @@ export function ListTenantsPage() {
           addLabel={t('tenants.list.add')}
           searchPlaceholder={t('tenants.list.search.placeholder')}
         />
+        <Separator className='dark:bg-white/10'/>
         <TableComponent
-          className="rounded-none border-x-0"
+          className="px-6 pb-2"
           data={tenants}
           columns={columns}
           isLoading={isLoading}
@@ -78,7 +80,7 @@ export function ListTenantsPage() {
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
-      </Card>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
