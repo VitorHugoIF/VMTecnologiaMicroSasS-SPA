@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react'
 import {
-  Card as ShadcnCard,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
+  Card as ShadCard,
+  CardHeader as ShadCardHeader,
+  CardTitle as ShadCardTitle,
+  CardDescription as ShadCardDescription,
+  CardContent as ShadCardContent,
+  CardFooter as ShadCardFooter,
 } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 
 interface CardProps {
   title?: ReactNode
@@ -28,15 +29,15 @@ export function Card({
   style,
 }: CardProps) {
   return (
-    <ShadcnCard className={className} style={style}>
+    <ShadCard className={cn(`flex flex-col gap-3 px-0 flex-1 p-0 border-none shadow-lg overflow-hidden min-h-[100%]`, className)} style={style}>
       {(title || description) && (
-        <CardHeader>
-          {title && <CardTitle>{title}</CardTitle>}
-          {description && <CardDescription>{description}</CardDescription>}
-        </CardHeader>
+        <ShadCardHeader>
+          {title && <ShadCardTitle>{title}</ShadCardTitle>}
+          {description && <ShadCardDescription>{description}</ShadCardDescription>}
+        </ShadCardHeader>
       )}
-      <CardContent className={contentClassName}>{children}</CardContent>
-      {footer && <CardFooter>{footer}</CardFooter>}
-    </ShadcnCard>
+      <ShadCardContent className={cn('p-0',contentClassName)}>{children}</ShadCardContent>
+      {footer && <ShadCardFooter>{footer}</ShadCardFooter>}
+    </ShadCard>
   )
 }

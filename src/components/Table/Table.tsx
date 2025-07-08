@@ -48,7 +48,7 @@ export function Table<T>({
             {columns.map((col, idx) => (
               <TableHead
                 key={idx}
-                className={`px-4 py-2 font-semibold text-xs text-foreground uppercase tracking-wider ${col.className ?? ''}`}
+                className={`px-4 py-2 font-bold text-xs text-foreground uppercase tracking-wider ${col.className ?? ''}`}
                 style={col.accessor ? { cursor: 'pointer', userSelect: 'none' } : {}}
                 onClick={col.accessor && onSort ? () => onSort(col.accessor as string) : undefined}
               >
@@ -100,7 +100,7 @@ export function Table<T>({
                 {columns.map((col, idx) => (
                   <TableCell
                     key={idx}
-                    className={`px-4 py-2 text-foreground ${col.className ?? ''}`}
+                    className={`px-4 py-2 text-gray-600 dark:text-gray-400 ${col.className ?? ''}`}
                   >
                     {col.render
                       ? col.render(row)
@@ -109,7 +109,7 @@ export function Table<T>({
                         : null}
                   </TableCell>
                 ))}
-                {actions && <TableCell className="px-4 py-2">{actions(row)}</TableCell>}
+                {actions && <TableCell className="px-4 py-2 text-gray-600 dark:text-gray-400">{actions(row)}</TableCell>}
               </TableRow>
             ))
           )}

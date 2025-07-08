@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListUsersPage } from './hooks/useListUsersPage'
-import { TableHeaderActions } from '../../../components'
-import type { User } from '../../types'
+import { TableHeaderActions, ErrorAlert } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMINISTRATIVE_PANEL_ROUTES } from '@/routes/routeRoles'
+import { Card } from '@/components/Card'
+import { Separator } from '@/components/ui/separator'
 
 export function ListUsersPage() {
   const navigate = useNavigate()
@@ -14,50 +15,62 @@ export function ListUsersPage() {
     columns,
     paginatedUsers,
     page,
-    setPage,
     totalPages,
     order,
-    setOrder,
     sort,
-    setSort,
     search,
     setSearch,
+    setSort,
+    setOrder,
+    setPage,
   } = useListUsersPage()
 
+  const handleSearchChange = (newSearch: string) => setSearch(newSearch)
+  const handleSortChange = (newSort: string, newOrder: number) => {
+    setSort(newSort)
+    setOrder(newOrder)
+    setPage(1)
+  }
+  const handlePageChange = (newPage: number) => setPage(newPage)
+
   return (
-    <div className="flex flex-col gap-3">
+    <Card>
       <TableHeaderActions
         title={t('users.list.title')}
         search={search || ''}
-        setSearch={setSearch}
+        setSearch={handleSearchChange}
         onAdd={() => navigate(ADMINISTRATIVE_PANEL_ROUTES.users.add)}
         addLabel={t('users.list.add')}
         searchPlaceholder={t('users.list.search.placeholder')}
       />
+      <Separator className='dark:bg-white/10'/>
       <TableComponent
-        className="rounded-none border-x-0"
+        className="px-6 pb-2"
         data={paginatedUsers}
         columns={columns}
         isLoading={isLoading}
         actions={(user) => (
           <TableActions
             row={user}
-            onView={(u: User) => navigate(ADMINISTRATIVE_PANEL_ROUTES.users.view(u.id!))}
-            onEdit={(u: User) => navigate(ADMINISTRATIVE_PANEL_ROUTES.users.edit(u.id!))}
+            onView={(u) => navigate(ADMINISTRATIVE_PANEL_ROUTES.users.view(u.id!))}
+            onEdit={(u) => navigate(ADMINISTRATIVE_PANEL_ROUTES.users.edit(u.id!))}
           />
         )}
         sort={sort}
         order={order}
         onSort={(accessor) => {
           if (sort === accessor) {
-            setOrder(order === 1 ? 0 : 1)
+            handleSortChange(accessor, order === 1 ? 0 : 1)
           } else {
-            setSort(accessor)
-            setOrder(1)
+            handleSortChange(accessor, 1)
           }
         }}
       />
-      <TablePagination page={page} totalPages={totalPages} onPageChange={setPage} />
-    </div>
+      <TablePagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </Card>
   )
 } 

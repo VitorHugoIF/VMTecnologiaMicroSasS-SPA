@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListRolesPage } from './hooks/useListRolesPage'
-import { TableHeaderActions } from '../../../components'
-import type { Role } from '../../types'
+import { TableHeaderActions, ErrorAlert } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
+import { Card } from '@/components/Card'
+import { Separator } from '@/components/ui/separator'
 
 export function ListRolesPage() {
   const navigate = useNavigate()
@@ -14,50 +15,62 @@ export function ListRolesPage() {
     columns,
     paginatedRoles,
     page,
-    setPage,
     totalPages,
     order,
-    setOrder,
     sort,
-    setSort,
     search,
     setSearch,
+    setSort,
+    setOrder,
+    setPage,
   } = useListRolesPage()
 
+  const handleSearchChange = (newSearch: string) => setSearch(newSearch)
+  const handleSortChange = (newSort: string, newOrder: number) => {
+    setSort(newSort)
+    setOrder(newOrder)
+    setPage(1)
+  }
+  const handlePageChange = (newPage: number) => setPage(newPage)
+
   return (
-    <div className="flex flex-col gap-3">
+    <Card>
       <TableHeaderActions
         title={t('roles.list.title')}
         search={search || ''}
-        setSearch={setSearch}
+        setSearch={handleSearchChange}
         onAdd={() => navigate(ADMIN_ROUTES.roles.add)}
         addLabel={t('roles.list.add')}
         searchPlaceholder={t('roles.list.search.placeholder')}
       />
+      <Separator className='dark:bg-white/10'/>
       <TableComponent
-        className="rounded-none border-x-0"
+        className="px-6 pb-2"
         data={paginatedRoles}
         columns={columns}
         isLoading={isLoading}
         actions={(role) => (
           <TableActions
             row={role}
-            onView={(r: Role) => navigate(ADMIN_ROUTES.roles.view(r.id!))}
-            onEdit={(r: Role) => navigate(ADMIN_ROUTES.roles.edit(r.id!))}
+            onView={(r) => navigate(ADMIN_ROUTES.roles.view(r.id!))}
+            onEdit={(r) => navigate(ADMIN_ROUTES.roles.edit(r.id!))}
           />
         )}
         sort={sort}
         order={order}
         onSort={(accessor) => {
           if (sort === accessor) {
-            setOrder(order === 1 ? 0 : 1)
+            handleSortChange(accessor, order === 1 ? 0 : 1)
           } else {
-            setSort(accessor)
-            setOrder(1)
+            handleSortChange(accessor, 1)
           }
         }}
       />
-      <TablePagination page={page} totalPages={totalPages} onPageChange={setPage} />
-    </div>
+      <TablePagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </Card>
   )
 }

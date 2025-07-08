@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useLogin } from './useLogin'
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Usuário obrigatório'),
@@ -22,7 +23,12 @@ const loginSchema = z.object({
 
 export function LoginPage() {
   const { t } = useTranslation()
-  const [showPassword, setShowPassword] = React.useState(false)
+  const {
+    loadingLogin,
+    showPassword,
+    setShowPassword,
+    handleAuth0Login,
+  } = useLogin();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,7 +45,7 @@ export function LoginPage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
-      <div className="hidden md:flex order-1 h-screen w-full md:w-1/2 items-center justify-center bg-gradient-to-br from-primary to-accent"></div>
+      <div className="hidden md:flex order-1 h-screen w-full md:w-1/2 items-center justify-center bg-gradient-to-br from-secondary to-primary"></div>
       <div className="order-2 flex flex-col justify-center items-center w-full md:w-1/2 px-4 py-8 md:py-0 min-h-screen md:min-h-0">
         <div className="w-full max-w-md">
           <div className="flex justify-center mb-8">
@@ -61,7 +67,7 @@ export function LoginPage() {
                       <FormItem>
                         <FormLabel>{t('login.username')}</FormLabel>
                         <FormControl>
-                          <Input placeholder={t('login.username')} {...field} />
+                          <Input className='dark:border-white/10' placeholder={t('login.username')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -79,7 +85,7 @@ export function LoginPage() {
                               type={showPassword ? 'text' : 'password'}
                               placeholder={t('login.password')}
                               {...field}
-                              className="pr-10"
+                              className="pr-10 dark:border-white/10"
                             />
                             <button
                               type="button"
@@ -103,14 +109,14 @@ export function LoginPage() {
                 </form>
               </Form>
               <div className="mt-4">
-                {/* <Button
+                <Button
                   onClick={handleAuth0Login}
                   loading={loadingLogin}
-                  variant="secondary"
-                  className="w-full"
+                  variant="link"
+                  className="w-full" 
                 >
                   {t('login.auth0')}
-                </Button> */}
+                </Button>
               </div>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
 import { useListPlansPage } from './hooks/useListPlansPage'
-import { TableHeaderActions } from '../../../components'
-import type { Plan } from '../../types'
+import { TableHeaderActions, ErrorAlert } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
+import { Card } from '@/components/Card'
+import { Separator } from '@/components/ui/separator'
 
 export function ListPlansPage() {
   const navigate = useNavigate()
@@ -14,50 +15,62 @@ export function ListPlansPage() {
     columns,
     paginatedPlans,
     page,
-    setPage,
     totalPages,
     order,
-    setOrder,
     sort,
-    setSort,
     search,
     setSearch,
+    setSort,
+    setOrder,
+    setPage,
   } = useListPlansPage()
 
+  const handleSearchChange = (newSearch: string) => setSearch(newSearch)
+  const handleSortChange = (newSort: string, newOrder: number) => {
+    setSort(newSort)
+    setOrder(newOrder)
+    setPage(1)
+  }
+  const handlePageChange = (newPage: number) => setPage(newPage)
+
   return (
-    <div className="flex flex-col gap-3">
+    <Card>
       <TableHeaderActions
         title={t('plans.list.title')}
         search={search || ''}
-        setSearch={setSearch}
+        setSearch={handleSearchChange}
         onAdd={() => navigate(ADMIN_ROUTES.plans.add)}
         addLabel={t('plans.list.add')}
         searchPlaceholder={t('plans.list.search.placeholder')}
       />
+      <Separator className='dark:bg-white/10'/>
       <TableComponent
-        className="rounded-none border-x-0"
+        className="px-6 pb-2"
         data={paginatedPlans}
         columns={columns}
         isLoading={isLoading}
         actions={(plan) => (
           <TableActions
             row={plan}
-            onView={(p: Plan) => navigate(ADMIN_ROUTES.plans.view(p.id!))}
-            onEdit={(p: Plan) => navigate(ADMIN_ROUTES.plans.edit(p.id!))}
+            onView={(p) => navigate(ADMIN_ROUTES.plans.view(p.id!))}
+            onEdit={(p) => navigate(ADMIN_ROUTES.plans.edit(p.id!))}
           />
         )}
         sort={sort}
         order={order}
         onSort={(accessor) => {
           if (sort === accessor) {
-            setOrder(order === 1 ? 0 : 1)
+            handleSortChange(accessor, order === 1 ? 0 : 1)
           } else {
-            setSort(accessor)
-            setOrder(1)
+            handleSortChange(accessor, 1)
           }
         }}
       />
-      <TablePagination page={page} totalPages={totalPages} onPageChange={setPage} />
-    </div>
+      <TablePagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </Card>
   )
 }

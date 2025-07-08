@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card } from '@/components/Card'
 import { Separator } from '@/components/ui/separator'
 
 export function ListTenantsPage() {
@@ -42,45 +42,43 @@ export function ListTenantsPage() {
   }
 
   return (
-    <Card className='p-0 border-none shadow-lg overflow-hidden'>
-      <CardContent className="flex flex-col gap-3 px-0">
-        <TableHeaderActions
-          title={t('tenants.list.title')}
-          search={search || ''}
-          setSearch={handleSearchChange}
-          onAdd={() => navigate(ADMIN_ROUTES.tenant.add)}
-          addLabel={t('tenants.list.add')}
-          searchPlaceholder={t('tenants.list.search.placeholder')}
-        />
-        <Separator className='dark:bg-white/10'/>
-        <TableComponent
-          className="px-6 pb-2"
-          data={tenants}
-          columns={columns}
-          isLoading={isLoading}
-          actions={(tenant) => (
-            <TableActions
-              row={tenant}
-              onView={(t) => navigate(ADMIN_ROUTES.tenant.view(t.id))}
-              onEdit={(t) => navigate(ADMIN_ROUTES.tenant.edit(t.id))}
-            />
-          )}
-          sort={sort}
-          order={order}
-          onSort={(accessor) => {
-            if (sort === accessor) {
-              handleSortChange(accessor, order === 1 ? 0 : 1)
-            } else {
-              handleSortChange(accessor, 1)
-            }
-          }}
-        />
-        <TablePagination
-          page={page}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </CardContent>
+    <Card>
+      <TableHeaderActions
+        title={t('tenants.list.title')}
+        search={search || ''}
+        setSearch={handleSearchChange}
+        onAdd={() => navigate(ADMIN_ROUTES.tenant.add)}
+        addLabel={t('tenants.list.add')}
+        searchPlaceholder={t('tenants.list.search.placeholder')}
+      />
+      <Separator className='dark:bg-white/10'/>
+      <TableComponent
+        className="px-6 pb-2"
+        data={tenants}
+        columns={columns}
+        isLoading={isLoading}
+        actions={(tenant) => (
+          <TableActions
+            row={tenant}
+            onView={(t) => navigate(ADMIN_ROUTES.tenant.view(t.id))}
+            onEdit={(t) => navigate(ADMIN_ROUTES.tenant.edit(t.id))}
+          />
+        )}
+        sort={sort}
+        order={order}
+        onSort={(accessor) => {
+          if (sort === accessor) {
+            handleSortChange(accessor, order === 1 ? 0 : 1)
+          } else {
+            handleSortChange(accessor, 1)
+          }
+        }}
+      />
+      <TablePagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </Card>
   )
 }

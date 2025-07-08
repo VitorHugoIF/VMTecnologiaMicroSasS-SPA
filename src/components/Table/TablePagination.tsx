@@ -41,8 +41,8 @@ export function TablePagination({ page, totalPages, onPageChange }: TablePaginat
   }
 
   return (
-    <div className="w-full px-0 py-2 pt-4 flex">
-      <Pagination className="w-full flex justify-center items-center bg-card  rounded-b-md">
+    <div className="w-full flex mt-auto justify-center pb-4 pt-2">
+      <Pagination className="w-full flex justify-center items-center bg-card rounded-b-md">
         <PaginationContent className="w-full flex justify-between items-center px-4">
           <PaginationItem>
             <PaginationPrevious
