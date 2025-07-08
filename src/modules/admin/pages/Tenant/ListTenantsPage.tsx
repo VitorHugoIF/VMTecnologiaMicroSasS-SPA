@@ -8,6 +8,7 @@ import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { Card } from '@/components/Card'
+import { ListTenantSkeleton } from './components/ListTenantSkeleton'
 
 export function ListTenantsPage() {
   const navigate = useNavigate()
@@ -54,6 +55,7 @@ export function ListTenantsPage() {
         data={tenants}
         columns={columns}
         isLoading={isLoading}
+        loadingComponent={<ListTenantSkeleton />}
         actions={(tenant) => (
           <TableActions
             row={tenant}

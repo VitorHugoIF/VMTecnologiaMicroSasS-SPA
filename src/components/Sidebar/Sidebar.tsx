@@ -41,11 +41,7 @@ export function Sidebar() {
             mb-2 gap-2 
             border-none ${open ? 'px-4' : 'p-0'}`}
         >
-          <img
-            src={logo}
-            alt="Logo"
-            className={`h-10 w-auto max-w-[80%] object-contain ${open ? 'self-start' : ''}`}
-          />
+
         </SidebarHeader>
         <SidebarContent className="flex flex-col gap-2 flex-1 w-full px-0 py-0 overflow-y-auto">
           {sidebarMenuConfig.map((group) => (

@@ -5,6 +5,7 @@ import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
+import { ListPlanSkeleton } from './components/ListPlanSkeleton'
 
 export function ListPlansPage() {
   const navigate = useNavigate()
@@ -47,6 +48,7 @@ export function ListPlansPage() {
         data={paginatedPlans}
         columns={columns}
         isLoading={isLoading}
+        loadingComponent={<ListPlanSkeleton />}
         actions={(plan) => (
           <TableActions
             row={plan}

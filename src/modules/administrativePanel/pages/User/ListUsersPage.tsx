@@ -8,6 +8,7 @@ import { Card } from '@/components/Card'
 import { ErrorAlert } from '../../../components'
 import { ApiError } from '@/core/models/errorResponse'
 import { formatErrors } from '@/lib/utils'
+import { ListUserSkeleton } from './components/ListUserSkeleton'
 
 export function ListUsersPage() {
   const navigate = useNavigate()
@@ -61,6 +62,7 @@ export function ListUsersPage() {
         data={paginatedUsers}
         columns={columns}
         isLoading={isLoading}
+        loadingComponent={<ListUserSkeleton />}
         actions={(user) => (
           <TableActions
             row={user}

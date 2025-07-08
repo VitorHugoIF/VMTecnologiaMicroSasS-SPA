@@ -5,6 +5,7 @@ import { TableHeaderActions } from '../../../components'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { Card } from '@/components/Card'
+import { ListRoleSkeleton } from './components/ListRoleSkeleton'
 
 export function ListRolesPage() {
   const navigate = useNavigate()
@@ -47,6 +48,7 @@ export function ListRolesPage() {
         data={paginatedRoles}
         columns={columns}
         isLoading={isLoading}
+        loadingComponent={<ListRoleSkeleton />}
         actions={(role) => (
           <TableActions
             row={role}

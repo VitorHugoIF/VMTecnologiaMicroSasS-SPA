@@ -26,6 +26,7 @@ interface TableProps<T> {
   sort?: string
   order?: number
   onSort?: (accessor: string) => void
+  loadingComponent?: React.ReactNode
 }
 
 export function Table<T>({
@@ -37,6 +38,7 @@ export function Table<T>({
   sort,
   order,
   onSort,
+  loadingComponent,
 }: TableProps<T>) {
   const { t } = useTranslation()
 
@@ -71,20 +73,22 @@ export function Table<T>({
         </TableHeader>
         <TableBody>
           {isLoading ? (
-            Array.from({ length: 5 }).map((_, i) => (
-              <TableRow key={i}>
-                {columns.map((_col, idx) => (
-                  <TableCell key={idx} className={`px-4 py-2`}>
-                    <Skeleton className="h-4 w-full" />
-                  </TableCell>
-                ))}
-                {actions && (
-                  <TableCell className="px-4 py-2">
-                    <Skeleton className="h-4 w-8 mx-auto" />
-                  </TableCell>
-                )}
-              </TableRow>
-            ))
+            loadingComponent ?? (
+              Array.from({ length: 5 }).map((_, i) => (
+                <TableRow key={i}>
+                  {columns.map((_col, idx) => (
+                    <TableCell key={idx} className={`px-4 py-2`}>
+                      <Skeleton className="h-4 w-full" />
+                    </TableCell>
+                  ))}
+                  {actions && (
+                    <TableCell className="px-4 py-2">
+                      <Skeleton className="h-4 w-8 mx-auto" />
+                    </TableCell>
+                  )}
+                </TableRow>
+              ))
+            )
           ) : data.length === 0 ? (
             <TableRow>
               <TableCell
