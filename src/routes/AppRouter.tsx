@@ -7,6 +7,7 @@ import {
   FORBIDDEN_ROUTE,
   MAIN_ROUTE,
   MAIN_ROUTE_AUTH0,
+  NOT_FOUND_ROUTE,
   PREFIX_ROUTE,
   VERIFIEDEMAIL_ROUTE,
 } from './routeRoles'
@@ -36,9 +37,9 @@ const AdminModule = lazy(() => import('@/modules').then((m) => ({ default: m.Adm
 const AdministrativePanelModule = lazy(() =>
   import('@/modules').then((m) => ({ default: m.AdministrativePanelModule })),
 )
+const GlobalModule = lazy(() => import('@/modules').then((m) => ({ default: m.GlobalModule })))
 
 export function AppRouter() {
-  const { user } = useAuth()
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -49,10 +50,10 @@ export function AppRouter() {
             <Route path={FORBIDDEN_ROUTE} element={<Forbidden />} />
             <Route path={ERROR_ROUTE} element={<InternalServerError />} />
             <Route path={VERIFIEDEMAIL_ROUTE} element={<VerifiedEmail />} />
+            <Route path={NOT_FOUND_ROUTE} element={<NotFound />} />
           </Route>
           <Route path={PREFIX_ROUTE + '/'} element={<AuthenticatedRoutes />}>
-            <Route index element={<Navigate to={getMainUrlRoute(user)} replace />} />
-
+            <Route path="global/*" element={<GlobalModule />} />
             <Route
               path="admin/*"
               element={
@@ -66,7 +67,7 @@ export function AppRouter() {
             <Route
               path="administrative-panel/*"
               element={
-                <RoleGuard requiredRoles={[Roles.SuperAdmin]}>
+                <RoleGuard requiredRoles={[Roles.SuperAdmin, Roles.Admin]}>
                   <Suspense fallback={<ProgressBar />}>
                     <AdministrativePanelModule />
                   </Suspense>
@@ -74,7 +75,7 @@ export function AppRouter() {
               }
             />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to={NOT_FOUND_ROUTE} />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -87,29 +87,29 @@ export const tenantHandlers = [
     return HttpResponse.json(response)
   }),
   http.post(base, async ({ request }) => {
-    const body = (await request.json()) as Omit<TenantResponse, 'id'>
+    const body = (await request.json()) as Partial<Omit<TenantResponse, 'id'>>
     const response: TenantResponse = {
       id: '999',
-      ...body,
+      name: body.name ?? 'Tenant 999',
       slug: body.slug ?? 'tenant-999',
       email: body.email ?? 'tenant999@email.com',
       planId: body.planId ?? '1',
       status: body.status ?? 'active',
-      name: body.name ?? 'Tenant 999',
+      plan: body.plan,
     }
     return HttpResponse.json<TenantResponse>(response, { status: 201 })
   }),
   http.put(`${base}/:id`, async ({ params, request }) => {
     const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
-    const body = (await request.json()) as Omit<TenantResponse, 'id'>
+    const body = (await request.json()) as Partial<Omit<TenantResponse, 'id'>>
     const response: TenantResponse = {
       id,
-      ...body,
+      name: body.name ?? `Tenant ${id}`,
       slug: body.slug ?? `tenant-${id}`,
       email: body.email ?? `tenant${id}@email.com`,
       planId: body.planId ?? '1',
       status: body.status ?? 'active',
-      name: body.name ?? `Tenant ${id}`,
+      plan: body.plan,
     }
     return HttpResponse.json<TenantResponse>(response)
   }),

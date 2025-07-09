@@ -1,34 +1,9 @@
 {
-  "auth": {
-    "logout": "Sair"
-  },
-  "settings": {
-    "change_language": "Alterar idioma",
-    "toggle_theme": "Alternar tema"
-  },
-  "languages": {
-    "portuguese_brazil": "Português (Brasil)",
-    "english_us": "Inglês (EUA)"
-  },
-  "user": {
-    "label": "Usuário"
-  },
-  "dashboard": {
-    "title": "Dashboard"
-  },
-  "tenant": {
-    "label": "Inquilino"
-  },
-  "role": {
-    "label": "Papel"
-  },
-  "plan": {
-    "label": "Plano"
-  },
-  "welcome_back": "Bem-vindo de volta!",
-  "access_denied": "Acesso negado",
-  "oops_this_page_not_found": "Ops, página não encontrada!",
   "sidebar": {
+    "global": {
+      "title": "Geral",
+      "home": "Início"
+    },
     "admin": {
       "title": "Administração",
       "dashboard": "Dashboard",

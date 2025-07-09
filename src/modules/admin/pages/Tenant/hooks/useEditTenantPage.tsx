@@ -65,7 +65,7 @@ export function useEditTenantPage() {
         form.setValue('status', tenant?.status ?? '1')
       }, 100)
     }
-  }, [isLoadingPlans, isLoadingTenant, tenant])
+  }, [isLoadingPlans, isLoadingTenant, tenant, form])
 
   const onSubmit = async (data: UpdateTenantFormData) => {
     if (!id) return

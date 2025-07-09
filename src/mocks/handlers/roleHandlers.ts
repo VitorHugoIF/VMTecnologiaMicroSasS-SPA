@@ -56,13 +56,13 @@ export const roleHandlers = [
     return HttpResponse.json(response)
   }),
   http.post(base, async ({ request }) => {
-    const body = (await request.json()) as Omit<RoleResponse, 'id'>
+    const body = (await request.json()) as Partial<Omit<RoleResponse, 'id'>>
     const response: RoleResponse = { id: '999', ...body }
     return HttpResponse.json<RoleResponse>(response, { status: 201 })
   }),
   http.put(`${base}/:id`, async ({ params, request }) => {
     const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
-    const body = (await request.json()) as Omit<RoleResponse, 'id'>
+    const body = (await request.json()) as Partial<Omit<RoleResponse, 'id'>>
     const response: RoleResponse = { id, ...body }
     return HttpResponse.json<RoleResponse>(response)
   }),

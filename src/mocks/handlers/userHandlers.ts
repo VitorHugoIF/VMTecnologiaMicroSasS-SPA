@@ -52,28 +52,28 @@ export const userHandlers = [
     return HttpResponse.json(response)
   }),
   http.post(base, async ({ request }) => {
-    const body = (await request.json()) as { name: string; password: string; roles: string[] }
+    const body = (await request.json()) as { name?: string; password?: string; roles?: string[] }
     const response = {
       data: {
         id: '999',
         name: body.name,
         active: true,
         createdAt: new Date().toISOString(),
-        roles: mockRoles.filter((r) => body.roles.includes(r.id!)),
+        roles: mockRoles.filter((r) => body.roles?.includes(r.id!)),
       },
     }
     return HttpResponse.json(response, { status: 201 })
   }),
   http.put(`${base}/:id`, async ({ params, request }) => {
     const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? '')
-    const body = (await request.json()) as { name: string; password: string; roles: string[] }
+    const body = (await request.json()) as { name?: string; password?: string; roles?: string[] }
     const response = {
       data: {
         id,
         name: body.name,
         active: true,
         createdAt: new Date().toISOString(),
-        roles: mockRoles.filter((r) => body.roles.includes(r.id!)),
+        roles: mockRoles.filter((r) => body.roles?.includes(r.id!)),
       },
     }
     return HttpResponse.json(response)

@@ -1,8 +1,8 @@
 export const PREFIX_ROUTE = '/app'
 
-export const MAIN_ROUTE_AUTH0 = PREFIX_ROUTE + '/admin/tenant'
+export const MAIN_ROUTE_AUTH0 = PREFIX_ROUTE + '/global'
 
-export const MAIN_ROUTE = PREFIX_ROUTE + '/sale/dashboard'
+export const MAIN_ROUTE = PREFIX_ROUTE + '/global'
 
 export const NOT_FOUND_ROUTE = PREFIX_ROUTE + '/notfound'
 

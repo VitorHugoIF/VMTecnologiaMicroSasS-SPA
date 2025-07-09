@@ -1,5 +1,5 @@
 import { PREFIX_ROUTE } from '@/routes/routeRoles'
-import { Building2, Shield, CreditCard, Users } from 'lucide-react'
+import { Building2, Shield, CreditCard, Users, Home } from 'lucide-react'
 import type { ElementType } from 'react'
 
 export interface SidebarMenuItemConfig {
@@ -16,6 +16,13 @@ export interface SidebarMenuGroupConfig {
 }
 
 export const sidebarMenuConfig: SidebarMenuGroupConfig[] = [
+  {
+    label: 'sidebar.global.title',
+    colapsable: true,
+    items: [
+      { label: 'sidebar.global.home', href: PREFIX_ROUTE + '/global', icon: Home },
+    ],
+  },
   {
     label: 'sidebar.admin.title',
     colapsable: true,
