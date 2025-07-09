@@ -22,7 +22,7 @@ const loginSchema = z.object({
 
 export function LoginPage() {
   const { t } = useTranslation()
-  const { loadingLogin, showPassword, setShowPassword, handleAuth0Login } = useLogin()
+  const { loadingLogin, showPassword, setShowPassword, handleAuth0Login, handleLocalLogin } = useLogin()
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -31,10 +31,8 @@ export function LoginPage() {
     },
   })
 
-  function onSubmit(/* values: z.infer<typeof loginSchema> */) {
-    // Aqui você pode chamar sua função de login, ex: handleLocalLogin(values)
-    // Se precisar de loading, adicione um estado local
-    // handleLocalLogin(values.username, values.password)
+  function onSubmit(values: z.infer<typeof loginSchema> ) {
+    handleLocalLogin(values)
   }
 
   return (

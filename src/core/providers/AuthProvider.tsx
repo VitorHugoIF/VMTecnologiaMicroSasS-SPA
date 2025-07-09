@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     syncAuth0User()
-  }, [isAuth0Loading, isAuth0Authenticated, auth0User, getAccessTokenSilently, user])
+  }, [isAuth0Loading, isAuth0Authenticated, auth0User, getAccessTokenSilently])
 
   const login = useCallback((user: AuthUser) => {
     setLoading(true)
