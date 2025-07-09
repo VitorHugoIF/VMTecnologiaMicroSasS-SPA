@@ -6,6 +6,19 @@ import { AuthContext, type AuthUser } from '../contexts/AuthContext'
 import { CustomClaims } from '../auth/Roles'
 import { jwtDecode } from 'jwt-decode'
 
+function extractRolesFromToken(token?: string): string[] {
+  try {
+    const decoded = jwtDecode(token ?? '') as Record<string, unknown>
+    const rawRoles = decoded[CustomClaims.Roles]
+    if (Array.isArray(rawRoles)) {
+      return rawRoles as string[]
+    } else if (typeof rawRoles === 'string') {
+      return [rawRoles]
+    }
+  } catch {}
+  return []
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const {
     isAuthenticated: isAuth0Authenticated,
@@ -21,8 +34,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setLoading] = useState(false)
 
   const handleSaveUser = (user: AuthUser) => {
-    localStorage.setItem(KeyStorageConfig.user, JSON.stringify(user))
-    setUser(user)
+    const roles = extractRolesFromToken(user.accessToken)
+    localStorage.setItem(KeyStorageConfig.user, JSON.stringify({ ...user, roles }))
+    setUser({ ...user, roles })
   }
 
   const handleRemoveUser = () => {
@@ -43,13 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (!isAuth0Loading && isAuth0Authenticated && auth0User && user == null) {
         const accessToken = await getAccessTokenSilently()
-        let roles: string[] = []
-        try {
-          const decoded = jwtDecode(accessToken) as Record<string, unknown>
-          roles = (decoded[CustomClaims.Roles] as string[]) || []
-        } catch {
-          roles = []
-        }
+        const roles = extractRolesFromToken(accessToken)
         handleSaveUser({
           method: 'idp',
           email: auth0User.email,
