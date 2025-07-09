@@ -1,8 +1,12 @@
 import { Button, Link } from '@/components'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '@/core'
+import { useEffect } from 'react'
 
 export function Forbidden() {
   const { t } = useTranslation()
+  const { logout } = useAuth()
+  useEffect(() => { logout && logout() }, [logout])
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-background text-center px-4">
       <h1 className="text-7xl font-bold mb-4">{t('forbidden.title')}</h1>
