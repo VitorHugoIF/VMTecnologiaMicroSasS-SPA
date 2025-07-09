@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Input, Button, MultiSelect } from '@/components'
 import { ErrorAlert } from '../../../components'
-import { useEditUserPage } from './hooks/useEditUserPage'
+import { useEditUserPage } from './hooks'
 import { EditUserSkeleton } from './components/EditUserSkeleton'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
 
 export function EditUserPage() {
   const { t } = useTranslation()

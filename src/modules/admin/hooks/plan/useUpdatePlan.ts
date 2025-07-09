@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { PlanHttpService } from '../../../services/http'
+import { PlanHttpService } from '@/modules/services/http'
 import type { UpdatePlanRequest } from '../../models'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'
@@ -8,8 +8,7 @@ export function useUpdatePlan() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdatePlanRequest }) =>
-      PlanHttpService.updatePlan(id, data),
+    mutationFn: (data: UpdatePlanRequest) => PlanHttpService.updatePlan(data.id, data),
     onSuccess: () => {
       queryClient.invalidateQueries()
     },

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { UserHttpService } from '../../../services/http'
+import { UserHttpService } from '@/modules/services/http'
 
 export function useEnableDisableUser() {
   const queryClient = useQueryClient()

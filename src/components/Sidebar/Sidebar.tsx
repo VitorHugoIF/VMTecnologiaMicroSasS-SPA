@@ -4,12 +4,11 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from '@/components/ui/sidebar'
-import { SidebarGroupSection } from './SidebarGroupSection'
+import { SidebarGroupSection } from '@/components/Sidebar/SidebarGroupSection'
 import { sidebarMenuConfig } from './sidebarMenuConfig'
 import { SidebarMenuTree } from './SidebarMenuTree'
 import { SidebarUserFooter } from './SidebarUserFooter'
 import { useSidebarLogic } from './hooks/useSidebar'
-import logo from '@/assets/react.svg'
 import { useAuth } from '@/core/hooks/useAuth'
 
 export function Sidebar() {

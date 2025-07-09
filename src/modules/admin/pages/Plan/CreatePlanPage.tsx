@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@/components/Button'
+import { Button, Input, Textarea, Card } from '@/components'
 import { Check, X } from 'lucide-react'
 import {
   Form,
@@ -9,15 +9,12 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/Input'
-import { Textarea } from '@/components/Textarea'
-import { useCreatePlanPage } from './hooks/useCreatePlanPage'
+import { useCreatePlanPage } from './hooks'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
-import { Card } from '@/components/Card'
 
 export function CreatePlanPage() {
   const navigate = useNavigate()

@@ -6,10 +6,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { LoadingSpinner } from './LoadingSpinner'
+import { LoadingSpinner, Label } from '@/components'
 import { useTranslation } from 'react-i18next'
 import React from 'react'
-import { Label } from './Label'
 import { cn } from '@/lib/utils'
 
 interface SelectOption {
@@ -96,7 +95,12 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           <SelectContent>
             <SelectGroup>
               {options.map((option) => (
-                <SelectItem key={option.value} value={option.value} disabled={option.disabled}>
+                <SelectItem 
+                  key={option.value} 
+                  value={option.value} 
+                  disabled={option.disabled}
+                  className="hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground"
+                >
                   {option.label}
                 </SelectItem>
               ))}

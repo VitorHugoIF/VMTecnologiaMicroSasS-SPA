@@ -5,6 +5,7 @@ import {
   enableUser,
   disableUser,
   updateUser,
+  getActiveRoles
 } from './userHttpService'
 
 import {
@@ -24,7 +25,6 @@ import {
   enableRole,
   disableRole,
   updateRole,
-  getActiveRoles,
 } from './roleHttpService'
 
 import {
@@ -44,6 +44,7 @@ export const UserHttpService = {
   enableUser,
   disableUser,
   updateUser,
+  getActiveRoles,
 }
 
 export const TenantHttpService = {
@@ -58,7 +59,6 @@ export const TenantHttpService = {
 
 export const RoleHttpService = {
   getRoles,
-  getActiveRoles,
   getRole,
   createRole,
   enableRole,

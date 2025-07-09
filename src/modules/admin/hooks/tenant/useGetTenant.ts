@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { TenantHttpService } from '../../../services/http'
+import { TenantHttpService } from '@/modules/services/http'
 import { mapTenantResponseToTenant } from '../../mappers/tenantMappers'
 import { QueryTimeConfig } from '@/config/queryTimeConfig'
 

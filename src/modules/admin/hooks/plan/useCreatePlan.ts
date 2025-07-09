@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { PlanHttpService } from '../../../services/http'
+import { PlanHttpService } from '@/modules/services/http'
 import type { CreatePlanRequest } from '../../models'
 import { ApiError } from '@/core/models/errorResponse'
 import { Toast } from '@/components'

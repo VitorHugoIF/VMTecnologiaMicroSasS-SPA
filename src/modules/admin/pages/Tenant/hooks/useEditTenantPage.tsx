@@ -8,10 +8,6 @@ import { useGetTenant, useUpdateTenant } from '../../../hooks/tenant'
 import { useGetActivePlans } from '../../../hooks/plan/useGetActivePlans'
 import { TenantStatusLabels } from '@/modules/admin/types/tenant/tenantStatus'
 
-function getStatusCodeFromLabel(label: string) {
-  return Object.entries(TenantStatusLabels).find(([, v]) => v === label)?.[0] ?? ''
-}
-
 export function useEditTenantPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -57,7 +53,7 @@ export function useEditTenantPage() {
         slug: tenant.slug,
         email: tenant.email,
         planId: tenant.planId,
-        status: getStatusCodeFromLabel(tenant.status),
+        status: tenant.status,
       })
     }
   }, [tenant, form])
@@ -66,7 +62,7 @@ export function useEditTenantPage() {
     if (!isLoadingPlans && !isLoadingTenant) {
       setTimeout(() => {
         form.setValue('planId', tenant?.planId ?? '')
-        form.setValue('status', getStatusCodeFromLabel(tenant?.status ?? ''))
+        form.setValue('status', tenant?.status ?? '1')
       }, 100)
     }
   }, [isLoadingPlans, isLoadingTenant, tenant])
@@ -75,7 +71,7 @@ export function useEditTenantPage() {
     if (!id) return
 
     try {
-      await updateTenantMutation.mutateAsync({ id, request: data })
+      await updateTenantMutation.mutateAsync({ id, ...data })
       navigate('/app/admin/tenant')
     } catch (error) {
       console.error('Error updating tenant:', error)

@@ -1,9 +1,7 @@
 import { http } from '@/services/http'
-import type { PlanResponse } from '../../admin/models'
+import type { PlanResponse, CreatePlanRequest, UpdatePlanRequest } from '../../admin/models'
 import type { ApiResponse } from '@/core/models/apiResponse'
 import type { PagedResponse } from '@/core/models/pagedResponse'
-import type { CreatePlanRequest } from '../../admin/models/request/createPlanRequest'
-import type { UpdatePlanRequest } from '../../admin/models/request/updatePlanRequest'
 
 const prefix = 'api/admin/plan'
 

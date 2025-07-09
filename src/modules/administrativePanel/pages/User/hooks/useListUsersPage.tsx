@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useGetUsers } from '../../../hooks'
+import { useGetActiveRoles, useGetUsers } from '../../../hooks'
 import { mapUserListResponseToUser } from '../../../mappers'
 import type { User } from '../../../types'
-import { StatusBadge } from '@/components/StatusBadge'
+import { StatusBadge } from '@/components'
 import { useTranslation } from 'react-i18next'
 import type { TableColumn } from '@/components/Table'
-import { useGetActiveRoles } from '../../../hooks/role/useGetActiveRoles'
+import type { RoleResponse } from '../../../models/response/userResponse'
 import { Badge } from '@/components/ui/badge'
 
 export function useListUsersPage() {
@@ -30,7 +30,7 @@ export function useListUsersPage() {
     const mapped = mapUserListResponseToUser(user)
     if (mapped.roles && rolesData) {
       mapped.roles = mapped.roles.map((role) => {
-        const found = rolesData.find((r) => r.id === role.id)
+        const found = rolesData.find((r: RoleResponse) => r.id === role.id)
         return found ? { ...role, name: found.name } : role
       })
     }
@@ -58,7 +58,7 @@ export function useListUsersPage() {
           <div className="flex flex-wrap gap-1">
             {user.roles.map((role: { id?: string; name?: string }, index: number) => (
               <Badge key={index} variant="outline">
-                {rolesData?.find((r) => r.id === role.id)?.name || role.id}
+                {rolesData?.find((r: RoleResponse) => r.id === role.id)?.name || role.id}
               </Badge>
             ))}
           </div>

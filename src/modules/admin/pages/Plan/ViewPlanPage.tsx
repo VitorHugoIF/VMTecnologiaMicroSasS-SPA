@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
-import { useViewPlanPage } from './hooks/useViewPlanPage.tsx'
+import { useViewPlanPage } from './hooks'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ViewPlanSkeleton } from './components/ViewPlanSkeleton'
@@ -14,7 +14,7 @@ export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable, error } =
+  const { plan, isLoading, isEnabling, isDisabling, handleEnable, handleDisable, error, isDeleting } =
     useViewPlanPage(id!)
 
   if (error) {
@@ -94,7 +94,7 @@ export function ViewPlanPage() {
             className="ml-auto"
             variant="destructive"
             onClick={() => handleDisable(plan.id!)}
-            loading={isDisabling}
+            loading={isDisabling || isDeleting}
             icon={<Trash2 className="w-4 h-4" />}
           >
             {t('plans.view.disable')}
@@ -104,7 +104,7 @@ export function ViewPlanPage() {
             className="ml-auto"
             variant="default"
             onClick={() => handleEnable(plan.id!)}
-            loading={isEnabling}
+            loading={isEnabling || isDeleting}
             icon={<Check className="w-4 h-4" />}
           >
             {t('plans.view.enable')}

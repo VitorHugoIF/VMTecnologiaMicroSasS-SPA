@@ -1,8 +1,7 @@
 import { http } from '@/services/http'
 import type { ApiResponse } from '@/core/models/apiResponse'
 import type { PagedResponse } from '@/core/models/pagedResponse'
-import type { CreateTenantRequest, UpdateTenantRequest } from '../../admin/models'
-import type { TenantResponse } from '../../admin/models/response/tenantResponse'
+import type { CreateTenantRequest, UpdateTenantRequest, TenantResponse } from '../../admin/models'
 
 const prefix = 'api/admin/tenant'
 

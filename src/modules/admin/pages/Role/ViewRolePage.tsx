@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Button, ConfirmDialog, Separator } from '@/components'
-import { useViewRolePage } from './hooks/useViewRolePage'
+import { useViewRolePage } from './hooks'
 import { ErrorAlert } from '../../../components'
 import { StatusBadge } from '@/components/StatusBadge'
 import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
 import { ViewRoleSkeleton } from './components/ViewRoleSkeleton'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
 
 export function ViewRolePage() {
   const { t } = useTranslation()

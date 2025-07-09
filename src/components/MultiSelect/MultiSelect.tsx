@@ -2,10 +2,8 @@ import * as React from 'react'
 import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { Command, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Button } from '../Button'
-import { Label } from '../Label'
+import { Button, Label, LoadingSpinner } from '@/components'
 import { cn } from '@/lib/utils'
-import { LoadingSpinner } from '../LoadingSpinner'
 import './MultiSelect.css'
 
 export interface MultiSelectOption<T = string> {
@@ -100,17 +98,24 @@ export function MultiSelect<T = string>({
                     className="flex items-center gap-1 bg-primary text-primary-foreground rounded-full px-1.5 py-1 text-xs font-medium transition-colors"
                   >
                     {opt.label}
-                    <button
-                      type="button"
-                      className="ml-1 hover:text-destructive"
+                    <span
+                      role="button"
+                      aria-label="Remover"
+                      className="ml-1 hover:text-destructive cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation()
                         handleRemove(opt)
                       }}
-                      tabIndex={-1}
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.stopPropagation()
+                          handleRemove(opt)
+                        }
+                      }}
                     >
                       <X className="w-3 h-3" />
-                    </button>
+                    </span>
                   </span>
                 ))
               ) : (

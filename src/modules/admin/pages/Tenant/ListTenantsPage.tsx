@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { Table as TableComponent, TableActions, TablePagination } from '@/components'
-import { useListTenantsPage } from './hooks/useListTenantsPage'
+import { useListTenantsPage } from './hooks'
 import { TableHeaderActions, ErrorAlert } from '../../../components'
 import { useTenantTableColumns } from '../../types/tenant/tenantTableColumn'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
 import { ListTenantSkeleton } from './components/ListTenantSkeleton'
 
 export function ListTenantsPage() {

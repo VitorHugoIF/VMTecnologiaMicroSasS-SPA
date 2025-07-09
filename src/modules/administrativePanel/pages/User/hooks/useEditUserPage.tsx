@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useUpdateUser, useGetUser } from '../../../hooks'
-import { useGetActiveRoles } from '../../../hooks/role/useGetActiveRoles'
+import { useGetActiveRoles } from '../../../hooks/user/useGetActiveRoles'
 import { ADMINISTRATIVE_PANEL_ROUTES } from '@/routes/routeRoles'
 import { mapUserResponseToUser } from '../../../mappers/userMappers'
 
@@ -60,7 +60,8 @@ export function useEditUserPage() {
     try {
       await mutateAsync({
         id: id!,
-        data: { ...formData, roles: formData.roles.map((r) => r.value) },
+        ...formData,
+        roles: formData.roles.map((r) => r.value),
       })
       navigate(ADMINISTRATIVE_PANEL_ROUTES.users.list)
     } catch (err: unknown) {

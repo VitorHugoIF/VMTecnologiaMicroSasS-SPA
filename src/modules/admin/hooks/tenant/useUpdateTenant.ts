@@ -1,15 +1,24 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { TenantHttpService } from '../../../services/http'
+import { TenantHttpService } from '@/modules/services/http'
 import type { UpdateTenantRequest } from '../../models'
+import { ApiError } from '@/core/models/errorResponse'
+import { Toast } from '@/components'
 
 export function useUpdateTenant() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ id, request }: { id: string; request: UpdateTenantRequest }) =>
-      TenantHttpService.updateTenant(id, request),
+    mutationFn: (data: UpdateTenantRequest) => TenantHttpService.updateTenant(data.id, data),
     onSuccess: () => {
       queryClient.invalidateQueries()
+    },
+    onError: (error) => {
+      if (error instanceof ApiError && error.response.status >= 500) {
+        Toast.error(
+          { title: 'Oops!', description: error.response.message },
+          { id: 'update-tenant-error' },
+        )
+      }
     },
   })
 }

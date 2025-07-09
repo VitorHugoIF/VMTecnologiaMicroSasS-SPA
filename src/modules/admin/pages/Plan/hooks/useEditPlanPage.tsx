@@ -38,7 +38,7 @@ export function useEditPlanPage(id: string) {
 
   const onSubmit = async (formData: FormSchema) => {
     try {
-      await mutateAsync({ id, data: { ...formData, id } })
+      await mutateAsync({ ...formData, id })
       navigate(ADMIN_ROUTES.plans.list)
     } catch (err: unknown) {
       console.error(err)

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { Input, Button, MultiSelect } from '@/components'
-import { useCreateUserPage } from './hooks/useCreateUserPage'
+import { Input, Button, MultiSelect, Card } from '@/components'
+import { useCreateUserPage } from './hooks'
 import { ErrorAlert } from '../../../components'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
@@ -13,7 +13,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
-import { Card } from '@/components/Card'
 
 export function CreateUserPage() {
   const { t } = useTranslation()

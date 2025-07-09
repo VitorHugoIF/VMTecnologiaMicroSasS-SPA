@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Button, Separator } from '@/components'
-import { useViewTenantPage } from './hooks/useViewTenantPage'
+import { useViewTenantPage } from './hooks'
 import { ViewTenantSkeleton } from './components/ViewTenantSkeleton'
 import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
+import { TenantStatusLabels } from '../../types/tenant/tenantStatus'
 
 export function ViewTenantPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { tenant, isLoading, error, handleEnable, handleDisable, isEnabling, isDisabling } =
+  const { tenant, isLoading, error, handleEnable, handleDisable, isEnabling, isDisabling, isDeleting } =
     useViewTenantPage()
 
   if (isLoading) {
@@ -43,7 +44,7 @@ export function ViewTenantPage() {
         </div>
         <div>
           <h3 className="text-sm font-medium">{t('tenants.view.form.status')}</h3>
-          <p className="text-sm text-gray-500">{tenant.status}</p>
+          <p className="text-sm text-gray-500">{t(`tenants.status.${TenantStatusLabels[tenant.status]}`)}</p>
         </div>
       </div>
       {tenant.plan && (
@@ -84,12 +85,12 @@ export function ViewTenantPage() {
         >
           {t('tenants.view.edit')}
         </Button>
-        {tenant.status === 'active' ? (
+        {TenantStatusLabels[tenant.status] === 'active' ? (
           <Button
             className="ml-auto"
             variant="destructive"
             onClick={handleDisable}
-            loading={isDisabling}
+            loading={isDisabling || isDeleting}
             icon={<Trash2 className="w-4 h-4" />}
           >
             {t('tenants.view.disable')}
@@ -98,7 +99,7 @@ export function ViewTenantPage() {
           <Button
             className="ml-auto"
             onClick={handleEnable}
-            loading={isEnabling}
+            loading={isEnabling || isDeleting}
             icon={<Check className="w-4 h-4" />}
           >
             {t('tenants.view.enable')}

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Input, Button, Select } from '@/components'
 import { ErrorAlert } from '../../../components'
-import { useCreateTenantPage } from './hooks/useCreateTenantPage'
+import { useCreateTenantPage } from './hooks'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import {
@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
 
 export function CreateTenantPage() {
   const { t } = useTranslation()

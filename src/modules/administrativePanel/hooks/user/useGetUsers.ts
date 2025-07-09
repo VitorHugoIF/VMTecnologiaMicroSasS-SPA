@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { UserHttpService } from '../../../services/http'
+import { UserHttpService } from '@/modules/services/http'
 import { QueryTimeConfig } from '@/config/queryTimeConfig'
 
 export function useGetUsers(

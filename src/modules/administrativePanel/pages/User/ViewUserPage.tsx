@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Button, Card, Separator } from '@/components'
-import { useViewUserPage } from './hooks/useViewUserPage'
+import { useViewUserPage } from './hooks'
 import { ErrorAlert } from '../../../components'
 import { Badge } from '@/components/ui/badge'
 import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'

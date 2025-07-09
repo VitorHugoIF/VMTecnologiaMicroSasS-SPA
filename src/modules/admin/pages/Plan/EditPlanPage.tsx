@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { Button } from '@/components/Button'
+import { Button, Input, Textarea, Card } from '@/components'
 import { Check, X } from 'lucide-react'
 import {
   Form,
@@ -9,16 +9,13 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/Input'
-import { Textarea } from '@/components/Textarea'
-import { useEditPlanPage } from './hooks/useEditPlanPage'
+import { useEditPlanPage } from './hooks'
 import { useTranslation } from 'react-i18next'
 import { ADMIN_ROUTES } from '@/routes/routeRoles'
 import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { EditPlanSkeleton } from './components/EditPlanSkeleton'
-import { Card } from '@/components/Card'
 
 export function EditPlanPage() {
   const { id } = useParams<{ id: string }>()

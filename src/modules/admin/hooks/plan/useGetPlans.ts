@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { PlanHttpService } from '../../../services/http'
+import { PlanHttpService } from '@/modules/services/http'
 import { QueryTimeConfig } from '@/config/queryTimeConfig'
 
 export function useGetPlans(

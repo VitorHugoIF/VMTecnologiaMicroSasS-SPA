@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Input, Button } from '@/components'
 import { ErrorAlert } from '../../../components'
-import { useEditRolePage } from './hooks/useEditRolePage'
+import { useEditRolePage } from './hooks'
 import { EditRoleSkeleton } from './components/EditRoleSkeleton'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { X, Check } from 'lucide-react'
-import { Card } from '@/components/Card'
+import { Card } from '@/components'
 
 export function EditRolePage() {
   const { t } = useTranslation()
