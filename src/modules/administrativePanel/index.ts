@@ -1,6 +1,0 @@
-export * from './AdministrativePanelModule'
-export * from './types'
-export * from './models'
-export * from './mappers'
-export * from './hooks'
-export * from './pages'

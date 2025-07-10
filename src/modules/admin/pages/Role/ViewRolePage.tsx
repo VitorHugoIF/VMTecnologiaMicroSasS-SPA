@@ -98,24 +98,14 @@ export function ViewRolePage() {
             variant="destructive"
           />
         ) : (
-          <ConfirmDialog
-            trigger={
-              <Button
-                className="ml-auto"
-                variant="default"
-                loading={isDeleting}
-                icon={<Check className="w-4 h-4" />}
-              >
-                {t('roles.view.enable')}
-              </Button>
-            }
-            title={t('common.enable')}
-            description={t('common.enable')}
-            confirmText={t('roles.view.enable')}
-            cancelText={t('common.cancel')}
-            onConfirm={() => handleToggleActive(true)}
+          <Button
+            className="ml-auto"
             variant="default"
-          />
+            loading={isDeleting}
+            icon={<Check className="w-4 h-4" />}
+          >
+            {t('roles.view.enable')}
+          </Button>
         )}
       </div>
     </Card>

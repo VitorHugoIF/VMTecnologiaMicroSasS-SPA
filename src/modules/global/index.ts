@@ -1,1 +1,0 @@
-export { GlobalModule } from './GlobalModule'; 

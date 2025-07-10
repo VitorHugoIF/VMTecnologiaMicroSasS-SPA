@@ -1,0 +1,1 @@
+export { useDashboardGreeting } from './useDashboardGreeting'

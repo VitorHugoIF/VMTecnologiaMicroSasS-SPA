@@ -15,6 +15,14 @@
     "administrativePanel": {
       "title": "Painel Administrativo",
       "users": "Usuários"
+    },
+    "stock": {
+      "title": "Estoque",
+      "product": "Produtos",
+      "category": "Categorias",
+      "brand": "Marcas",
+      "entry": "Entradas",
+      "exit": "Saídas"
     }
   },
   "forbidden": {
@@ -391,6 +399,127 @@
       }
     }
   },
+  "products": {
+    "list": {
+      "title": "Produtos",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar produtos",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_sku": "SKU",
+        "column_category": "Categoria",
+        "column_band": "Marca",
+        "column_active": "Ativo",
+        "column_active_true": "Ativo",
+        "column_active_false": "Inativo",
+        "column_actions": "Ações"
+      }
+    }
+  },
+  "brands": {
+    "list": {
+      "title": "Marcas",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar marcas",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_description": "Descrição",
+        "column_status": "Status",
+        "column_active_true": "Ativa",
+        "column_active_false": "Inativa",
+        "column_actions": "Ações"
+      }
+    },
+    "edit": {
+      "title": "Editar Marca",
+      "description": "Altere os campos abaixo para editar a marca",
+      "enable": "Habilitar",
+      "disable": "Desabilitar",
+      "enable_confirm_title": "Habilitar Marca",
+      "enable_confirm_message": "Tem certeza que deseja habilitar esta marca?",
+      "disable_confirm_title": "Desabilitar Marca",
+      "disable_confirm_message": "Tem certeza que deseja desabilitar esta marca?",
+      "success_enable": "Marca habilitada com sucesso.",
+      "success_disable": "Marca desabilitada com sucesso.",
+      "error_enable": "Erro ao habilitar marca.",
+      "error_disable": "Erro ao desabilitar marca."
+    }
+  },
+  "brand": {
+    "view": {
+      "title": "Detalhes da Marca",
+      "description": "Visualize os detalhes desta marca",
+      "details": "Detalhes da Marca",
+      "detailsDescription": "Informações completas sobre a marca"
+    },
+    "name": "Nome",
+    "description": "Descrição"
+  },
+  "categories": {
+    "list": {
+      "title": "Categorias",
+      "add": "Adicionar",
+      "errorLoading": "Erro ao carregar categorias",
+      "search": {
+        "placeholder": "Buscar..."
+      },
+      "sort": {
+        "placeholder": "Ordenar por...",
+        "asc": "Ascendente",
+        "desc": "Descendente"
+      },
+      "table": {
+        "column_name": "Nome",
+        "column_description": "Descrição",
+        "column_status": "Status",
+        "column_active_true": "Ativa",
+        "column_active_false": "Inativa",
+        "column_actions": "Ações"
+      }
+    },
+    "edit": {
+      "title": "Editar Categoria",
+      "description": "Altere os campos abaixo para editar a categoria",
+      "enable": "Habilitar",
+      "disable": "Desabilitar",
+      "status_active": "Ativo",
+      "status_inactive": "Inativo",
+      "enable_confirm_title": "Habilitar Categoria",
+      "enable_confirm_message": "Tem certeza que deseja habilitar esta categoria?",
+      "disable_confirm_title": "Desabilitar Categoria",
+      "disable_confirm_message": "Tem certeza que deseja desabilitar esta categoria?",
+      "success_enable": "Categoria habilitada com sucesso.",
+      "success_disable": "Categoria desabilitada com sucesso.",
+      "error_enable": "Erro ao habilitar categoria.",
+      "error_disable": "Erro ao desabilitar categoria."
+    }
+  },
+  "category": {
+    "view": {
+      "title": "Detalhes da Categoria",
+      "description": "Visualize os detalhes desta categoria",
+      "details": "Detalhes da Categoria",
+      "detailsDescription": "Informações completas sobre a categoria"
+    },
+    "name": "Nome",
+    "description": "Descrição"
+  },
   "table": {
     "table_column_actions": "Ações",
     "table_tooltip_view": "Ver",
@@ -408,7 +537,9 @@
     "disable": "Desabilitar",
     "loading": "Carregando...",
     "active": "Ativo",
-    "inactive": "Inativo"
+    "inactive": "Inativo",
+    "status": "Status",
+    "createdAt": "Criado em"
   },
   "login": {
     "auth0": "Logar como administrador",
@@ -416,5 +547,11 @@
     "username": "Usuário",
     "password": "Senha",
     "signIn": "Entrar"
+  },
+  "dashboard": {
+    "greeting": "Olá, {{name}}!",
+    "welcome_message": "Estamos felizes em te ver novamente.",
+    "today_title": "Data de hoje",
+    "user_default_name": "Usuário"
   }
 }

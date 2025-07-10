@@ -28,7 +28,7 @@ export function LanguageSelector({ languages, onChange }: LanguageSelectorProps)
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="p-1 hover:bg-muted/60 transition-colors text-foreground flex items-center justify-center"
+              className="cursor-pointer p-1 hover:bg-muted/60 transition-colors text-foreground flex items-center justify-center"
               aria-label="Alterar idioma"
             >
               <CountryFlag
@@ -52,7 +52,7 @@ export function LanguageSelector({ languages, onChange }: LanguageSelectorProps)
                   i18n.changeLanguage(lang.code)
                   onChange?.(lang.code)
                 }}
-                className="gap-2"
+                className="gap-2 cursor-pointer"
               >
                 <CountryFlag
                   countryCode={lang.countryCode}

@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthenticatedRoutes } from './AuthenticatedRoutes'
 import { PublicRoutes } from './PublicRoutes'
-import { LoginPage, NotFound, Forbidden, InternalServerError, VerifiedEmail } from '@/pages'
+import { LoginPage, NotFound, Forbidden, InternalServerError, VerifiedEmail, DashboardPage } from '@/pages'
 import {
   ERROR_ROUTE,
   FORBIDDEN_ROUTE,
+  LOGIN_ROUTE,
   MAIN_ROUTE,
   MAIN_ROUTE_AUTH0,
   NOT_FOUND_ROUTE,
@@ -28,7 +29,7 @@ function RootRedirect() {
   if (isLoading) return null
   if (isAuthenticated && !isLoading) return <Navigate to={getMainUrlRoute(user)} replace />
   if (error) return <Navigate to={ERROR_ROUTE} />
-  return <Navigate to={PREFIX_ROUTE + '/login'} />
+  return <Navigate to={LOGIN_ROUTE} />
 }
 
 const queryClient = new QueryClient()
@@ -37,7 +38,8 @@ const AdminModule = lazy(() => import('@/modules').then((m) => ({ default: m.Adm
 const AdministrativePanelModule = lazy(() =>
   import('@/modules').then((m) => ({ default: m.AdministrativePanelModule })),
 )
-const GlobalModule = lazy(() => import('@/modules').then((m) => ({ default: m.GlobalModule })))
+const StockModule = lazy(() => import('@/modules').then((m) => ({ default: m.StockModule })))
+
 
 export function AppRouter() {
   return (
@@ -46,14 +48,14 @@ export function AppRouter() {
         <Routes>
           <Route path="/" element={<RootRedirect />} />
           <Route element={<PublicRoutes />}>
-            <Route path={PREFIX_ROUTE + '/login'} element={<LoginPage />} />
+            <Route path={LOGIN_ROUTE} element={<LoginPage />} />
             <Route path={FORBIDDEN_ROUTE} element={<Forbidden />} />
             <Route path={ERROR_ROUTE} element={<InternalServerError />} />
             <Route path={VERIFIEDEMAIL_ROUTE} element={<VerifiedEmail />} />
             <Route path={NOT_FOUND_ROUTE} element={<NotFound />} />
           </Route>
           <Route path={PREFIX_ROUTE + '/'} element={<AuthenticatedRoutes />}>
-            <Route path="global/*" element={<GlobalModule />} />
+            <Route path="dashboard" element={<DashboardPage />} />
             <Route
               path="admin/*"
               element={
@@ -74,6 +76,18 @@ export function AppRouter() {
                 </RoleGuard>
               }
             />
+
+            <Route
+              path="stock/*"
+              element={
+                // <RoleGuard requiredRoles={[]}>
+                  <Suspense fallback={<ProgressBar />}>
+                    <StockModule />
+                  </Suspense>
+                // </RoleGuard>
+              }
+            />
+
           </Route>
           <Route path="*" element={<Navigate to={NOT_FOUND_ROUTE} />} />
         </Routes>

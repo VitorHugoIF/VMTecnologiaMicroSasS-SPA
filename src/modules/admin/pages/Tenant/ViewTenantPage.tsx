@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { Button, Separator } from '@/components'
+import { Button, Separator, ConfirmDialog } from '@/components'
 import { useViewTenantPage } from './hooks'
 import { ViewTenantSkeleton } from './components/ViewTenantSkeleton'
 import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
@@ -86,15 +86,25 @@ export function ViewTenantPage() {
           {t('tenants.view.edit')}
         </Button>
         {TenantStatusLabels[tenant.status] === 'active' ? (
-          <Button
-            className="ml-auto"
+          <ConfirmDialog
+            trigger={
+              <Button
+                className="ml-auto"
+                variant="destructive"
+                onClick={() => {}}
+                loading={isDisabling || isDeleting}
+                icon={<Trash2 className="w-4 h-4" />}
+              >
+                {t('tenants.view.disable')}
+              </Button>
+            }
+            title={t('tenants.delete.title') || t('tenants.view.disable')}
+            description={t('tenants.delete.description') || t('tenants.view.disable')}
+            confirmText={t('tenants.view.disable')}
+            cancelText={t('common.cancel')}
+            onConfirm={handleDisable}
             variant="destructive"
-            onClick={handleDisable}
-            loading={isDisabling || isDeleting}
-            icon={<Trash2 className="w-4 h-4" />}
-          >
-            {t('tenants.view.disable')}
-          </Button>
+          />
         ) : (
           <Button
             className="ml-auto"

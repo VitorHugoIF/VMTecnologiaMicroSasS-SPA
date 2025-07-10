@@ -8,7 +8,7 @@ import { ErrorAlert } from '@/modules/components/ErrorAlert'
 import { formatErrors } from '@/lib/utils'
 import { ApiError } from '@/core/models/errorResponse'
 import { Edit, ArrowLeft, Trash2, Check } from 'lucide-react'
-import { Button, Card, Separator } from '@/components'
+import { Button, Card, Separator, ConfirmDialog } from '@/components'
 
 export function ViewPlanPage() {
   const { id } = useParams<{ id: string }>()
@@ -90,15 +90,25 @@ export function ViewPlanPage() {
           {t('plans.view.edit')}
         </Button>
         {plan.active ? (
-          <Button
-            className="ml-auto"
+          <ConfirmDialog
+            trigger={
+              <Button
+                className="ml-auto"
+                variant="destructive"
+                onClick={() => {}}
+                loading={isDisabling || isDeleting}
+                icon={<Trash2 className="w-4 h-4" />}
+              >
+                {t('plans.view.disable')}
+              </Button>
+            }
+            title={t('plans.delete.title') || t('plans.view.disable')}
+            description={t('plans.delete.description') || t('plans.view.disable')}
+            confirmText={t('plans.view.disable')}
+            cancelText={t('common.cancel')}
+            onConfirm={() => handleDisable(plan.id!)}
             variant="destructive"
-            onClick={() => handleDisable(plan.id!)}
-            loading={isDisabling || isDeleting}
-            icon={<Trash2 className="w-4 h-4" />}
-          >
-            {t('plans.view.disable')}
-          </Button>
+          />
         ) : (
           <Button
             className="ml-auto"

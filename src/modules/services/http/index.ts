@@ -37,6 +37,22 @@ import {
   updatePlan,
 } from './planHttpService'
 
+import {
+  getBrands,
+  getBrand,
+  createBrand,
+  updateBrand,
+  disableBrand
+} from './brandHttpService'
+
+import {
+  getCategories,
+  getCategory,
+  createCategory,
+  updateCategory,
+  disableCategory
+} from './categoryHttpService'
+
 export const UserHttpService = {
   getUsers,
   getUser,
@@ -74,4 +90,20 @@ export const PlanHttpService = {
   enablePlan,
   disablePlan,
   updatePlan,
+}
+
+export const BrandHttpService = {
+  getBrands,
+  getBrand,
+  createBrand,
+  updateBrand,
+  disableBrand,
+}
+
+export const CategoryHttpService = {
+  getCategories,
+  getCategory,
+  createCategory,
+  updateCategory,
+  disableCategory,
 }

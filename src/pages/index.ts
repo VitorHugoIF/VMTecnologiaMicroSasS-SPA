@@ -1,4 +1,5 @@
-export { LoginPage } from './login/LoginPage'
+export * from './login/LoginPage'
+export * from './dashboard/DashboardPage'
 export * from './NotFound'
 export * from './Forbidden'
 export * from './VerifiedEmail'

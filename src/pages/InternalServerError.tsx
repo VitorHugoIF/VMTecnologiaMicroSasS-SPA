@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 export function InternalServerError() {
   const { t } = useTranslation()
   const { logout } = useAuth()
-  useEffect(() => { logout && logout() }, [logout])
+  useEffect(() => { logout() }, [logout])
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-background text-center px-4">
       <span className="mb-4 rounded-full bg-destructive/10 p-4">

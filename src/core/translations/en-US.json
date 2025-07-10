@@ -15,6 +15,14 @@
     "administrativePanel": {
       "title": "Administrative Panel",
       "users": "Users"
+    },
+    "stock": {
+      "title": "Stock",
+      "product": "Products",
+      "category": "Categories",
+      "brand": "Brands",
+      "entry": "Entries",
+      "exit": "Exits"
     }
   },
   "auth": {
@@ -32,7 +40,10 @@
     "label": "User"
   },
   "dashboard": {
-    "title": "Dashboard"
+    "greeting": "Hello, {{name}}!",
+    "welcome_message": "We're happy to see you again.",
+    "today_title": "Today's date",
+    "user_default_name": "User"
   },
   "tenant": {
     "label": "Tenant"
@@ -435,7 +446,9 @@
     "disable": "Disable",
     "loading": "Loading...",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "status": "Status",
+    "createdAt": "Created at"
   },
   "login": {
     "auth0": "Login as administrator",
@@ -443,5 +456,126 @@
     "username": "Username",
     "password": "Password",
     "signIn": "Sign In"
+  },
+  "products": {
+    "list": {
+      "title": "Products",
+      "add": "Add",
+      "errorLoading": "Error loading products",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_sku": "SKU",
+        "column_category": "Category",
+        "column_band": "Brand",
+        "column_active": "Active",
+        "column_active_true": "Active",
+        "column_active_false": "Inactive",
+        "column_actions": "Actions"
+      }
+    }
+  },
+  "brands": {
+    "list": {
+      "title": "Brands",
+      "add": "Add",
+      "errorLoading": "Error loading brands",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_description": "Description",
+        "column_status": "Status",
+        "column_active_true": "Active",
+        "column_active_false": "Inactive",
+        "column_actions": "Actions"
+      }
+    },
+    "edit": {
+      "title": "Edit Brand",
+      "description": "Change the fields below to edit the brand",
+      "enable": "Enable",
+      "disable": "Disable",
+      "enable_confirm_title": "Enable Brand",
+      "enable_confirm_message": "Are you sure you want to enable this brand?",
+      "disable_confirm_title": "Disable Brand",
+      "disable_confirm_message": "Are you sure you want to disable this brand?",
+      "success_enable": "Brand enabled successfully.",
+      "success_disable": "Brand disabled successfully.",
+      "error_enable": "Error enabling brand.",
+      "error_disable": "Error disabling brand."
+    }
+  },
+  "brand": {
+    "view": {
+      "title": "Brand Details",
+      "description": "View the details of this brand",
+      "details": "Brand Details",
+      "detailsDescription": "Complete information about the brand"
+    },
+    "name": "Name",
+    "description": "Description"
+  },
+  "categories": {
+    "list": {
+      "title": "Categories",
+      "add": "Add",
+      "errorLoading": "Error loading categories",
+      "search": {
+        "placeholder": "Search..."
+      },
+      "sort": {
+        "placeholder": "Sort by...",
+        "asc": "Ascending",
+        "desc": "Descending"
+      },
+      "table": {
+        "column_name": "Name",
+        "column_description": "Description",
+        "column_status": "Status",
+        "column_active_true": "Active",
+        "column_active_false": "Inactive",
+        "column_actions": "Actions"
+      }
+    },
+    "edit": {
+      "title": "Edit Category",
+      "description": "Change the fields below to edit the category",
+      "enable": "Enable",
+      "disable": "Disable",
+      "status_active": "Active",
+      "status_inactive": "Inactive",
+      "enable_confirm_title": "Enable Category",
+      "enable_confirm_message": "Are you sure you want to enable this category?",
+      "disable_confirm_title": "Disable Category",
+      "disable_confirm_message": "Are you sure you want to disable this category?",
+      "success_enable": "Category enabled successfully.",
+      "success_disable": "Category disabled successfully.",
+      "error_enable": "Error enabling category.",
+      "error_disable": "Error disabling category."
+    }
+  },
+  "category": {
+    "view": {
+      "title": "Category Details",
+      "description": "View the details of this category",
+      "details": "Category Details",
+      "detailsDescription": "Complete information about the category"
+    },
+    "name": "Name",
+    "description": "Description"
   }
 }
